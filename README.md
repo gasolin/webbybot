@@ -35,3 +35,8 @@ $ node ./bin/webby.js
 ```
 $ npm test
 ```
+
+# Lint
+```
+$ npm run lint
+```
