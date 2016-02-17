@@ -1,3 +1,5 @@
+/* global describe, beforeEach, it*/
+
 'use strict';
 // Assertions and Stubbing
 var chai = require('chai');
@@ -15,7 +17,7 @@ describe('Adapter', function() {
   });
 
   // this one is hard, as it requires files
-  it("can load adapter by name");
+  it('can load adapter by name');
   describe('Public API', function() {
     beforeEach(function() {
       this.adapter = new Adapter(this.robot);

@@ -1,3 +1,4 @@
+/* global describe, beforeEach, it*/
 'use strict';
 // Assertions and Stubbing
 var chai = require('chai');

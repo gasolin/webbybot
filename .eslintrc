@@ -6,9 +6,8 @@ rules:
     "dot-location": 0
     "newline-after-var": 0
     "new-cap": 0
-    "valid-jsdoc": [2, {
-      "requireReturn": false
-    }]
+    "no-invalid-this": 0
+    "valid-jsdoc": 0
 env:
     "browser": true
     "es6": true

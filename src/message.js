@@ -50,9 +50,9 @@ class TextMessage extends Message {
    *
    * Returns the message text
    */
-   toString() {
-     return this.text;
-   }
+  toString() {
+    return this.text;
+  }
 }
 
 /**

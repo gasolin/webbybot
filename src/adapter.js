@@ -142,7 +142,8 @@ class Adapter extends EventEmitter {
    */
   usersForRawFuzzyName(name) {
     this.robot.logger.warning(
-      'usersForRawFuzzyName() is deprecated, use robot.brain.usersForRawFuzzyName()');
+      'usersForRawFuzzyName() is deprecated, ' +
+      'use robot.brain.usersForRawFuzzyName()');
   }
 
   /**
