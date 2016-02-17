@@ -29,8 +29,7 @@ class Message {
  */
 class TextMessage extends Message {
   constructor(user, text, id) {
-    super();
-    //super.user();
+    super(user);
     this.user = user;
     this.text = text;
     this.id = id;
@@ -56,7 +55,46 @@ class TextMessage extends Message {
    }
 }
 
+/**
+ * Represents an incoming user entrance notification.
+ * @params {object} user - A User instance for the user who entered.
+ * @params {string} text - Always null.
+ * @params {string} id   - A String of the message ID.
+ */
+class EnterMessage extends Message {}
+
+/**
+ * Represents an incoming user exit notification.
+ * @params {object} user - A User instance for the user who left.
+ * @params {string} text - Always null.
+ * @params {string} id   - A String of the message ID.
+ */
+class LeaveMessage extends Message {}
+
+/**
+ * Represents an incoming topic change notification.
+ * @params {object} user - A User instance for the user who changed the topic.
+ * @params {string} text - A String of the new topic.
+ * @params {string} id   - A String of the message ID.
+ */
+class TopicMessage extends Message {}
+
+/**
+ * Represents a message that no matchers matched.
+ * @params {object} message - The original message.
+ */
+class CatchAllMessage extends Message {
+  constructor(message) {
+    super(message.user);
+    this.message = message;
+  }
+}
+
 module.exports = {
   Message: Message,
-  TextMessage: TextMessage
+  TextMessage: TextMessage,
+  EnterMessage: EnterMessage,
+  LeaveMessage: LeaveMessage,
+  TopicMessage: TopicMessage,
+  CatchAllMessage: CatchAllMessage
 };

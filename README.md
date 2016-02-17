@@ -20,5 +20,5 @@ $ webpack
 run command
 
 ```
-$ ./bin/webby.js
+$ node ./bin/webby.js
 ```
