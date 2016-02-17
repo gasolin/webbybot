@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- 4.3.1
+- 5.6.0
+install:
+- npm install
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+script:
+- $CI_ACTION
+env:
+  global:
+  matrix:
+  - CI_ACTION="npm run lint"
+  - CI_ACTION="npm test"
