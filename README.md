@@ -12,6 +12,12 @@ $ npm install -g webpack
 run command
 
 ```
+$ npm run compile
+```
+
+or
+
+```
 $ webpack
 ```
 
@@ -21,4 +27,10 @@ run command
 
 ```
 $ node ./bin/webby.js
+```
+
+## Test
+
+```
+$ npm test
 ```

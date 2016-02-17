@@ -7,17 +7,17 @@
  * @params {boolean} done completed message
  */
 class Message {
-  constructor(user, done) {
+  constructor(user, done = false) {
     this.user = user;
     this.room = user.room;
-    this.done = done != null ? done : false;
+    this.done = done ? true : false;
   }
 
   /**
    * Indicates that no other Listener should be called on this object.
    */
   finish() {
-    return this.done = true;
+    this.done = true;
   }
 }
 

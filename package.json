@@ -4,7 +4,8 @@
   "description": "chatterbot written in es6",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "webpack",
+    "test": "./script/test"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,12 @@
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
     "install": "^0.4.2",
+    "mocha": "^2.4.5",
     "npm": "^3.7.1",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.12.13"
   }
 }
