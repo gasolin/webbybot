@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "webpack",
-    "test": "./script/test"
+    "test": "./script/test",
+    "lint": "./node_modules/eslint/bin/eslint.js src/ test/"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "chai": "^3.5.0",
+    "eslint": "^2.1.0",
+    "eslint-config-defaults": "^9.0.0",
     "install": "^0.4.2",
     "mocha": "^2.4.5",
     "npm": "^3.7.1",

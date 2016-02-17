@@ -4,7 +4,7 @@
 ## Setup Development
 
 ```
-$ npm install -g webpack
+$ npm install -g webpack mocha
 ```
 
 ## Build
