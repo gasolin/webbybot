@@ -2,9 +2,8 @@
 
 class User {
   constructor(id, options = {}) {
-    var k;
     this.id = id;
-    for (k in options || {}) {
+    for (let k in options || {}) {
       if (options.hasOwnProperty(k)) {
         this[k] = options[k];
       }
