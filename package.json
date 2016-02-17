@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/gasolin/webbybot#readme",
   "dependencies": {
-    "babel-register": "^6.5.2"
+    "async": "^1.5.2",
+    "babel-register": "^6.5.2",
+    "chalk": "^1.1.1",
+    "cline": "^0.8.2"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
