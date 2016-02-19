@@ -2,8 +2,9 @@ module.exports = {
   entry: './index.js',
   output: {
     path: __dirname,
-    filename: 'bin/dist.js'
+    filename: 'bin/webby.js'
   },
+  target: 'node',
   module: {
     loaders: [{
       test: /\.js$/,
@@ -16,9 +17,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.json']
-  },
-  node: {
-    fs: 'empty',
-    readline: 'empty'
   }
 };

@@ -8,10 +8,12 @@ var Robot = require('../robot');
 var Adapter = require('../adapter');
 var TextMessage = require('../message').TextMessage;
 
-let historySize = process.env.HUBOT_SHELL_HISTSIZE != null ?
-  parseInt(process.env.HUBOT_SHELL_HISTSIZE) : 1024;
+let historySize = process.env.WEBBY_SHELL_HISTSIZE != null ?
+  parseInt(process.env.WEBBY_SHELL_HISTSIZE) : 1024;
 
-let historyPath = '.hubot_history';
+let historyPath = '.webby_history';
+
+console.log('shell adapter loaded');
 
 class Shell extends Adapter {
   send(envelope, ...strings) {
@@ -54,11 +56,11 @@ class Shell extends Adapter {
   buildCli() {
     this.cli = cline();
     this.cli.command('*', (input) => {
-      let userId = process.env.HUBOT_SHELL_USER_ID || '1';
+      let userId = process.env.WEBBY_SHELL_USER_ID || '1';
       if (userId.match(/\A\d+\z/)) {
         userId = parseInt(userId);
       }
-      let userName = process.env.HUBOT_SHELL_USER_NAME || 'Shell';
+      let userName = process.env.WEBBY_SHELL_USER_NAME || 'Shell';
       let user = this.robot.brain.userForId(userId, {
         name: userName,
         room: 'Shell'
@@ -108,7 +110,7 @@ class Shell extends Adapter {
 }
 
 /**
- *Private: load history from .hubot_history.
+ *Private: load history from .webby_history.
  *
  * callback - A Function that is called with the loaded history items (or an empty array if there is no history)
  */

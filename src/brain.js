@@ -17,7 +17,7 @@ class Brain extends EventEmitter {
     };
     this.autoSave = true;
 
-    return robot.on('running', () => {
+    robot.on('running', () => {
       this.resetSaveInterval(5);
     });
   }
