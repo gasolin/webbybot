@@ -3,6 +3,7 @@ var readline = require('readline');
 var stream = require('stream');
 var cline = require('cline');
 var chalk = require('chalk');
+
 var Robot = require('../robot');
 var Adapter = require('../adapter');
 var TextMessage = require('../message').TextMessage;
