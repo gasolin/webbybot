@@ -25,7 +25,9 @@
     "async": "^1.5.2",
     "babel-register": "^6.5.2",
     "chalk": "^1.1.1",
-    "cline": "^0.8.2"
+    "cline": "^0.8.2",
+    "log": "^1.4.0",
+    "scoped-http-client": "^0.11.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",

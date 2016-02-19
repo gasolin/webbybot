@@ -2,7 +2,7 @@ module.exports = {
   entry: './index.js',
   output: {
     path: __dirname,
-    filename: 'bin/webby.js'
+    filename: 'bin/dist.js'
   },
   module: {
     loaders: [{
