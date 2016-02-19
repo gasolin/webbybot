@@ -41,7 +41,7 @@ class Shell extends Adapter {
 
   run() {
     this.buildCli();
-    this.loadHistory(() => {
+    loadHistory((history) => {
       this.cli.history(history);
       this.cli.interact(this.robot.name + '> ');
       this.emit('connected');

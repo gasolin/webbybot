@@ -1,7 +1,7 @@
 'use strict';
 
 // var Fs = require('fs');
-// var Log = require('log');
+var Log = require('log');
 var Path = require('path');
 // var HttpClient = require('scoped-http-client');
 var EventEmitter = require('events').EventEmitter;
@@ -44,7 +44,7 @@ class Robot {
     //   response: new Middleware(this),
     //   receive: new Middleware(this)
     // };
-    // this.logger = new Log(process.env.WEBBY_LOG_LEVEL || 'info');
+    this.logger = new Log(process.env.WEBBY_LOG_LEVEL || 'info');
     this.pingIntervalId = null;
     this.globalHttpOptions = {};
     // this.parseVersion();
@@ -57,8 +57,7 @@ class Robot {
     this.adapterName = adapter;
     this.errorHandlers = [];
     this.on('error', (err, res) => {
-      console.log('Error handler');
-      // return this.invokeErrorHandlers(err, res);
+      this.invokeErrorHandlers(err, res);
     });
     this.onUncaughtException = (err) => {
       return this.emit('error', err);
@@ -68,16 +67,31 @@ class Robot {
 
   // load adapter
   loadAdapter(adapter) {
-    // this.logger.debug("Loading adapter " + adapter);
+    this.logger.debug("Loading adapter " + adapter);
     try {
       // require('./adapters/shell');
       let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapter) >= 0 ?
         this.adapterPath + '/' + adapter : 'webby-' + adapter;
       this.adapter = require(path).use(this);
     } catch (error) {
-      // this.logger.error("Cannot load adapter " + adapter + " - " + error);
+      this.logger.error("Cannot load adapter " + adapter + " - " + error);
       process.exit(1);
     }
+  }
+
+  invokeErrorHandlers(err, res) {
+    this.logger.error(err.stack);
+    let results = [];
+    this.errorHandlers.forEach(function(errorHandler) {
+      try {
+        results.push(errorHandler(err, res));
+      } catch(error) {
+        results.push(this.logger.error("while invoking error handler: " +
+          error + "\n" + error.stack));
+      }
+    });
+
+    return results;
   }
 
   /**
