@@ -1,11 +1,11 @@
 'use strict';
 
-// var Fs = require('fs');
+var Fs = require('fs');
 var Log = require('log');
 var Path = require('path');
 var HttpClient = require('scoped-http-client');
 var EventEmitter = require('events').EventEmitter;
-// var async = require('async');
+var async = require('async');
 
 var User = require('./user');
 var Brain = require('./brain');
@@ -344,8 +344,97 @@ class Robot {
     }, this.processListeners.bind(this), cb);
   }
 
+  /**
+   * Private: Passes the given message to any interested Listeners.
+   *
+   * @params {object} context - A Message instance. Listeners can flag this
+   *                            message as 'done' to prevent further execution.
+   *
+   * @params done - Optional callback that is called when message processing is
+   *                complete
+   *
+   * Returns nothing.
+   * Returns before executing callback
+   */
   processListeners(context, done) {
+    // Try executing all registered Listeners in order of registration
+    // and return after message is done being processed
     console.log('processListeners');
+    let anyListenersExecuted = false;
+    async.detectSeries(this.listeners, (listener, cb) => {
+      try {
+        listener.call(context.response.message,
+          this.middleware.listener, function(listenerExecuted) {
+            anyListenersExecuted = anyListenersExecuted || listenerExecuted;
+            Middleware.ticker(function() {
+              cb(context.response.message.done);
+            });
+          });
+      } catch(error) {
+        this.emit('error', error, new this.Response(
+          this, context.response.message, []));
+        cb(false);
+      }
+    }, (_) => {
+      if (!(context.response.message instanceof CatchAllMessage) &&
+        !anyListenersExecuted) {
+        this.logger.debug('No listeners executed; falling back to catch-all');
+        this.receive(new CatchAllMessage(context.response.message), done);
+      } else {
+        if (done != null) {
+          process.nextTick(done);
+        }
+      }
+    });
+    return void 0;
+  }
+
+  /**
+   * Public: Loads a file in path.
+   *
+   * path - A String path on the filesystem.
+   * file - A String filename in path on the filesystem.
+   *
+   * Returns nothing.
+   */
+  loadFile(path, file) {
+    let ext = Path.extname(file);
+    let full = Path.join(path, Path.basename(file, ext));
+    if (require.extensions[ext]) {
+      let script;
+      try {
+        script = require(full);
+        if (typeof script === 'function') {
+          script(this);
+          // return this.parseHelp(Path.join(path, file));
+        } else {
+          return this.logger.warning('Expected ' + full +
+            ' to assign a function to module.exports, got ' + typeof script);
+        }
+      } catch (error) {
+        this.logger.error('Unable to load ' + full + ': ' + error.stack);
+        process.exit(1);
+      }
+    }
+  }
+
+  /**
+   * Public: Loads every script in the given path.
+   *
+   * @params {string} path - A String path on the filesystem.
+   *
+   * Returns nothing.
+   */
+  load(path) {
+    this.logger.debug('Loading scripts from ' + path);
+    if (Fs.existsSync(path)) {
+      let ref = Fs.readdirSync(path).sort();
+      let results = [];
+      ref.forEach(function(file) {
+        results.push(this.loadFile(path, file));
+      });
+      return results;
+    }
   }
 
   /**
