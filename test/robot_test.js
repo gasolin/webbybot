@@ -75,7 +75,8 @@ describe('Robot', function() {
       //   expect(httpClient.options.agent).to.equal(agent);
       // });
       it('sets a sane user agent', function() {
-        expect(this.httpClient.options.headers['User-Agent']).to.contain('Webby');
+        expect(this.httpClient.options.headers['User-Agent'])
+          .to.contain('Webby');
       });
       // it('merges in any global http options', function() {
       //   var agent, httpClient;
