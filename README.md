@@ -28,6 +28,7 @@ run command
 
 ```
 $ node ./bin/webby.js
+webby >
 ```
 
 ## Test
@@ -36,7 +37,7 @@ $ node ./bin/webby.js
 $ npm test
 ```
 
-# Lint
+## Lint
 ```
 $ npm run lint
 ```

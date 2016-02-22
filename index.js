@@ -4,8 +4,9 @@ var Robot = require('./src/robot');
 var Adapter = require('./src/adapter');
 var Response = require('./src/response');
 // var ref = require('./listener');
-// var Listener = ref.Listener;
-// var TextListener = ref.TextListener;
+var ref = {Listener: {}, TextListener: {}};
+var Listener = ref.Listener;
+var TextListener = ref.TextListener;
 var ref1 = require('./src/message');
 var Message = ref1.Message;
 var TextMessage = ref1.TextMessage;
@@ -20,8 +21,8 @@ module.exports = {
   Robot: Robot,
   Adapter: Adapter,
   Response: Response,
-  // Listener: Listener,
-  // TextListener: TextListener,
+  Listener: Listener,
+  TextListener: TextListener,
   Message: Message,
   TextMessage: TextMessage,
   EnterMessage: EnterMessage,
