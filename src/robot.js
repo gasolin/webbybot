@@ -19,8 +19,7 @@ var EnterMessage = ref1.EnterMessage;
 var LeaveMessage = ref1.LeaveMessage;
 var TopicMessage = ref1.TopicMessage;
 var CatchAllMessage = ref1.CatchAllMessage;
-// var Middleware = require('./middleware');
-var Middleware = Object;
+var Middleware = require('./middleware');
 
 console.log('Hello webby!');
 
