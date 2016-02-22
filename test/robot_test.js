@@ -57,48 +57,48 @@ describe('Robot', function() {
   });
 
   describe('Unit Tests', function() {
-    // describe('#http', function() {
-    //   beforeEach(function() {
-    //     var url = 'http://localhost';
-    //     this.httpClient = this.robot.http(url);
-    //   });
-    //   it('creates a new ScopedHttpClient', function() {
-    //     expect(this.httpClient).to.have.property('get');
-    //     expect(this.httpClient).to.have.property('post');
-    //   });
-    //   it('passes options through to the ScopedHttpClient', function() {
-    //     var agent, httpClient;
-    //     agent = {};
-    //     httpClient = this.robot.http('http://localhost', {
-    //       agent: agent
-    //     });
-    //     expect(httpClient.options.agent).to.equal(agent);
-    //   });
-    //   it('sets a sane user agent', function() {
-    //     expect(this.httpClient.options.headers['User-Agent']).to.contain('Webby');
-    //   });
-    //   it('merges in any global http options', function() {
-    //     var agent, httpClient;
-    //     agent = {};
-    //     this.robot.globalHttpOptions = {
-    //       agent: agent
-    //     };
-    //     httpClient = this.robot.http('http://localhost');
-    //     expect(httpClient.options.agent).to.equal(agent);
-    //   });
-    //   it('local options override global http options', function() {
-    //     var agentA, agentB, httpClient;
-    //     agentA = {};
-    //     agentB = {};
-    //     this.robot.globalHttpOptions = {
-    //       agent: agentA
-    //     };
-    //     httpClient = this.robot.http('http://localhost', {
-    //       agent: agentB
-    //     });
-    //     expect(httpClient.options.agent).to.equal(agentB);
-    //   });
-    // });
+    describe('#http', function() {
+      beforeEach(function() {
+        var url = 'http://localhost';
+        this.httpClient = this.robot.http(url);
+      });
+      it('creates a new ScopedHttpClient', function() {
+        expect(this.httpClient).to.have.property('get');
+        expect(this.httpClient).to.have.property('post');
+      });
+      // it('passes options through to the ScopedHttpClient', function() {
+      //   var agent, httpClient;
+      //   agent = {};
+      //   httpClient = this.robot.http('http://localhost', {
+      //     agent: agent
+      //   });
+      //   expect(httpClient.options.agent).to.equal(agent);
+      // });
+      it('sets a sane user agent', function() {
+        expect(this.httpClient.options.headers['User-Agent']).to.contain('Webby');
+      });
+      // it('merges in any global http options', function() {
+      //   var agent, httpClient;
+      //   agent = {};
+      //   this.robot.globalHttpOptions = {
+      //     agent: agent
+      //   };
+      //   httpClient = this.robot.http('http://localhost');
+      //   expect(httpClient.options.agent).to.equal(agent);
+      // });
+      // it('local options override global http options', function() {
+      //   var agentA, agentB, httpClient;
+      //   agentA = {};
+      //   agentB = {};
+      //   this.robot.globalHttpOptions = {
+      //     agent: agentA
+      //   };
+      //   httpClient = this.robot.http('http://localhost', {
+      //     agent: agentB
+      //   });
+      //   expect(httpClient.options.agent).to.equal(agentB);
+      // });
+    });
 
     describe('#respondPattern', function() {
       it('matches messages starting with robot\'s name', function() {

@@ -21,8 +21,6 @@ var TopicMessage = ref1.TopicMessage;
 var CatchAllMessage = ref1.CatchAllMessage;
 var Middleware = require('./middleware');
 
-console.log('Hello webby!');
-
 var WEBBY_DEFAULT_ADAPTERS = [
   'shell'
 ];
@@ -359,7 +357,6 @@ class Robot {
   processListeners(context, done) {
     // Try executing all registered Listeners in order of registration
     // and return after message is done being processed
-    console.log('processListeners');
     let anyListenersExecuted = false;
     async.detectSeries(this.listeners, (listener, cb) => {
       try {

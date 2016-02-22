@@ -39,6 +39,7 @@ module.exports.loadBot = function(adapterPath, adapterName,
   return new Robot(adapterPath, adapterName, enableHttpd, botName, botAlias);
 };
 
+var robot = module.exports.loadBot(null, 'shell', true, 'Webby', false);
 var loadScripts = function() {
   let scriptsPath = Path.resolve('.', 'scripts');
   robot.load(scriptsPath);
@@ -63,6 +64,5 @@ var loadScripts = function() {
 };
 
 // execute
-var robot = module.exports.loadBot(null, 'shell', true, 'Webby', false);
 robot.adapter.once('connected', loadScripts);
 robot.run();
