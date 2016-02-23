@@ -296,19 +296,17 @@ describe('Robot', function() {
     //       return cb();
     //     };
     //     sinon.spy(this.robot, 'receive');
-    //     return oldReceive.call(this.robot, testMessage, (function(_this) {
-    //       return function() {
-    //         expect(_this.robot.receive).to.have.been.called;
-    //         return done();
-    //       };
-    //     })(this));
+    //     return oldReceive.call(this.robot, testMessage, () => {
+    //       expect(this.robot.receive).to.have.been.called;
+    //       done();
+    //     });
     //   });
     //   it('does not trigger a CatchAllMessage if a listener matches', function(done) {
     //     var matchingListener, oldReceive, testMessage;
     //     testMessage = new TextMessage(this.user, 'message123');
     //     matchingListener = {
     //       call: function(message, middleware, cb) {
-    //         return cb(true);
+    //         cb(true);
     //       }
     //     };
     //     oldReceive = this.robot.receive;
@@ -323,14 +321,14 @@ describe('Robot', function() {
     //     matchingListener = {
     //       call: function(message, middleware, cb) {
     //         message.done = true;
-    //         return cb(true);
+    //         cb(true);
     //       }
     //     };
     //     listenerSpy = {
     //       call: sinon.spy()
     //     };
     //     this.robot.listeners = [matchingListener, listenerSpy];
-    //     return this.robot.receive(testMessage, function() {
+    //     this.robot.receive(testMessage, function() {
     //       expect(listenerSpy.call).to.not.have.been.called;
     //       done();
     //     });
@@ -348,23 +346,21 @@ describe('Robot', function() {
     //     goodListener = {
     //       call: function(_, middleware, cb) {
     //         goodListenerCalled = true;
-    //         return cb(true);
+    //         cb(true);
     //       }
     //     };
     //     this.robot.listeners = [badListener, goodListener];
     //     this.robot.emit = function(name, err, response) {
     //       expect(name).to.equal('error');
     //       expect(err).to.equal(theError);
-    //       return expect(response.message).to.equal(testMessage);
+    //       expect(response.message).to.equal(testMessage);
     //     };
     //     sinon.spy(this.robot, 'emit');
-    //     return this.robot.receive(testMessage, (function(_this) {
-    //       return function() {
-    //         expect(_this.robot.emit).to.have.been.called;
-    //         expect(goodListenerCalled).to.be.ok;
-    //         done();
-    //       };
-    //     })(this));
+    //     this.robot.receive(testMessage, () => {
+    //       expect(this.robot.emit).to.have.been.called;
+    //       expect(goodListenerCalled).to.be.ok;
+    //       done();
+    //     });
     //   });
     //   it('executes the callback after the function returns when there are no listeners', function(done) {
     //     var finished, testMessage;
@@ -374,7 +370,7 @@ describe('Robot', function() {
     //       expect(finished).to.be.ok;
     //       done();
     //     });
-    //     return finished = true;
+    //     finished = true;
     //   });
     // });
 
@@ -386,9 +382,8 @@ describe('Robot', function() {
     //     this.sandbox.restore();
     //   });
     //   it('should require the specified file', function() {
-    //     var module, script;
-    //     module = require('module');
-    //     script = sinon.spy(function(robot) {});
+    //     let module = require('module');
+    //     let script = sinon.spy(function(robot) {});
     //     this.sandbox.stub(module, '_load').returns(script);
     //     this.sandbox.stub(this.robot, 'parseHelp');
     //     this.robot.loadFile('./scripts', 'test-script.coffee');
@@ -396,8 +391,7 @@ describe('Robot', function() {
     //   });
     //   describe('proper script', function() {
     //     beforeEach(function() {
-    //       var module;
-    //       module = require('module');
+    //       var module = require('module');
     //       this.script = sinon.spy(function(robot) {});
     //       this.sandbox.stub(module, '_load').returns(this.script);
     //       this.sandbox.stub(this.robot, 'parseHelp');
@@ -657,13 +651,11 @@ describe('Robot', function() {
     //       return expect(response.message).to.equal(testMessage);
     //     };
     //     sinon.spy(this.robot, 'emit');
-    //     return this.robot.receive(testMessage, (function(_this) {
-    //       return function() {
-    //         expect(_this.robot.emit).to.have.been.called;
-    //         expect(goodListenerCalled).to.be.ok;
-    //         return done();
-    //       };
-    //     })(this));
+    //     return this.robot.receive(testMessage, () => {
+    //       expect(this.robot.emit).to.have.been.called;
+    //       expect(goodListenerCalled).to.be.ok;
+    //       done();
+    //     });
     //   });
     //   describe('Listener Middleware', function() {
     //     it('allows listener callback execution', function(testDone) {
@@ -697,17 +689,15 @@ describe('Robot', function() {
     //       this.robot.hear(/^message123$/, function() {});
     //       testListener = this.robot.listeners[0];
     //       testMessage = new TextMessage(this.user, 'message123');
-    //       this.robot.listenerMiddleware((function(_this) {
-    //         return function(context, next, done) {
-    //           return process.nextTick(function() {
-    //             expect(context.listener).to.equal(testListener);
-    //             expect(context.response.message).to.equal(testMessage);
-    //             expect(next).to.be.a('function');
-    //             expect(done).to.be.a('function');
-    //             return testDone();
-    //           });
-    //         };
-    //       })(this));
+    //      this.robot.listenerMiddleware((context, next, done) => {
+    //        process.nextTick(function() {
+    //          expect(context.listener).to.equal(testListener);
+    //          expect(context.response.message).to.equal(testMessage);
+    //          expect(next).to.be.a('function');
+    //          expect(done).to.be.a('function');
+    //          testDone();
+    //        });
+    //      });
     //       return this.robot.receive(testMessage);
     //     });
     //     return it('executes middleware in order of definition', function(testDone) {
@@ -892,19 +882,16 @@ describe('Robot', function() {
     //         return next(done);
     //       });
     //       testMessage = new TextMessage(this.user, 'message123');
-    //       return this.robot.receive(testMessage, (function(_this) {
-    //         return function() {
-    //           var testMessage2;
-    //           expect(plaintext).to.equal(true);
-    //           expect(method).to.equal("send");
-    //           testMessage2 = new TextMessage(_this.user, 'message456');
-    //           return _this.robot.receive(testMessage2, function() {
-    //             expect(plaintext).to.equal(void 0);
-    //             expect(method).to.equal("play");
-    //             return testDone();
-    //           });
-    //         };
-    //       })(this));
+    //       this.robot.receive(testMessage, (() {
+    //         expect(plaintext).to.equal(true);
+    //         expect(method).to.equal("send");
+    //         var testMessage2 = new TextMessage(this.user, 'message456');
+    //         this.robot.receive(testMessage2, function() {
+    //           expect(plaintext).to.equal(void 0);
+    //           expect(method).to.equal("play");
+    //           testDone();
+    //         });
+    //       });
     //     });
     //     it('does not send trailing functions to middleware', function(testDone) {
     //       var asserted, postSendCallback, sendSpy, testMessage;

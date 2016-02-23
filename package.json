@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "webpack",
     "test": "./script/test",
-    "lint": "./node_modules/eslint/bin/eslint.js index.js src/ test/"
+    "lint": "./node_modules/eslint/bin/eslint.js index.js bin/webby.js src/ test/"
   },
   "repository": {
     "type": "git",

@@ -410,9 +410,9 @@ class Robot {
         script = require(full);
         if (typeof script === 'function') {
           script(this);
-          // return this.parseHelp(Path.join(path, file));
+          this.parseHelp(Path.join(path, file));
         } else {
-          return this.logger.warning('Expected ' + full +
+          this.logger.warning('Expected ' + full +
             ' to assign a function to module.exports, got ' + typeof script);
         }
       } catch (error) {
