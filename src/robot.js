@@ -10,8 +10,7 @@ var async = require('async');
 var User = require('./user');
 var Brain = require('./brain');
 var Response = require('./response');
-// var ref = require('./listener');
-var ref = {Listener: {}, TextListener: {}};
+var ref = require('./listener');
 var Listener = ref.Listener;
 var TextListener = ref.TextListener;
 var ref1 = require('./message');
@@ -372,7 +371,7 @@ class Robot {
           this, context.response.message, []));
         cb(false);
       }
-    }, (_) => {
+    }, () => {
       if (!(context.response.message instanceof CatchAllMessage) &&
         !anyListenersExecuted) {
         this.logger.debug('No listeners executed; falling back to catch-all');

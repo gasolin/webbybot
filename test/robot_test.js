@@ -217,61 +217,61 @@ describe('Robot', function() {
       });
     });
 
-    // describe('#listen', function() {
-    //   it('registers a new listener directly', function() {
-    //     expect(this.robot.listeners).to.have.length(0);
-    //     this.robot.listen((function() {}), function() {});
-    //     expect(this.robot.listeners).to.have.length(1);
-    //   });
-    // });
+    describe('#listen', function() {
+      it('registers a new listener directly', function() {
+        expect(this.robot.listeners).to.have.length(0);
+        this.robot.listen((function() {}), function() {});
+        expect(this.robot.listeners).to.have.length(1);
+      });
+    });
 
-    // describe('#hear', function() {
-    //   it('registers a new listener directly', function() {
-    //     expect(this.robot.listeners).to.have.length(0);
-    //     this.robot.hear(/.*/, function() {});
-    //     expect(this.robot.listeners).to.have.length(1);
-    //   });
-    // });
+    describe('#hear', function() {
+      it('registers a new listener directly', function() {
+        expect(this.robot.listeners).to.have.length(0);
+        this.robot.hear(/.*/, function() {});
+        expect(this.robot.listeners).to.have.length(1);
+      });
+    });
 
-    // describe('#respond', function() {
-    //   it('registers a new listener using hear', function() {
-    //     sinon.spy(this.robot, 'hear');
-    //     this.robot.respond(/.*/, function() {});
-    //     expect(this.robot.hear).to.have.been.called;
-    //   });
-    // });
+    describe('#respond', function() {
+      it('registers a new listener using hear', function() {
+        sinon.spy(this.robot, 'hear');
+        this.robot.respond(/.*/, function() {});
+        expect(this.robot.hear).to.have.been.called;
+      });
+    });
 
-    // describe('#enter', function() {
-    //   it('registers a new listener using listen', function() {
-    //     sinon.spy(this.robot, 'listen');
-    //     this.robot.enter(function() {});
-    //     expect(this.robot.listen).to.have.been.called;
-    //   });
-    // });
+    describe('#enter', function() {
+      it('registers a new listener using listen', function() {
+        sinon.spy(this.robot, 'listen');
+        this.robot.enter(function() {});
+        expect(this.robot.listen).to.have.been.called;
+      });
+    });
 
-    // describe('#leave', function() {
-    //   it('registers a new listener using listen', function() {
-    //     sinon.spy(this.robot, 'listen');
-    //     this.robot.leave(function() {});
-    //     expect(this.robot.listen).to.have.been.called;
-    //   });
-    // });
+    describe('#leave', function() {
+      it('registers a new listener using listen', function() {
+        sinon.spy(this.robot, 'listen');
+        this.robot.leave(function() {});
+        expect(this.robot.listen).to.have.been.called;
+      });
+    });
 
-    // describe('#topic', function() {
-    //   it('registers a new listener using listen', function() {
-    //     sinon.spy(this.robot, 'listen');
-    //     this.robot.topic(function() {});
-    //     expect(this.robot.listen).to.have.been.called;
-    //   });
-    // });
+    describe('#topic', function() {
+      it('registers a new listener using listen', function() {
+        sinon.spy(this.robot, 'listen');
+        this.robot.topic(function() {});
+        expect(this.robot.listen).to.have.been.called;
+      });
+    });
 
-    // describe('#catchAll', function() {
-    //   it('registers a new listener using listen', function() {
-    //     sinon.spy(this.robot, 'listen');
-    //     this.robot.catchAll(function() {});
-    //     expect(this.robot.listen).to.have.been.called;
-    //   });
-    // });
+    describe('#catchAll', function() {
+      it('registers a new listener using listen', function() {
+        sinon.spy(this.robot, 'listen');
+        this.robot.catchAll(function() {});
+        expect(this.robot.listen).to.have.been.called;
+      });
+    });
 
     // describe('#receive', function() {
     //   it('calls all registered listeners', function(done) {
@@ -381,7 +381,7 @@ describe('Robot', function() {
     //     return finished = true;
     //   });
     // });
-
+    //
     // describe('Listener Registration', function() {
     //   describe('#listen', function() {
     //     it('forwards the matcher, options, and callback to Listener', function() {
