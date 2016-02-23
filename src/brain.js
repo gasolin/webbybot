@@ -1,7 +1,7 @@
 'use strict';
 
-var EventEmitter = require('events').EventEmitter;
-var User = require('./user');
+let EventEmitter = require('events').EventEmitter;
+let User = require('./user');
 
 class Brain extends EventEmitter {
   /**

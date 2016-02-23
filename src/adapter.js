@@ -1,6 +1,6 @@
 'use strict';
 
-var EventEmitter = require('events').EventEmitter;
+let EventEmitter = require('events').EventEmitter;
 
 class Adapter extends EventEmitter {
   constructor(robot) {

@@ -1,26 +1,21 @@
 'use strict';
 
-var Fs = require('fs');
-var Log = require('log');
-var Path = require('path');
-var HttpClient = require('scoped-http-client');
-var EventEmitter = require('events').EventEmitter;
-var async = require('async');
+let Fs = require('fs');
+let Log = require('log');
+let Path = require('path');
+let HttpClient = require('scoped-http-client');
+let EventEmitter = require('events').EventEmitter;
+let async = require('async');
 
-var User = require('./user');
-var Brain = require('./brain');
-var Response = require('./response');
-var ref = require('./listener');
-var Listener = ref.Listener;
-var TextListener = ref.TextListener;
-var ref1 = require('./message');
-var EnterMessage = ref1.EnterMessage;
-var LeaveMessage = ref1.LeaveMessage;
-var TopicMessage = ref1.TopicMessage;
-var CatchAllMessage = ref1.CatchAllMessage;
-var Middleware = require('./middleware');
+let User = require('./user');
+let Brain = require('./brain');
+let Response = require('./response');
+let {Listener, TextListener} = require('./listener');
+let {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage} =
+  require('./message');
+let Middleware = require('./middleware');
 
-var WEBBY_DEFAULT_ADAPTERS = [
+let WEBBY_DEFAULT_ADAPTERS = [
   'shell'
 ];
 
