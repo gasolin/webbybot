@@ -2,12 +2,15 @@ let async = require('async');
 
 class Middleware {
   // We use this recursively, and using nextTick recursively is deprecated in node 0.10.
-  get ticker() {
+  static ticker() {
+    /*
     if (typeof setImmediate === 'function') {
-      return setImmediate;
+      setImmediate();
     } else {
-      return process.nextTick;
+      process.nextTick();
     }
+    */
+    process.nextTick();
   }
 
   constructor(robot) {
