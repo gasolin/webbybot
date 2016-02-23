@@ -1,5 +1,6 @@
 /*eslint max-len: [2, 120, 4]*/
 /*eslint-env node, mocha */
+'use strict';
 // Assertions and Stubbing
 let chai = require('chai');
 let sinon = require('sinon');
