@@ -374,52 +374,53 @@ describe('Robot', function() {
     //   });
     // });
 
-    // describe('#loadFile', function() {
-    //   beforeEach(function() {
-    //     this.sandbox = sinon.sandbox.create();
-    //   });
-    //   afterEach(function() {
-    //     this.sandbox.restore();
-    //   });
-    //   it('should require the specified file', function() {
-    //     let module = require('module');
-    //     let script = sinon.spy(function(robot) {});
-    //     this.sandbox.stub(module, '_load').returns(script);
-    //     this.sandbox.stub(this.robot, 'parseHelp');
-    //     this.robot.loadFile('./scripts', 'test-script.coffee');
-    //     expect(module._load).to.have.been.calledWith('scripts/test-script');
-    //   });
-    //   describe('proper script', function() {
-    //     beforeEach(function() {
-    //       var module = require('module');
-    //       this.script = sinon.spy(function(robot) {});
-    //       this.sandbox.stub(module, '_load').returns(this.script);
-    //       this.sandbox.stub(this.robot, 'parseHelp');
-    //     });
-    //     it('should call the script with the Robot', function() {
-    //       this.robot.loadFile('./scripts', 'test-script.coffee');
-    //       expect(this.script).to.have.been.calledWith(this.robot);
-    //     });
-    //     it('should parse the script documentation', function() {
-    //       this.robot.loadFile('./scripts', 'test-script.coffee');
-    //       expect(this.robot.parseHelp).to.have.been.calledWith('scripts/test-script.coffee');
-    //     });
-    //   });
-    //   describe('non-Function script', function() {
-    //     beforeEach(function() {
-    //       var module;
-    //       module = require('module');
-    //       this.script = {};
-    //       this.sandbox.stub(module, '_load').returns(this.script);
-    //       this.sandbox.stub(this.robot, 'parseHelp');
-    //     });
-    //     it('logs a warning', function() {
-    //       sinon.stub(this.robot.logger, 'warning');
-    //       this.robot.loadFile('./scripts', 'test-script.coffee');
-    //       expect(this.robot.logger.warning).to.have.been.called;
-    //     });
-    //   });
-    // });
+    describe('#loadFile', function() {
+      beforeEach(function() {
+        this.sandbox = sinon.sandbox.create();
+      });
+      afterEach(function() {
+        this.sandbox.restore();
+      });
+      it('should require the specified file', function() {
+        let module = require('module');
+        let script = sinon.spy(function(robot) {});
+        this.sandbox.stub(module, '_load').returns(script);
+        this.sandbox.stub(this.robot, 'parseHelp');
+        this.robot.loadFile('./scripts', 'test-script.js');
+        expect(module._load).to.have.been.calledWith('scripts/test-script');
+      });
+      describe('proper script', function() {
+        beforeEach(function() {
+          var module = require('module');
+          this.script = sinon.spy(function(robot) {});
+          this.sandbox.stub(module, '_load').returns(this.script);
+          this.sandbox.stub(this.robot, 'parseHelp');
+        });
+        it('should call the script with the Robot', function() {
+          this.robot.loadFile('./scripts', 'test-script.js');
+          expect(this.script).to.have.been.calledWith(this.robot);
+        });
+        it('should parse the script documentation', function() {
+          this.robot.loadFile('./scripts', 'test-script.js');
+          expect(this.robot.parseHelp).to.have.been
+            .calledWith('scripts/test-script.js');
+        });
+      });
+      describe('non-Function script', function() {
+        beforeEach(function() {
+          var module;
+          module = require('module');
+          this.script = {};
+          this.sandbox.stub(module, '_load').returns(this.script);
+          this.sandbox.stub(this.robot, 'parseHelp');
+        });
+        it('logs a warning', function() {
+          sinon.stub(this.robot.logger, 'warning');
+          this.robot.loadFile('./scripts', 'test-script.js');
+          expect(this.robot.logger.warning).to.have.been.called;
+        });
+      });
+    });
 
     // describe('Listener Registration', function() {
     //   describe('#listen', function() {

@@ -404,6 +404,7 @@ class Robot {
   loadFile(path, file) {
     let ext = Path.extname(file);
     let full = Path.join(path, Path.basename(file, ext));
+    // TODO: remove require.extensions check since we only support js plugin
     if (require.extensions[ext]) {
       let script;
       try {
