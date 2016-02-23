@@ -237,17 +237,14 @@ class Robot {
    */
   invokeErrorHandlers(err, res) {
     this.logger.error(err.stack);
-    let results = [];
     this.errorHandlers.forEach(function(errorHandler) {
       try {
-        results.push(errorHandler(err, res));
+        errorHandler(err, res);
       } catch(error) {
-        results.push(this.logger.error('while invoking error handler: ' +
-          error + '\n' + error.stack));
+        this.logger.error(`while invoking error handler:
+          ${error}\n${error.stack}`);
       }
     });
-
-    return results;
   }
 
   /**
@@ -409,11 +406,11 @@ class Robot {
           script(this);
           this.parseHelp(Path.join(path, file));
         } else {
-          this.logger.warning('Expected ' + full +
-            ' to assign a function to module.exports, got ' + typeof script);
+          this.logger.warning(`Expected ${full}
+             to assign a function to module.exports, got ${typeof script}`);
         }
       } catch (error) {
-        this.logger.error('Unable to load ' + full + ': ' + error.stack);
+        this.logger.error(`Unable to load ${full}: ${error.stack}`);
         process.exit(1);
       }
     }
@@ -427,14 +424,12 @@ class Robot {
    * Returns nothing.
    */
   load(path) {
-    this.logger.debug('Loading scripts from ' + path);
+    this.logger.debug(`Loading scripts from ${path}`);
     if (Fs.existsSync(path)) {
       let ref = Fs.readdirSync(path).sort();
-      let results = [];
       ref.forEach(function(file) {
-        results.push(this.loadFile(path, file));
+        this.loadFile(path, file);
       });
-      return results;
     }
   }
 
@@ -447,12 +442,10 @@ class Robot {
    * Returns nothing.
    */
   loadHubotScripts(path, scripts) {
-    this.logger.debug('Loading hubot-scripts from ' + path);
-    let results = [];
+    this.logger.debug(`Loading hubot-scripts from ${path}`);
     scripts.forEach(function(script) {
-      results.push(this.loadFile(path, script));
+      this.loadFile(path, script);
     });
-    return results;
   }
 
   /**
@@ -467,23 +460,19 @@ class Robot {
     this.logger.debug('Loading external-scripts from npm packages');
     try {
       if (packages instanceof Array) {
-        let results = [];
-        packages.forEach(function(pkg) {
-          results.push(require(pkg)(this));
+        packages.forEach((pkg) => {
+          require(pkg)(this);
         });
-        return results;
       } else {
-        let results1;
         for (let pkg in packages) {
           if(packages.hasOwnProperty(pkg)) {
-            results1.push(require(pkg)(this, packages[pkg]));
+            require(pkg)(this, packages[pkg]);
           }
         }
-        return results1;
       }
     } catch(error) {
-      this.logger.error('Error loading scripts from npm package - ' +
-        error.stack);
+      this.logger.error(
+        `Error loading scripts from npm package - ${error.stack}`);
       process.exit(1);
     }
   }
@@ -523,8 +512,8 @@ class Robot {
       this.server = app.listen(port, address);
       this.router = app;
     } catch(error) {
-      this.logger.error('Error trying to start HTTP server: ' + error + '\n' +
-        error.stack);
+      this.logger.error(`Error trying to start HTTP server: ${error}\n
+        ${error.stack}`);
       process.exit(1);
     }
   }
@@ -562,14 +551,14 @@ class Robot {
    * Returns nothing.
    */
   loadAdapter(adapter) {
-    this.logger.debug('Loading adapter ' + adapter);
+    this.logger.debug(`Loading adapter ${adapter}`);
     try {
       // require('./adapters/shell');
       let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapter) >= 0 ?
         this.adapterPath + '/' + adapter : 'hubot-' + adapter;
       this.adapter = require(path).use(this);
     } catch (error) {
-      this.logger.error('Cannot load adapter ' + adapter + ' - ' + error);
+      this.logger.error(`Cannot load adapter ${adapter} - ${error}`);
       process.exit(1);
     }
   }
@@ -591,7 +580,7 @@ class Robot {
    * Returns nothing.
    */
   parseHelp(path) {
-    this.logger.debug('Parsing help for ' + path);
+    this.logger.debug(`Parsing help for ${path}`);
     let scriptName = Path.basename(path).replace(/\.(coffee|js)$/, '');
     let scriptDocumentation = {};
     let body = Fs.readFileSync(path, 'utf-8');
