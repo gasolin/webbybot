@@ -4,18 +4,11 @@
 let chai = require('chai');
 let sinon = require('sinon');
 chai.use(require('sinon-chai'));
-
 let expect = chai.expect;
-
 let mockery = require('mockery');
-
-// Hubot classes
+// bot classes
 let Robot = require('../src/robot');
-let Message = require('../src/message');
-let CatchAllMessage = Message.CatchAllMessage;
-let EnterMessage = Message.EnterMessage;
-let TextMessage = Message.TextMessage;
-
+let {CatchAllMessage, EnterMessage, TextMessage} = require('../src/message');
 let Adapter = require('../src/adapter');
 let Response = require('../src/response');
 let Middleware = require('../src/middleware');

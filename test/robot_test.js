@@ -1,22 +1,18 @@
-/* global describe, it, beforeEach, afterEach */
+/*eslint-env node, mocha */
 'use strict';
 // Assertions and Stubbing
-var chai = require('chai');
-var sinon = require('sinon');
+let chai = require('chai');
+let sinon = require('sinon');
 chai.use(require('sinon-chai'));
-var expect = chai.expect;
-var mockery = require('mockery');
+let expect = chai.expect;
+let mockery = require('mockery');
+// bot classes
+let Robot = require('../src/robot');
+let {CatchAllMessage, EnterMessage, LeaveMessage, TextMessage, TopicMessage} =
+  require('../src/message');
+let Adapter = require('../src/adapter');
 
-var Robot = require('../src/robot');
-var ref = require('../src/message');
-var CatchAllMessage = ref.CatchAllMessage;
-var EnterMessage = ref.EnterMessage;
-var LeaveMessage = ref.LeaveMessage;
-var TextMessage = ref.TextMessage;
-var TopicMessage = ref.TopicMessage;
-var Adapter = require('../src/adapter');
-
-var ScopedHttpClient = require('scoped-http-client');
+let ScopedHttpClient = require('scoped-http-client');
 
 // Preload the Hubot mock adapter but substitute in the latest version of Adapter
 mockery.enable();
@@ -220,7 +216,7 @@ describe('Robot', function() {
     describe('#listen', function() {
       it('registers a new listener directly', function() {
         expect(this.robot.listeners).to.have.length(0);
-        this.robot.listen((function() {}), function() {});
+        this.robot.listen(function() {}, function() {});
         expect(this.robot.listeners).to.have.length(1);
       });
     });

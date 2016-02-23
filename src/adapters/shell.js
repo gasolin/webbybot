@@ -1,12 +1,12 @@
-var fs = require('fs');
-var readline = require('readline');
-var stream = require('stream');
-var cline = require('cline');
-var chalk = require('chalk');
+let fs = require('fs');
+let readline = require('readline');
+let stream = require('stream');
+let cline = require('cline');
+let chalk = require('chalk');
 
-var Robot = require('../robot');
-var Adapter = require('../adapter');
-var TextMessage = require('../message').TextMessage;
+let Robot = require('../robot');
+let Adapter = require('../adapter');
+let TextMessage = require('../message').TextMessage;
 
 let historySize = process.env.WEBBY_SHELL_HISTSIZE != null ?
   parseInt(process.env.WEBBY_SHELL_HISTSIZE) : 1024;

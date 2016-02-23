@@ -1,8 +1,8 @@
-/* global describe, it*/
+/*eslint-env node, mocha */
 'use strict';
-
-var expect = require('chai').expect;
-var User = require('../src/user');
+let expect = require('chai').expect;
+// bot classes
+let User = require('../src/user');
 
 describe('User', function() {
   return describe('new', function() {

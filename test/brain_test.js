@@ -1,16 +1,13 @@
-/* global describe, it, beforeEach, afterEach */
+/*eslint-env node, mocha */
 'use strict';
-
 // Assertions and Stubbing
-var chai = require('chai');
-var sinon = require('sinon');
+let chai = require('chai');
+let sinon = require('sinon');
 chai.use(require('sinon-chai'));
-
-var expect = chai.expect;
-
+let expect = chai.expect;
 // bot classes
-var Brain = require('../src/brain');
-var User = require('../src/user');
+let Brain = require('../src/brain');
+let User = require('../src/user');
 
 describe('Brain', function() {
   beforeEach(function() {
