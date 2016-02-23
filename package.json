@@ -2,7 +2,7 @@
   "name": "webbybot",
   "version": "0.0.1",
   "description": "chatterbot written in es6",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "compile": "webpack",
     "test": "./script/test",
@@ -41,6 +41,7 @@
     "eslint": "^2.1.0",
     "eslint-config-defaults": "^9.0.0",
     "hubot-mock-adapter": "^1.0.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.5.0",
     "mocha": "^2.4.5",
     "mockery": "^1.4.0",

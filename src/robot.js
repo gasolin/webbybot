@@ -66,7 +66,7 @@ class Robot {
     this.logger = new Log(process.env.WEBBY_LOG_LEVEL || 'info');
     this.pingIntervalId = null;
     this.globalHttpOptions = {};
-    // this.parseVersion();
+    this.parseVersion();
     if (httpd) {
       this.setupExpress();
     } else {
@@ -723,7 +723,7 @@ class Robot {
    * Returns a String of the version number.
    */
   parseVersion() {
-    let pkg = require(Path.join(__dirname, '..', 'package.json'));
+    let pkg = require('../package.json');
     this.version = pkg.version;
   }
 
