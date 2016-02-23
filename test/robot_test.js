@@ -62,39 +62,39 @@ describe('Robot', function() {
         expect(this.httpClient).to.have.property('get');
         expect(this.httpClient).to.have.property('post');
       });
-      // it('passes options through to the ScopedHttpClient', function() {
-      //   var agent, httpClient;
-      //   agent = {};
-      //   httpClient = this.robot.http('http://localhost', {
-      //     agent: agent
-      //   });
-      //   expect(httpClient.options.agent).to.equal(agent);
-      // });
+      it('passes options through to the ScopedHttpClient', function() {
+        var agent, httpClient;
+        agent = {};
+        httpClient = this.robot.http('http://localhost', {
+          agent: agent
+        });
+        expect(httpClient.options.agent).to.equal(agent);
+      });
       it('sets a sane user agent', function() {
         expect(this.httpClient.options.headers['User-Agent'])
           .to.contain('Webby');
       });
-      // it('merges in any global http options', function() {
-      //   var agent, httpClient;
-      //   agent = {};
-      //   this.robot.globalHttpOptions = {
-      //     agent: agent
-      //   };
-      //   httpClient = this.robot.http('http://localhost');
-      //   expect(httpClient.options.agent).to.equal(agent);
-      // });
-      // it('local options override global http options', function() {
-      //   var agentA, agentB, httpClient;
-      //   agentA = {};
-      //   agentB = {};
-      //   this.robot.globalHttpOptions = {
-      //     agent: agentA
-      //   };
-      //   httpClient = this.robot.http('http://localhost', {
-      //     agent: agentB
-      //   });
-      //   expect(httpClient.options.agent).to.equal(agentB);
-      // });
+      it('merges in any global http options', function() {
+        var agent, httpClient;
+        agent = {};
+        this.robot.globalHttpOptions = {
+          agent: agent
+        };
+        httpClient = this.robot.http('http://localhost');
+        expect(httpClient.options.agent).to.equal(agent);
+      });
+      it('local options override global http options', function() {
+        var agentA, agentB, httpClient;
+        agentA = {};
+        agentB = {};
+        this.robot.globalHttpOptions = {
+          agent: agentA
+        };
+        httpClient = this.robot.http('http://localhost', {
+          agent: agentB
+        });
+        expect(httpClient.options.agent).to.equal(agentB);
+      });
     });
 
     describe('#respondPattern', function() {
@@ -377,7 +377,56 @@ describe('Robot', function() {
     //     return finished = true;
     //   });
     // });
-    //
+
+    // describe('#loadFile', function() {
+    //   beforeEach(function() {
+    //     this.sandbox = sinon.sandbox.create();
+    //   });
+    //   afterEach(function() {
+    //     this.sandbox.restore();
+    //   });
+    //   it('should require the specified file', function() {
+    //     var module, script;
+    //     module = require('module');
+    //     script = sinon.spy(function(robot) {});
+    //     this.sandbox.stub(module, '_load').returns(script);
+    //     this.sandbox.stub(this.robot, 'parseHelp');
+    //     this.robot.loadFile('./scripts', 'test-script.coffee');
+    //     expect(module._load).to.have.been.calledWith('scripts/test-script');
+    //   });
+    //   describe('proper script', function() {
+    //     beforeEach(function() {
+    //       var module;
+    //       module = require('module');
+    //       this.script = sinon.spy(function(robot) {});
+    //       this.sandbox.stub(module, '_load').returns(this.script);
+    //       this.sandbox.stub(this.robot, 'parseHelp');
+    //     });
+    //     it('should call the script with the Robot', function() {
+    //       this.robot.loadFile('./scripts', 'test-script.coffee');
+    //       expect(this.script).to.have.been.calledWith(this.robot);
+    //     });
+    //     it('should parse the script documentation', function() {
+    //       this.robot.loadFile('./scripts', 'test-script.coffee');
+    //       expect(this.robot.parseHelp).to.have.been.calledWith('scripts/test-script.coffee');
+    //     });
+    //   });
+    //   describe('non-Function script', function() {
+    //     beforeEach(function() {
+    //       var module;
+    //       module = require('module');
+    //       this.script = {};
+    //       this.sandbox.stub(module, '_load').returns(this.script);
+    //       this.sandbox.stub(this.robot, 'parseHelp');
+    //     });
+    //     it('logs a warning', function() {
+    //       sinon.stub(this.robot.logger, 'warning');
+    //       this.robot.loadFile('./scripts', 'test-script.coffee');
+    //       expect(this.robot.logger.warning).to.have.been.called;
+    //     });
+    //   });
+    // });
+
     // describe('Listener Registration', function() {
     //   describe('#listen', function() {
     //     it('forwards the matcher, options, and callback to Listener', function() {

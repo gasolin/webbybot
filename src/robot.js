@@ -19,6 +19,19 @@ let WEBBY_DEFAULT_ADAPTERS = [
   'shell'
 ];
 
+let WEBBY_DOCUMENTATION_SECTIONS = [
+  'description',
+  'dependencies',
+  'configuration',
+  'commands',
+  'notes',
+  'author',
+  'authors',
+  'examples',
+  'tags',
+  'urls'
+];
+
 class Robot {
   /**
    * Robots receive messages from a chat source (Campfire, irc, etc), and
@@ -429,6 +442,23 @@ class Robot {
   }
 
   /**
+   * Public: Load scripts specified in the `hubot-scripts.json` file.
+   *
+   * path    - A String path to the hubot-scripts files.
+   * scripts - An Array of scripts to load.
+   *
+   * Returns nothing.
+   */
+  loadHubotScripts(path, scripts) {
+    this.logger.debug('Loading hubot-scripts from ' + path);
+    let results = [];
+    scripts.forEach(function(script) {
+      results.push(this.loadFile(path, script));
+    });
+    return results;
+  }
+
+  /**
    * Public: Load scripts from packages specified in the
    * `external-scripts.json` file.
    *
@@ -544,6 +574,56 @@ class Robot {
     } catch (error) {
       this.logger.error('Cannot load adapter ' + adapter + ' - ' + error);
       process.exit(1);
+    }
+  }
+
+  /**
+   * Public: Help Commands for Running Scripts.
+   *
+   * Returns an Array of help commands for running scripts.
+   */
+  helpCommands() {
+    return this.commands.sort();
+  }
+
+  /**
+   * Private: load help info from a loaded script.
+   *
+   * @params {string} path - A String path to the file on disk.
+   *
+   * Returns nothing.
+   */
+  parseHelp(path) {
+    this.logger.debug('Parsing help for ' + path);
+    let scriptName = Path.basename(path).replace(/\.(coffee|js)$/, '');
+    let scriptDocumentation = {};
+    let body = Fs.readFileSync(path, 'utf-8');
+    let line, cleanedLine, currentSection, nextSection;
+    let ref = body.split('\n');
+    for (let i = 0, len = ref.length; i < len; i++) {
+      line = ref[i];
+      if (!(line[0] === '#' || line.substr(0, 2) === '//')) {
+        break;
+      }
+      cleanedLine = line.replace(/^(#|\/\/)\s?/, '').trim();
+      if (cleanedLine.length === 0) {
+        continue;
+      }
+      if (cleanedLine.toLowerCase() === 'none') {
+        continue;
+      }
+      nextSection = cleanedLine.toLowerCase().replace(':', '');
+      if (WEBBY_DOCUMENTATION_SECTIONS.indexOf(nextSection) >= 0) {
+        currentSection = nextSection;
+        scriptDocumentation[currentSection] = [];
+      } else {
+        if (currentSection) {
+          scriptDocumentation[currentSection].push(cleanedLine.trim());
+          if (currentSection === 'commands') {
+            this.commands.push(cleanedLine.trim());
+          }
+        }
+      }
     }
   }
 
@@ -692,12 +772,11 @@ class Robot {
    * Returns the original object with updated changes.
    */
   extend(obj, ...sources) {
-    for (let source in sources) {
-      if (sources.hasOwnProperty(source)) {
-        for (let key in source) {
-          if (source.hasOwnProperty(key)) {
-            obj[key] = source[key];
-          }
+    for (let i = 0, len = sources.length; i < len; i++) {
+      let source = sources[i];
+      for (let key in source) {
+        if (source.hasOwnProperty(key)) {
+          obj[key] = source[key];
         }
       }
     }
