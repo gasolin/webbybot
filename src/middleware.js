@@ -1,3 +1,4 @@
+'use strict';
 let async = require('async');
 
 class Middleware {

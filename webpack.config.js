@@ -15,7 +15,9 @@ module.exports = {
   entry: './index.js',
   output: {
     path: __dirname,
-    filename: 'bin/webby.js'
+    filename: 'bin/index.js',
+    library: 'webby',
+    libraryTarget: 'commonjs2'
   },
   externals: nodeModules,
   module: {

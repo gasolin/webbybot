@@ -1,3 +1,4 @@
+'use strict';
 let fs = require('fs');
 let readline = require('readline');
 let stream = require('stream');

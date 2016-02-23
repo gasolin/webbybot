@@ -1,6 +1,4 @@
-var Path = require('path');
-var Fs = require('fs');
-
+'use strict';
 var User = require('./src/user');
 var Brain = require('./src/brain');
 var Robot = require('./src/robot');
@@ -37,31 +35,3 @@ module.exports.loadBot = function(adapterPath, adapterName,
   enableHttpd, botName, botAlias) {
   return new Robot(adapterPath, adapterName, enableHttpd, botName, botAlias);
 };
-
-var robot = module.exports.loadBot(null, 'shell', true, 'Webby', false);
-var loadScripts = function() {
-  let scriptsPath = Path.resolve('.', 'scripts');
-  robot.load(scriptsPath);
-  scriptsPath = Path.resolve('.', 'src', 'scripts');
-  robot.load(scriptsPath);
-  let externalScripts = Path.resolve('.', 'external-scripts.json');
-  if (Fs.existsSync(externalScripts)) {
-    Fs.readFile(externalScripts, function(err, data) {
-      if (data.length > 0) {
-        let scripts;
-        try {
-          scripts = JSON.parse(data);
-        } catch (error) {
-          console.error('Error parsing JSON data from external-scripts.json: ' +
-            error);
-          process.exit(1);
-        }
-        return robot.loadExternalScripts(scripts);
-      }
-    });
-  }
-};
-
-// execute
-robot.adapter.once('connected', loadScripts);
-robot.run();
