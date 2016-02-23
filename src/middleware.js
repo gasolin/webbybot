@@ -93,7 +93,6 @@ class Middleware {
       );
     }
     this.stack.push(middleware);
-    return undefined;
   }
 }
 

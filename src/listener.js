@@ -98,21 +98,20 @@ class Listener {
         // Yes, we tried to execute the listener callback (middleware may
         // have intercepted before actually executing though)
         if (cb) {
-          Middleware.ticker(() => { cb(true);});
+          Middleware.ticker(() => cb(true));
         }
       };
 
       let response = new this.robot.Response(this.robot, message, match);
-      middleware.execute(
-        {listener: this, response: response},
-        executeListener,
-        allDone
-      );
+      middleware.execute({
+        listener: this,
+        response: response
+      }, executeListener, allDone);
       return true;
     } else {
       if (cb) {
         // No, we didn't try to execute the listener callback
-        process.nextTick(() => { cb(false); });
+        process.nextTick(() => cb(false));
       }
       return false;
     }

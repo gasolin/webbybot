@@ -289,7 +289,6 @@ class Robot {
    */
   listenerMiddleware(middleware) {
     this.middleware.listener.register(middleware);
-    return void 0;
   }
 
   /**
@@ -307,7 +306,6 @@ class Robot {
    */
   responseMiddleware(middleware) {
     this.middleware.response.register(middleware);
-    return void 0;
   }
 
   /**
@@ -325,7 +323,6 @@ class Robot {
    */
   receiveMiddleware(middleware) {
     this.middleware.receive.register(middleware);
-    return void 0;
   }
 
   /**
@@ -390,7 +387,6 @@ class Robot {
         }
       }
     });
-    return void 0;
   }
 
   /**
