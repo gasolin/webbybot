@@ -48,6 +48,7 @@
     "npm": "^3.7.3",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "webpack-node-externals": "^0.4.1"
   }
 }
