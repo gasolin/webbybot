@@ -6,6 +6,7 @@ let Path = require('path');
 let HttpClient = require('scoped-http-client');
 let EventEmitter = require('events').EventEmitter;
 let async = require('async');
+let acquire = require('really-need');
 
 let User = require('./user');
 let Brain = require('./brain');
@@ -461,12 +462,12 @@ class Robot {
     try {
       if (packages instanceof Array) {
         packages.forEach((pkg) => {
-          require(pkg)(this);
+          acquire(pkg)(this);
         });
       } else {
         for (let pkg in packages) {
           if(packages.hasOwnProperty(pkg)) {
-            require(pkg)(this, packages[pkg]);
+            acquire(pkg)(this, packages[pkg]);
           }
         }
       }
