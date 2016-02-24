@@ -398,11 +398,10 @@ class Robot {
   loadFile(path, file) {
     let ext = Path.extname(file);
     let full = Path.join(path, Path.basename(file, ext));
-    // TODO: remove require.extensions check since we only support js plugin
-    if (require.extensions[ext]) {
-      let script;
+    // remove require.extensions check since we only support js plugin
+    if (ext === '.js') {
       try {
-        script = require(full);
+        let script = acquire(full);
         if (typeof script === 'function') {
           script(this);
           this.parseHelp(Path.join(path, file));
