@@ -6,6 +6,7 @@ let Path = require('path');
 let HttpClient = require('scoped-http-client');
 let EventEmitter = require('events').EventEmitter;
 let async = require('async');
+let acquire = require('really-need');
 
 let User = require('./user');
 let Brain = require('./brain');
@@ -397,11 +398,10 @@ class Robot {
   loadFile(path, file) {
     let ext = Path.extname(file);
     let full = Path.join(path, Path.basename(file, ext));
-    // TODO: remove require.extensions check since we only support js plugin
-    if (require.extensions[ext]) {
-      let script;
+    // remove require.extensions check since we only support js plugin
+    if (ext === '.js') {
       try {
-        script = require(full);
+        let script = acquire(full);
         if (typeof script === 'function') {
           script(this);
           this.parseHelp(Path.join(path, file));
@@ -461,12 +461,12 @@ class Robot {
     try {
       if (packages instanceof Array) {
         packages.forEach((pkg) => {
-          require(pkg)(this);
+          acquire(pkg)(this);
         });
       } else {
         for (let pkg in packages) {
           if(packages.hasOwnProperty(pkg)) {
-            require(pkg)(this, packages[pkg]);
+            acquire(pkg)(this, packages[pkg]);
           }
         }
       }
@@ -554,9 +554,15 @@ class Robot {
     this.logger.debug(`Loading adapter ${adapter}`);
     try {
       // require('./adapters/shell');
-      let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapter) >= 0 ?
-        this.adapterPath + '/' + adapter : 'hubot-' + adapter;
-      this.adapter = require(path).use(this);
+      let path;
+      if (WEBBY_DEFAULT_ADAPTERS.indexOf(adapter) >= 0) {
+        path = this.adapterPath + '/' + adapter;
+        this.adapter = require(path).use(this);
+      } else {
+        path = 'hubot-' + adapter;
+        let mod = acquire(path);
+        this.adapter = mod.use(this);
+      }
     } catch (error) {
       this.logger.error(`Cannot load adapter ${adapter} - ${error}`);
       process.exit(1);
