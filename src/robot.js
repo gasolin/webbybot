@@ -552,19 +552,18 @@ class Robot {
    */
   loadAdapter(adapter) {
     this.logger.debug(`Loading adapter ${adapter}`);
+    let path = adapter;
     try {
       // require('./adapters/shell');
-      let path;
       if (WEBBY_DEFAULT_ADAPTERS.indexOf(adapter) >= 0) {
         path = this.adapterPath + '/' + adapter;
         this.adapter = require(path).use(this);
       } else {
         path = 'hubot-' + adapter;
-        let mod = acquire(path);
-        this.adapter = mod.use(this);
+        this.adapter = acquire(path).use(this);
       }
     } catch (error) {
-      this.logger.error(`Cannot load adapter ${adapter} - ${error}`);
+      this.logger.error(`Cannot load adapter ${path} - ${error}`);
       process.exit(1);
     }
   }
