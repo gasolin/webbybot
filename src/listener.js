@@ -135,7 +135,7 @@ class TextListener extends Listener {
     this.regex = regex;
     this.matcher = (message) => {
       if (message instanceof TextMessage) {
-        message.match(this.regex);
+        return message.match(this.regex);
       }
     };
 

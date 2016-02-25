@@ -362,7 +362,7 @@ describe('Middleware', function() {
   // Per the documentation in docs/scripting.md
   // Any new fields that are exposed to middleware should be explicitly
   // tested for.
-  describe.skip('Public Middleware APIs', function() {
+  describe('Public Middleware APIs', function() {
     beforeEach(function() {
       this.robot = new Robot(null, 'mock-adapter', true, 'TestHubot');
       this.robot.run();
@@ -422,7 +422,7 @@ describe('Middleware', function() {
                                               sinon.match.any                     //  done
             );
             testDone();
-          });
+          }.bind(this));
         });
       });
 
@@ -492,7 +492,7 @@ describe('Middleware', function() {
       beforeEach(function() {
         this.robot.listenerMiddleware(function(context, next, done) {
           this.middleware.call(this, context, next, done);
-        });
+        }.bind(this));
       });
 
       it('is a function with arity zero', function(testDone) {
@@ -501,8 +501,8 @@ describe('Middleware', function() {
             sinon.match.any,             // context
             sinon.match.any,             // next
             sinon.match.func.and(
-              sinon.match.has('length',
-                              sinon.match(0)))        // done
+              sinon.match.has('length', sinon.match(0))
+            )        // done
           );
           testDone();
         }.bind(this));
