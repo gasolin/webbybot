@@ -71,11 +71,9 @@ class Shell extends Adapter {
 
     this.cli.command('history', () => {
       let ref = this.cli.history();
-      let results = [];
       ref.forEach(function(item) {
-        results.push(console.log(item));
+        console.log(item);
       });
-      return results;
     });
 
     this.cli.on('history', (item) => {

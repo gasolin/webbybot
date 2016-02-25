@@ -9,6 +9,7 @@ var robot = Webby.loadBot(null, 'shell', true, 'Webby', false);
 var loadScripts = function() {
   var scriptsPath = Path.resolve('.', 'scripts');
   robot.load(scriptsPath);
+
   scriptsPath = Path.resolve('.', 'src', 'scripts');
   robot.load(scriptsPath);
 
@@ -48,5 +49,6 @@ var loadScripts = function() {
 };
 
 // execute
+console.log('Running ' + robot.version);
 robot.adapter.once('connected', loadScripts);
 robot.run();
