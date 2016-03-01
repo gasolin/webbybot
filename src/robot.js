@@ -617,26 +617,26 @@ class Robot {
    * Public: A helper send function which delegates to the adapter's send
    * function.
    *
-   * @params {object} user    - A User instance.
+   * @params {object} envelope   - A Object with message, room and user details.
    * @params {...string} strings - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
-  send(user, ...strings) {
-    this.adapter.send(user, ...strings);
+  send(envelope, ...strings) {
+    this.adapter.send(envelope, ...strings);
   }
 
   /**
    * Public: A helper reply function which delegates to the adapter's reply
    * function.
    *
-   * @params {object} user    - A User instance.
+   * @params {object} envelope   - A Object with message, room and user details.
    * @params {...string} strings - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
-  reply(user, ...strings) {
-    this.adapter.reply(user, ...strings);
+  reply(envelope, ...strings) {
+    this.adapter.reply(envelope, ...strings);
   }
 
   /**
@@ -648,8 +648,8 @@ class Robot {
    * Returns nothing.
    */
   messageRoom(room, ...strings) {
-    let user = {room: room};
-    this.adapter.send(user, ...strings);
+    let envelope = {room: room};
+    this.adapter.send(envelope, ...strings);
   }
 
   /**
