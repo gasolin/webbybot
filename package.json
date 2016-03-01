@@ -5,6 +5,7 @@
   "main": "bin/index.js",
   "scripts": {
     "compile": "webpack",
+    "build": "babel index.js -o bin/index.js && babel src -d bin/src",
     "test": "./script/test",
     "lint": "./node_modules/eslint/bin/eslint.js index.js bin/webby.js src/ test/"
   },
@@ -34,6 +35,7 @@
     "scoped-http-client": "^0.11.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.6.0",
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",

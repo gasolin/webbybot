@@ -48,7 +48,7 @@ class Robot {
    */
   constructor(adapterPath, adapter, httpd, name = 'Webby', alias = false) {
     if (this.adapterPath === undefined) {
-      this.adapterPath = '.' + Path.join(__dirname, 'adapters');
+      this.adapterPath = Path.join(__dirname, 'adapters');
     }
     this.name = name;
     this.events = new EventEmitter;
@@ -709,7 +709,7 @@ class Robot {
    * Returns a String of the version number.
    */
   parseVersion() {
-    let pkg = require('../package.json');
+    let pkg = require(Path.join(__dirname, '..', 'package.json'));
     this.version = pkg.version;
   }
 
