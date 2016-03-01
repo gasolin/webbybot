@@ -195,7 +195,7 @@ class Robot {
    */
   leave(options, callback) {
     this.listen(function(msg) {
-      return msg instanceof EnterMessage;
+      return msg instanceof LeaveMessage;
     }, options, callback);
   }
 
@@ -210,7 +210,7 @@ class Robot {
    */
   topic(options, callback) {
     this.listen(function(msg) {
-      return msg instanceof EnterMessage;
+      return msg instanceof TopicMessage;
     }, options, callback);
   }
 

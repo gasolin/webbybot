@@ -504,7 +504,7 @@ describe('Robot', function() {
         });
       });
       describe('#leave', function() {
-        it.skip('matches LeaveMessages', function() {
+        it('matches LeaveMessages', function() {
           var callback, result, testListener, testMessage;
           callback = sinon.spy();
           testMessage = new LeaveMessage(this.user);
@@ -524,7 +524,7 @@ describe('Robot', function() {
         });
       });
       describe('#topic', function() {
-        it.skip('matches TopicMessages', function() {
+        it('matches TopicMessages', function() {
           let callback = sinon.spy();
           let testMessage = new TopicMessage(this.user);
           this.robot.topic(callback);
