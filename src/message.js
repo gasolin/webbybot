@@ -30,7 +30,6 @@ class Message {
 class TextMessage extends Message {
   constructor(user, text, id) {
     super(user);
-    this.user = user;
     this.text = text;
     this.id = id;
   }

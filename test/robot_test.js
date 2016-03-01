@@ -301,8 +301,8 @@ describe('Robot', function() {
           done();
         });
       });
-      it.skip('does not trigger a CatchAllMessage if a listener matches',
-        (done) => {
+      it('does not trigger a CatchAllMessage if a listener matches',
+        function(done) {
           var matchingListener, oldReceive, testMessage;
           testMessage = new TextMessage(this.user, 'message123');
           matchingListener = {
@@ -316,8 +316,8 @@ describe('Robot', function() {
           oldReceive.call(this.robot, testMessage, done);
           expect(this.robot.receive).to.not.have.been.called;
         });
-      it.skip('stops processing if a listener marks the message as done',
-        (done) => {
+      it('stops processing if a listener marks the message as done',
+        function(done) {
           var listenerSpy, matchingListener, testMessage;
           testMessage = new TextMessage(this.user, 'message123');
           matchingListener = {
@@ -335,8 +335,8 @@ describe('Robot', function() {
             done();
           });
         });
-      it.skip('gracefully handles listener uncaughtExceptions ' +
-        '(move on to next listener)', (done) => {
+      it('gracefully handles listener uncaughtExceptions ' +
+        '(move on to next listener)', function(done) {
         let testMessage = {};
         let theError = new Error();
         let badListener = {
@@ -364,8 +364,8 @@ describe('Robot', function() {
           done();
         });
       });
-      it.skip('executes the callback after the function returns when ' +
-        'there are no listeners', (done) => {
+      it('executes the callback after the function returns when ' +
+        'there are no listeners', function(done) {
         let testMessage = new TextMessage(this.user, 'message123');
         let finished = false;
         this.robot.receive(testMessage, function() {
@@ -426,8 +426,8 @@ describe('Robot', function() {
 
     describe('Listener Registration', function() {
       describe('#listen', function() {
-        it.skip('forwards the matcher, options, and callback to Listener',
-          () => {
+        it('forwards the matcher, options, and callback to Listener',
+          function() {
             var callback, matcher, options, testListener;
             callback = sinon.spy();
             matcher = sinon.spy();
@@ -587,7 +587,7 @@ describe('Robot', function() {
           done();
         });
       });
-      it.skip('calls the catch-all listener if no listeners match', (done) => {
+      it('calls the catch-all listener if no listeners match', function(done) {
         let testMessage = new TextMessage(this.user, 'message123');
         let listenerCallback = sinon.spy();
         this.robot.hear(/^no-matches$/, listenerCallback);
@@ -598,8 +598,8 @@ describe('Robot', function() {
         });
         this.robot.receive(testMessage);
       });
-      it.skip('does not call the catch-all listener if any listener matched',
-        (done) => {
+      it('does not call the catch-all listener if any listener matched',
+        function(done) {
           let testMessage = new TextMessage(this.user, 'message123');
           let listenerCallback = sinon.spy();
           this.robot.hear(/^message123$/, listenerCallback);
@@ -611,8 +611,8 @@ describe('Robot', function() {
             done();
           });
         });
-      it.skip('stops processing if message.finish() is called synchronously',
-        (done) => {
+      it('stops processing if message.finish() is called synchronously',
+        function(done) {
           let testMessage = new TextMessage(this.user, 'message123');
           this.robot.hear(/^message123$/, function(response) {
             response.message.finish();
@@ -624,7 +624,7 @@ describe('Robot', function() {
             done();
           });
         });
-      it.skip('calls non-TextListener objects', function(done) {
+      it('calls non-TextListener objects', function(done) {
         let testMessage = new EnterMessage(this.user);
         this.robot.enter(function(response) {
           expect(response.message).to.equal(testMessage);
@@ -632,8 +632,8 @@ describe('Robot', function() {
         });
         this.robot.receive(testMessage);
       });
-      it.skip('gracefully handles listener uncaughtExceptions ' +
-        '(move on to next listener)', (done) => {
+      it('gracefully handles listener uncaughtExceptions ' +
+        '(move on to next listener)', function(done) {
         let testMessage = new TextMessage(this.user, 'message123');
         let theError = new Error();
         this.robot.hear(/^message123$/, function() {
@@ -729,8 +729,8 @@ describe('Robot', function() {
         });
       });
       describe('Receive Middleware', function() {
-        it.skip('fires for all messages, including non-matching ones',
-          (testDone) => {
+        it('fires for all messages, including non-matching ones',
+          function(testDone) {
             let middlewareSpy = sinon.spy();
             let listenerCallback = sinon.spy();
             this.robot.hear(/^message123$/, listenerCallback);
@@ -773,8 +773,8 @@ describe('Robot', function() {
           });
           this.robot.receive(testMessage);
         });
-        it.skip('executes receive middleware in order of definition',
-          (testDone) => {
+        it('executes receive middleware in order of definition',
+          function(testDone) {
             let execution = [];
             let testMiddlewareA = function(context, next, done) {
               execution.push('middlewareA');
@@ -802,8 +802,8 @@ describe('Robot', function() {
               testDone();
             });
           });
-        it.skip('allows editing the message portion of the given response',
-          (testDone) => {
+        it('allows editing the message portion of the given response',
+          function(testDone) {
             let execution = [];
             let testMiddlewareA = function(context, next, done) {
               context.response.message.text = 'foobar';
@@ -896,8 +896,8 @@ describe('Robot', function() {
             });
           });
         });
-        it.skip('does not send trailing functions to middleware',
-          (testDone) => {
+        it('does not send trailing functions to middleware',
+          function(testDone) {
             var asserted, postSendCallback, sendSpy, testMessage;
             this.robot.adapter.send = sendSpy = sinon.spy();
             asserted = false;
