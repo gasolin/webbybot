@@ -5,7 +5,7 @@
 ## Setup Development
 
 ```
-$ npm install -g webpack mocha
+$ npm install -g mocha
 ```
 
 ## Build
@@ -13,13 +13,7 @@ $ npm install -g webpack mocha
 run command
 
 ```
-$ npm run compile
-```
-
-or
-
-```
-$ webpack
+$ npm run build
 ```
 
 ## Run
