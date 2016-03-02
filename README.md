@@ -16,13 +16,28 @@ run command
 $ npm run build
 ```
 
+## Add plugins
+
+```
+$ npm install hubot-calculator
+```
+
+Add external-scripts.json file which contain:
+
+```
+[
+  "hubot-calculator"
+]
+```
+
 ## Run
 
 run command
 
 ```
 $ node ./bin/webby.js
-webby >
+webby > webby calc 1 + 1
+webby > 2
 ```
 
 ## Test

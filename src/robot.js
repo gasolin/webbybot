@@ -6,6 +6,7 @@ let Path = require('path');
 let HttpClient = require('scoped-http-client');
 let EventEmitter = require('events').EventEmitter;
 let async = require('async');
+require('coffee-script/register');
 
 let User = require('./user');
 let Brain = require('./brain');
