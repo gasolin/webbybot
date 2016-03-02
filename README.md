@@ -5,7 +5,7 @@
 ## Setup Development
 
 ```
-$ npm install -g webpack mocha
+$ npm install -g mocha
 ```
 
 ## Build
@@ -13,13 +13,21 @@ $ npm install -g webpack mocha
 run command
 
 ```
-$ npm run compile
+$ npm run build
 ```
 
-or
+## Add plugins
 
 ```
-$ webpack
+$ npm install hubot-calculator
+```
+
+Add external-scripts.json file which contain:
+
+```
+[
+  "hubot-calculator"
+]
 ```
 
 ## Run
@@ -28,7 +36,8 @@ run command
 
 ```
 $ node ./bin/webby.js
-webby >
+webby > webby calc 1 + 1
+webby > 2
 ```
 
 ## Test
