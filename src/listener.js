@@ -142,7 +142,7 @@ class TextListener extends Listener {
   }
 }
 
-module.exports = {
-  Listener: Listener,
-  TextListener: TextListener
+export {
+  Listener,
+  TextListener
 };
