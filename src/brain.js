@@ -224,4 +224,4 @@ class Brain extends EventEmitter {
   }
 }
 
-module.exports = Brain;
+export default Brain;

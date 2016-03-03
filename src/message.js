@@ -89,11 +89,11 @@ class CatchAllMessage extends Message {
   }
 }
 
-module.exports = {
-  Message: Message,
-  TextMessage: TextMessage,
-  EnterMessage: EnterMessage,
-  LeaveMessage: LeaveMessage,
-  TopicMessage: TopicMessage,
-  CatchAllMessage: CatchAllMessage
+export {
+  Message,
+  TextMessage,
+  EnterMessage,
+  LeaveMessage,
+  TopicMessage,
+  CatchAllMessage
 };
