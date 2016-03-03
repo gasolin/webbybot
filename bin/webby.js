@@ -9,6 +9,7 @@ var robot = Webby.loadBot(null, 'shell', true, 'Webby', false);
 var loadScripts = function() {
   var scriptsPath = Path.resolve('.', 'scripts');
   robot.load(scriptsPath);
+
   scriptsPath = Path.resolve('.', 'src', 'scripts');
   robot.load(scriptsPath);
 
