@@ -362,8 +362,8 @@ class Robot {
     let anyListenersExecuted = false;
     async.detectSeries(this.listeners, (listener, cb) => {
       try {
-        listener.call(context.response.message,
-          this.middleware.listener, function(listenerExecuted) {
+        listener.call(context.response.message, this.middleware.listener,
+          function(listenerExecuted) {
             anyListenersExecuted = anyListenersExecuted || listenerExecuted;
             Middleware.ticker(function() {
               cb(context.response.message.done);

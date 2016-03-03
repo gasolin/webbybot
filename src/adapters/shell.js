@@ -18,19 +18,15 @@ console.log('shell adapter loaded');
 
 class Shell extends Adapter {
   send(envelope, ...strings) {
-    for (let str in strings) {
-      if (strings.hasOwnProperty(str)) {
-        console.log(chalk.bold(str));
-      }
-    }
+    strings.forEach(function(str) {
+      console.log(chalk.bold(str));
+    });
   }
 
   emote(envelope, ...strings) {
-    for (let str in strings) {
-      if (strings.hasOwnProperty(str)) {
-        this.send(envelope, '* ' + str);
-      }
-    }
+    strings.forEach(function(str) {
+      this.send(envelope, '* ' + str);
+    });
   }
 
   reply(envelope, ...strings) {
