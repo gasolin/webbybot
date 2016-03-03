@@ -2,6 +2,15 @@
 
 [![Build Status](https://travis-ci.org/gasolin/webby.png)](https://travis-ci.org/gasolin/webbybot) [![Dependency Status](https://david-dm.org/gasolin/webby/dev-status.svg)](https://david-dm.org/gasolin/webbybot)
 
+Webbybot is ported from [Hubot](https://github.com/github/hubot) project by Github.
+
+The differences:
+
+* Port hubot from coffeescript to es6 (plain JS) with babel.
+* Auto continue integration with Travis CI.
+* Auto linting with eslint.
+* Still support hubot plugins written in coffeescript.
+
 ## Setup Development
 
 ```
