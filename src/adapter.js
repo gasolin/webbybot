@@ -100,4 +100,4 @@ class Adapter extends EventEmitter {
   }
 }
 
-module.exports = Adapter;
+export default Adapter;
