@@ -1,6 +1,6 @@
 {
   "name": "webbybot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "chatterbot written in es6",
   "main": "bin/index.js",
   "scripts": {
