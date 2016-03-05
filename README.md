@@ -28,13 +28,14 @@ $ npm run build
 ## Add plugins
 
 ```
-$ npm install hubot-calculator
+$ npm install hubot-calculator hubot-diagnostics
 ```
 
 Add external-scripts.json file which contain:
 
 ```
 [
+  "hubot-diagnostics",
   "hubot-calculator"
 ]
 ```
@@ -45,6 +46,10 @@ run command
 
 ```
 $ node ./bin/webby.js
+webby > ping
+webby > PONG
+webby > echo hello
+webby > hello
 webby > webby calc 1 + 1
 webby > 2
 ```
