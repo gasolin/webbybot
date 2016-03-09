@@ -31,12 +31,13 @@ class Brain extends EventEmitter {
   set(key, value) {
     let pair;
     if (key === Object(key)) {
-      Object.keys(key).forEach((item) => {
-        this.data._private[item] = key[item];
-      });
+      pair = key;
     } else {
-      this.data._private[key] = value;
+      pair = {};
+      pair[key] = value;
     }
+    // extend this.data._private
+    Object.assign(this.data._private, pair);
     this.emit('loaded', this.data);
     return this;
   }
@@ -123,10 +124,9 @@ class Brain extends EventEmitter {
    * Returns nothing
    */
   mergeData(data) {
-    for (let k in data || {}) {
-      if (data.hasOwnProperty(k)) {
-        this.data[k] = data[k];
-      }
+    let ref = data || {};
+    for (let key of Object.keys(ref)) {
+      this.data[key] = ref[key];
     }
     this.emit('loaded', this.data);
   }
@@ -167,14 +167,12 @@ class Brain extends EventEmitter {
     let result = null;
     let userName;
     let lowerName = name.toLowerCase();
-    let users = this.data.users;
-    for (let k in users || {}) {
-      if (users.hasOwnProperty(k)) {
-        userName = users[k]['name'];
-        if (userName != null &&
-          userName.toString().toLowerCase() === lowerName) {
-          result = users[k];
-        }
+    let users = this.data.users || {};
+    for (let key of Object.keys(users)) {
+      userName = users[key]['name'];
+      if (userName != null &&
+        userName.toString().toLowerCase() === lowerName) {
+        result = users[key];
       }
     }
     return result;
@@ -192,12 +190,10 @@ class Brain extends EventEmitter {
     let ref = this.data.users || {};
     let results = [];
     let user;
-    for (let key in ref) {
-      if (ref.hasOwnProperty(key)) {
-        user = ref[key];
-        if (user.name.toLowerCase().lastIndexOf(lowerFuzzyName, 0) === 0) {
-          results.push(user);
-        }
+    for (let key of Object.keys(ref)) {
+      user = ref[key];
+      if (user.name.toLowerCase().lastIndexOf(lowerFuzzyName, 0) === 0) {
+        results.push(user);
       }
     }
     return results;
@@ -213,9 +209,7 @@ class Brain extends EventEmitter {
   usersForFuzzyName(fuzzyName) {
     let matchedUsers = this.usersForRawFuzzyName(fuzzyName);
     let lowerFuzzyName = fuzzyName.toLowerCase();
-    let user;
-    for (let i = 0, len = matchedUsers.length; i < len; i++) {
-      user = matchedUsers[i];
+    for (let user of matchedUsers) {
       if (user.name.toLowerCase() === lowerFuzzyName) {
         return [user];
       }

@@ -1,3 +1,9 @@
+0.2 (2016/3)
+========
+
+* support switch adapter via commandline or ENV param
+* use ES6 for..of loop to replace forEach and for..in loop #37
+
 0.1 (2016/3/4)
 ========
 

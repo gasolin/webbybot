@@ -238,14 +238,14 @@ class Robot {
    */
   invokeErrorHandlers(err, res) {
     this.logger.error(err.stack);
-    this.errorHandlers.forEach(function(errorHandler) {
+    for (let errorHandler of this.errorHandlers) {
       try {
         errorHandler(err, res);
       } catch(error) {
         this.logger.error(`while invoking error handler:
           ${error}\n${error.stack}`);
       }
-    });
+    }
   }
 
   /**
@@ -428,9 +428,9 @@ class Robot {
     this.logger.debug(`Loading scripts from ${path}`);
     if (Fs.existsSync(path)) {
       let ref = Fs.readdirSync(path).sort();
-      ref.forEach(function(file) {
+      for (let file of ref) {
         this.loadFile(path, file);
-      });
+      }
     }
   }
 
@@ -444,9 +444,9 @@ class Robot {
    */
   loadHubotScripts(path, scripts) {
     this.logger.debug(`Loading hubot-scripts from ${path}`);
-    scripts.forEach(function(script) {
+    for (let script of scripts) {
       this.loadFile(path, script);
-    });
+    }
   }
 
   /**
@@ -461,14 +461,12 @@ class Robot {
     this.logger.debug('Loading external-scripts from npm packages');
     try {
       if (packages instanceof Array) {
-        packages.forEach((pkg) => {
+        for (let pkg of packages) {
           require(pkg)(this);
-        });
+        }
       } else {
-        for (let pkg in packages) {
-          if(packages.hasOwnProperty(pkg)) {
-            require(pkg)(this, packages[pkg]);
-          }
+        for (let pkg of packages) {
+          require(pkg)(this, packages[pkg]);
         }
       }
     } catch(error) {
@@ -587,8 +585,7 @@ class Robot {
     let body = Fs.readFileSync(path, 'utf-8');
     let line, cleanedLine, currentSection, nextSection;
     let ref = body.split('\n');
-    for (let i = 0, len = ref.length; i < len; i++) {
-      line = ref[i];
+    for (let line of ref) {
       if (!(line[0] === '#' || line.substr(0, 2) === '//')) {
         break;
       }
@@ -759,13 +756,8 @@ class Robot {
    * Returns the original object with updated changes.
    */
   extend(obj, ...sources) {
-    for (let i = 0, len = sources.length; i < len; i++) {
-      let source = sources[i];
-      for (let key in source) {
-        if (source.hasOwnProperty(key)) {
-          obj[key] = source[key];
-        }
-      }
+    for (let source of sources) {
+      Object.assign(obj, source);
     }
     return obj;
   }
