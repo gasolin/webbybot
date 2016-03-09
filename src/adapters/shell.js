@@ -18,15 +18,15 @@ console.log('shell adapter loaded');
 
 class Shell extends Adapter {
   send(envelope, ...strings) {
-    strings.forEach(function(str) {
+    for (let str of strings) {
       console.log(chalk.bold(str));
-    });
+    }
   }
 
   emote(envelope, ...strings) {
-    strings.forEach(function(str) {
+    for (let str of strings) {
       this.send(envelope, '* ' + str);
-    });
+    }
   }
 
   reply(envelope, ...strings) {
@@ -67,9 +67,9 @@ class Shell extends Adapter {
 
     this.cli.command('history', () => {
       let ref = this.cli.history();
-      ref.forEach(function(item) {
+      for (let item of ref) {
         console.log(item);
-      });
+      }
     });
 
     this.cli.on('history', (item) => {
@@ -91,9 +91,9 @@ class Shell extends Adapter {
         outstream.on('finish', () => {
           return this.shutdown();
         });
-        history.forEach(function(item) {
+        for (let item of history) {
           outstream.write(item + '\n');
-        });
+        }
         outstream.end(() => {
           this.shutdown();
         });

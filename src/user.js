@@ -3,10 +3,9 @@
 class User {
   constructor(id, options = {}) {
     this.id = id;
-    for (let k in options || {}) {
-      if (options.hasOwnProperty(k)) {
-        this[k] = options[k];
-      }
+    let ref = options || {};
+    for (let key of Object.keys(ref)) {
+      this[key] = options[key];
     }
     this['name'] || (this['name'] = this.id.toString());
   }
