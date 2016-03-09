@@ -2,9 +2,39 @@
 'use strict';
 var Path = require('path');
 var Fs = require('fs');
+var OptParse = require('optparse');
 var Webby = require('./index');
 
-var robot = Webby.loadBot(null, 'shell', true, 'Webby', false);
+var Switches = [
+  [ '-a', '--adapter ADAPTER', 'The Adapter to use'],
+  [ '-v', '--version',         'Displays the version of webby installed']
+];
+
+var adapter =  process.env.HUBOT_ADAPTER || 'shell';
+var Options = {
+  adapter: adapter
+};
+
+var Parser = new OptParse.OptionParser(Switches);
+Parser.banner = 'Usage webby [options]';
+
+Parser.on('adapter', function(opt, value) {
+  console.log('Set adapter as ' + value);
+  Options.adapter = value;
+});
+
+Parser.on('version', function(opt, value) {
+  Options.version = true;
+});
+
+Parser.parse(process.argv);
+
+var robot = Webby.loadBot(null, Options.adapter, true, 'Webby', false);
+
+if (Options.version) {
+  console.log(robot.version);
+  process.exit(0);
+}
 
 var loadScripts = function() {
   var scriptsPath = Path.resolve('.', 'scripts');
