@@ -1,8 +1,8 @@
 {
   "name": "webbybot",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "A simple helpful robot written in es6, compatible with hubot",
-  "main": "bin/index.js",
+  "main": "dist/index.js",
   "bin": {
     "webby": "./bin/webby"
   },
