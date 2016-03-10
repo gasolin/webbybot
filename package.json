@@ -1,7 +1,7 @@
 {
   "name": "webbybot",
   "version": "0.1.0",
-  "description": "chatterbot written in es6",
+  "description": "A simple helpful robot written in es6, compatible with hubot",
   "main": "bin/index.js",
   "bin": {
     "webby": "./bin/webby"
@@ -17,15 +17,16 @@
   },
   "keywords": [
     "github",
+    "hubot",
     "webby",
     "bot"
   ],
-  "author": "webby",
+  "author": "webby team",
   "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/gasolin/webbybot/issues"
   },
-  "homepage": "https://github.com/gasolin/webbybot#readme",
+  "homepage": "https://github.com/gasolin/webbybot",
   "dependencies": {
     "async": "^1.5.2",
     "chalk": "^1.1.1",
