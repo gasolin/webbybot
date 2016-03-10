@@ -6,6 +6,7 @@ let Path = require('path');
 let HttpClient = require('scoped-http-client');
 let EventEmitter = require('events').EventEmitter;
 let async = require('async');
+// support load coffee script plugins
 require('coffee-script/register');
 
 let User = require('./user');
@@ -763,4 +764,4 @@ class Robot {
   }
 }
 
-module.exports = Robot;
+export default Robot;

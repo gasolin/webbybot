@@ -15,23 +15,23 @@ var LeaveMessage = ref1.LeaveMessage;
 var TopicMessage = ref1.TopicMessage;
 var CatchAllMessage = ref1.CatchAllMessage;
 
-module.exports = {
-  User: User,
-  Brain: Brain,
-  Robot: Robot,
-  Adapter: Adapter,
-  Response: Response,
-  Listener: Listener,
-  TextListener: TextListener,
-  Message: Message,
-  TextMessage: TextMessage,
-  EnterMessage: EnterMessage,
-  LeaveMessage: LeaveMessage,
-  TopicMessage: TopicMessage,
-  CatchAllMessage: CatchAllMessage,
+export {
+  User,
+  Brain,
+  Robot,
+  Adapter,
+  Response,
+  Listener,
+  TextListener,
+  Message,
+  TextMessage,
+  EnterMessage,
+  LeaveMessage,
+  TopicMessage,
+  CatchAllMessage
 };
 
-module.exports.loadBot = function(adapterPath, adapterName,
+export function loadBot(adapterPath, adapterName,
   enableHttpd, botName, botAlias) {
   return new Robot(adapterPath, adapterName, enableHttpd, botName, botAlias);
 };

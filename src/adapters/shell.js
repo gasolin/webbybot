@@ -137,6 +137,6 @@ var loadHistory = function(callback) {
   });
 };
 
-exports.use = function(robot) {
+export function use(robot) {
   return new Shell(robot);
 };
