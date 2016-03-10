@@ -48,7 +48,7 @@ class Robot {
    *
    * Returns nothing.
    */
-  constructor(adapterPath, adapter, httpd, name = 'Webby', alias = false) {
+  constructor(adapterPath, adapter, httpd, name = 'webby', alias = false) {
     if (this.adapterPath === undefined) {
       this.adapterPath = Path.join(__dirname, 'adapters');
     }
