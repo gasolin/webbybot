@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "description": "chatterbot written in es6",
   "main": "bin/index.js",
+  "bin": {
+    "webby": "./bin/webby"
+  },
   "scripts": {
-    "build": "babel index.js -o bin/index.js && babel src -d bin/src && cp package.json bin/",
+    "build": "babel index.js -o dist/index.js && babel src -d dist/src && cp package.json dist/",
     "test": "./script/test",
     "lint": "eslint index.js bin/webby.js src/ test/"
   },
@@ -31,6 +34,7 @@
     "connect-multiparty": "^2.0.0",
     "express": "^3.21.2",
     "log": "^1.4.0",
+    "optparse": "^1.0.5",
     "scoped-http-client": "^0.11.0"
   },
   "devDependencies": {

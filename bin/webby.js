@@ -3,7 +3,7 @@
 var Path = require('path');
 var Fs = require('fs');
 var OptParse = require('optparse');
-var Webby = require('./index');
+var Webby = require('../dist/index');
 
 var Switches = [
   [ '-a', '--adapter ADAPTER', 'The Adapter to use'],
