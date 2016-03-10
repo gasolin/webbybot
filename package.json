@@ -19,7 +19,8 @@
     "github",
     "hubot",
     "webby",
-    "bot"
+    "bot",
+    "es6"
   ],
   "author": "webby team",
   "license": "MPL-2.0",

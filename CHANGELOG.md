@@ -3,6 +3,7 @@
 
 * support switch adapter via commandline or ENV param
 * use ES6 for..of loop to replace forEach and for..in loop #37
+* support ES6 module export
 
 0.1 (2016/3/4)
 ========

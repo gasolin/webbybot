@@ -4,12 +4,16 @@
 
 Webbybot is ported from [Hubot](https://github.com/github/hubot) project by Github.
 
-The differences:
+The Differences:
 
 * Port hubot from coffeescript to es6 (plain JS) with babel.
 * Auto continue integration with Travis CI.
 * Auto linting with eslint.
+
+The Same:
+
 * Still support hubot plugins written in coffeescript.
+* Can reuse all hubot adapters
 
 ## Setup Development
 
