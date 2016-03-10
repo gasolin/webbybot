@@ -13,9 +13,41 @@ The Differences:
 The Same:
 
 * Still support hubot plugins written in coffeescript.
-* Can reuse all hubot adapters
+* Can reuse all hubot adapters*
 
-## Setup Development
+# How to replace Hubot to Webbybot
+
+Refer to [Getting Started With Hubot](https://hubot.github.com/docs/),
+Install hubot generator first
+
+```
+npm install -g yo generator-hubot
+```
+
+Then generate your robot with
+```
+yo hubot
+```
+
+1. Enter the folder, edit `bin/hubot` and replace `hubot` to `webby`.
+
+2. install webbybot package
+
+```
+npm install --save webbybot
+```
+
+3. modify adapter's dependency
+
+Let's take telegram adapter for example. Edit `node_modules/hubot-telegram/src/telegram.coffee` and replace first line `require 'hubot'` to `require 'webbybot'`.
+
+start your bot as normal
+
+```
+./bin/hubot
+```
+
+# Development
 
 ```
 $ npm install -g mocha
