@@ -1,5 +1,5 @@
 'use strict';
-let async = require('async');
+import * as async from 'async';
 
 class Middleware {
   // We use this recursively, and using nextTick recursively is deprecated in node 0.10.

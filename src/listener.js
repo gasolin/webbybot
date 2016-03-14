@@ -1,7 +1,7 @@
 'use strict';
 
-let inspect = require('util').inspect;
-let async = require('async');
+import {inspect} from 'util';
+import * as async from 'async';
 
 let TextMessage = require('./message').TextMessage;
 let Middleware = require('./middleware');
