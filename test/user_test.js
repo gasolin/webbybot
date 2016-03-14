@@ -1,6 +1,6 @@
 /*eslint-env node, mocha */
 'use strict';
-let expect = require('chai').expect;
+import {expect} from 'chai';
 // bot classes
 let User = require('../src/user');
 

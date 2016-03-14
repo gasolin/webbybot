@@ -1,18 +1,18 @@
 /*eslint-env node, mocha */
 'use strict';
 // Assertions and Stubbing
-let chai = require('chai');
-let sinon = require('sinon');
+import * as sinon from 'sinon';
+import * as chai from 'chai';
 chai.use(require('sinon-chai'));
 let expect = chai.expect;
-let mockery = require('mockery');
+import * as mockery from 'mockery';
+import * as ScopedHttpClient from 'scoped-http-client';
+
 // bot classes
 let Robot = require('../src/robot');
 let {CatchAllMessage, EnterMessage, LeaveMessage, TextMessage, TopicMessage} =
   require('../src/message');
 let Adapter = require('../src/adapter');
-
-let ScopedHttpClient = require('scoped-http-client');
 
 // Preload the Hubot mock adapter but substitute in the latest version of Adapter
 mockery.enable();

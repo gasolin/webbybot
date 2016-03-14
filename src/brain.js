@@ -1,6 +1,6 @@
 'use strict';
 
-let EventEmitter = require('events').EventEmitter;
+import {EventEmitter} from 'events';
 let User = require('./user');
 
 class Brain extends EventEmitter {

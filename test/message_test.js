@@ -1,8 +1,8 @@
 /*eslint-env node, mocha */
 'use strict';
 // Assertions and Stubbing
-let chai = require('chai');
-let sinon = require('sinon');
+import * as sinon from 'sinon';
+import * as chai from 'chai';
 chai.use(require('sinon-chai'));
 let expect = chai.expect;
 // bot classes

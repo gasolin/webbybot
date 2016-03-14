@@ -1,13 +1,13 @@
 'use strict';
 
-let Fs = require('fs');
+import * as Fs from 'fs';
 let Log = require('log');
-let Path = require('path');
-let HttpClient = require('scoped-http-client');
-let EventEmitter = require('events').EventEmitter;
-let async = require('async');
+import * as Path from 'path';
+import * as HttpClient from 'scoped-http-client';
+import {EventEmitter} from 'events';
+import * as async from 'async';
 // support load coffee script plugins
-require('coffee-script/register');
+import 'coffee-script/register';
 
 let User = require('./user');
 let Brain = require('./brain');
