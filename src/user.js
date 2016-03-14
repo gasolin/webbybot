@@ -1,5 +1,3 @@
-'use strict';
-
 class User {
   constructor(id, options = {}) {
     this.id = id;

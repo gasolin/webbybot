@@ -1,4 +1,3 @@
-'use strict';
 import * as async from 'async';
 
 class Middleware {

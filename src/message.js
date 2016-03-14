@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Represents an incoming message from the chat.
  *

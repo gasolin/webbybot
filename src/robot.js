@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Fs from 'fs';
 let Log = require('log');
 import * as Path from 'path';

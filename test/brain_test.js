@@ -1,5 +1,4 @@
-/*eslint-env node, mocha */
-'use strict';
+/* eslint-env node, mocha */
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
@@ -174,18 +173,17 @@ describe('Brain', function() {
         expect(this.brain.userForId(1)).to.equal(this.user1);
       });
       it('does an exact match', function() {
-        var user4 = this.brain.userForId('FOUR');
+        let user4 = this.brain.userForId('FOUR');
         expect(this.brain.userForId('four')).to.not.equal(user4);
       });
       it('recreates the user if the room option differs from the user object',
       function() {
-        var newUser1, newUser2;
         expect(this.brain.userForId(1).room).to.be.undefined;
-        newUser1 = this.brain.userForId(1, {
+        let newUser1 = this.brain.userForId(1, {
           room: 'room1'
         });
         expect(newUser1).to.not.equal(this.user1);
-        newUser2 = this.brain.userForId(1, {
+        let newUser2 = this.brain.userForId(1, {
           room: 'room2'
         });
         expect(newUser2).to.not.equal(newUser1);
@@ -193,16 +191,14 @@ describe('Brain', function() {
 
       describe('when there is no matching user ID', function() {
         it('creates a new User', function() {
-          var newUser;
           expect(this.brain.data.users).to.not.include.key('all-new-user');
-          newUser = this.brain.userForId('all-new-user');
+          let newUser = this.brain.userForId('all-new-user');
           expect(newUser).to.be['instanceof'](User);
           expect(newUser.id).to.equal('all-new-user');
           expect(this.brain.data.users).to.include.key('all-new-user');
         });
         it('passes the provided options to the new User', function() {
-          var newUser;
-          newUser = this.brain.userForId('all-new-user', {
+          let newUser = this.brain.userForId('all-new-user', {
             name: 'All New User',
             prop: 'mine'
           });
@@ -244,7 +240,7 @@ describe('Brain', function() {
           .to.deep.equal([this.user1, this.user2]);
       });
       it('returns an empty array if no users match', function() {
-        var result = this.brain.usersForRawFuzzyName('not a real user');
+        let result = this.brain.usersForRawFuzzyName('not a real user');
         expect(result).to.be.an('array');
         expect(result).to.be.empty;
       });
@@ -269,7 +265,7 @@ describe('Brain', function() {
           .to.deep.equal([this.user1]);
       });
       it('returns an empty array if no users match', function() {
-        var result = this.brain.usersForFuzzyName('not a real user');
+        let result = this.brain.usersForFuzzyName('not a real user');
         expect(result).to.be.an('array');
         expect(result).to.be.empty;
       });
@@ -302,7 +298,7 @@ describe('Brain', function() {
       expect(this.brain.userForName('Guy One')).to.equal(this.user1);
     });
     it('finds users by fuzzy name (prefix match)', function() {
-      var result = this.brain.usersForFuzzyName('Guy');
+      let result = this.brain.usersForFuzzyName('Guy');
       expect(result).to.have.members([this.user1, this.user2]);
       expect(result).to.not.have.members([this.user3]);
     });

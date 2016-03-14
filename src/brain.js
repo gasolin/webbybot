@@ -1,5 +1,3 @@
-'use strict';
-
 import {EventEmitter} from 'events';
 let User = require('./user');
 

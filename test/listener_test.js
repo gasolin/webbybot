@@ -1,6 +1,5 @@
-/*eslint max-len: [2, 120, 4]*/
-/*eslint-env node, mocha */
-'use strict';
+/* eslint max-len: [2, 120, 4]*/
+/* eslint-env node, mocha */
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';

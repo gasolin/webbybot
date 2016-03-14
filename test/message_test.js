@@ -1,5 +1,4 @@
-/*eslint-env node, mocha */
-'use strict';
+/* eslint-env node, mocha */
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
@@ -22,7 +21,7 @@ describe('Message', function() {
   describe('Unit Tests', function() {
     describe('#finish', function() {
       it('marks the message as done', function() {
-        var testMessage = new Message(this.user);
+        let testMessage = new Message(this.user);
 
         expect(testMessage.done).to.not.be.ok;
         testMessage.finish();
@@ -33,7 +32,7 @@ describe('Message', function() {
     describe('TextMessage', function() {
       describe('#match', function() {
         it('should perform standard regex matching', function() {
-          var testMessage = new TextMessage(this.user, 'message123');
+          let testMessage = new TextMessage(this.user, 'message123');
 
           expect(testMessage.match(/^message123$/)).to.be.ok;
           expect(testMessage.match(/^does-not-match$/)).to.not.be.ok;

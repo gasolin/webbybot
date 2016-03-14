@@ -1,5 +1,4 @@
-/*eslint-env node, mocha */
-'use strict';
+/* eslint-env node, mocha */
 import {expect} from 'chai';
 // bot classes
 let User = require('../src/user');
@@ -7,13 +6,13 @@ let User = require('../src/user');
 describe('User', function() {
   return describe('new', function() {
     it('uses id as the default name', function() {
-      var user = new User('hubot');
+      let user = new User('hubot');
 
       expect(user.name).to.equal('hubot');
     });
 
     it('sets attributes passed in', function() {
-      var user = new User('hubot', {
+      let user = new User('hubot', {
         foo: 1,
         bar: 2
       });
@@ -23,7 +22,7 @@ describe('User', function() {
     });
 
     it('uses name attribute when passed in, not id', function() {
-      var user = new User('hubot', {
+      let user = new User('hubot', {
         name: 'tobuh'
       });
 

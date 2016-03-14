@@ -1,5 +1,3 @@
-'use strict';
-
 class Response {
   /**
    * Public: Responses are sent to matching listeners. Messages know about the

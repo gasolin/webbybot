@@ -1,5 +1,3 @@
-'use strict';
-
 import {inspect} from 'util';
 import * as async from 'async';
 

@@ -1,5 +1,4 @@
-/*eslint-env node, mocha */
-'use strict';
+/* eslint-env node, mocha */
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
