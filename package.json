@@ -7,8 +7,12 @@
     "webby": "./bin/webby"
   },
   "scripts": {
-    "build": "babel index.js -o dist/index.js && babel src -d dist/src && cp package.json dist/",
-    "test": "./script/test",
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "babel index.js -o dist/index.js && babel src -d dist/src",
+    "postbuild": "cp package.json dist/",
+    "pretest": "source script/bootstrap",
+    "test": "mocha --compilers js:babel-register -w",
+    "test:single": "mocha --compilers js:babel-register",
     "lint": "eslint index.js bin/webby.js src/ test/"
   },
   "repository": {

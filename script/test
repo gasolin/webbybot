@@ -1,4 +1,0 @@
-#!/bin/bash
-
-source script/bootstrap
-mocha --compilers js:babel-register
