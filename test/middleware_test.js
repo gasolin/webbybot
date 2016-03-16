@@ -3,15 +3,16 @@
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-chai.use(require('sinon-chai'));
+import sinonChai from 'sinon-chai';
+chai.use(sinonChai);
 let expect = chai.expect;
 import * as mockery from 'mockery';
 // bot classes
-let Robot = require('../src/robot');
-let {CatchAllMessage, EnterMessage, TextMessage} = require('../src/message');
-let Adapter = require('../src/adapter');
-let Response = require('../src/response');
-let Middleware = require('../src/middleware');
+import Robot from '../src/robot';
+import {CatchAllMessage, EnterMessage, TextMessage} from '../src/message';
+import Adapter from '../src/adapter';
+import Response from '../src/response';
+import Middleware from '../src/middleware';
 
 // Preload the Hubot mock adapter but substitute
 // in the latest version of Adapter

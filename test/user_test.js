@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 import {expect} from 'chai';
 // bot classes
-let User = require('../src/user');
+import User from '../src/user';
 
 describe('User', function() {
   return describe('new', function() {

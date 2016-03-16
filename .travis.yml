@@ -13,4 +13,4 @@ env:
   global:
   matrix:
   - CI_ACTION="npm run lint"
-  - CI_ACTION="npm test:single"
+  - CI_ACTION="npm run test:single"

@@ -1,12 +1,12 @@
-let fs = require('fs');
-let readline = require('readline');
-let stream = require('stream');
-let cline = require('cline');
-let chalk = require('chalk');
+import * as fs from 'fs';
+import * as readline from 'readline';
+import stream from 'stream';
+import cline from 'cline';
+import chalk from 'chalk';
 
-let Robot = require('../robot');
-let Adapter = require('../adapter');
-let TextMessage = require('../message').TextMessage;
+import Robot from '../robot';
+import Adapter from '../adapter';
+import {TextMessage} from '../message';
 
 let historySize = process.env.WEBBY_SHELL_HISTSIZE != null ?
   parseInt(process.env.WEBBY_SHELL_HISTSIZE) : 1024;
