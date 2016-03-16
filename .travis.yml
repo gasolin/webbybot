@@ -14,3 +14,5 @@ env:
   matrix:
   - CI_ACTION="npm run lint"
   - CI_ACTION="npm run test:single"
+after_success:
+  npm run report-coverage
