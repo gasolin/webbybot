@@ -12,7 +12,7 @@
     "postbuild": "cp package.json dist/",
     "pretest": "source script/bootstrap",
     "test": "mocha --compilers js:babel-register -w",
-    "test:single": "istanbul cover _mocha -- 'test/**/*.js' --compilers js:babel-register -R spec",
+    "test:single": "istanbul cover --root ./src _mocha -- 'test/**/*.js' --compilers js:babel-register -R spec",
     "lint": "eslint index.js bin/webby.js src/ test/",
     "report-coverage": "cat ./coverage/lcov.info | codecov"
   },
