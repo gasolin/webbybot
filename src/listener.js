@@ -1,8 +1,8 @@
 import {inspect} from 'util';
 import * as async from 'async';
 
-let TextMessage = require('./message').TextMessage;
-let Middleware = require('./middleware');
+import {TextMessage} from './message';
+import Middleware from './middleware';
 
 class Listener {
   /**

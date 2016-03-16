@@ -1,5 +1,5 @@
 import * as Fs from 'fs';
-let Log = require('log');
+import Log from 'log';
 import * as Path from 'path';
 import * as HttpClient from 'scoped-http-client';
 import {EventEmitter} from 'events';

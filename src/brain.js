@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-let User = require('./user');
+import User from './user';
 
 class Brain extends EventEmitter {
   /**

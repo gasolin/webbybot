@@ -2,16 +2,17 @@
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-chai.use(require('sinon-chai'));
+import sinonChai from 'sinon-chai';
+chai.use(sinonChai);
 let expect = chai.expect;
 import * as mockery from 'mockery';
 import * as ScopedHttpClient from 'scoped-http-client';
 
 // bot classes
-let Robot = require('../src/robot');
-let {CatchAllMessage, EnterMessage, LeaveMessage, TextMessage, TopicMessage} =
-  require('../src/message');
-let Adapter = require('../src/adapter');
+import Robot from '../src/robot';
+import {CatchAllMessage, EnterMessage, LeaveMessage, TextMessage, TopicMessage}
+  from '../src/message';
+import Adapter from '../src/adapter';
 
 // Preload the Hubot mock adapter but substitute in the latest version of Adapter
 mockery.enable();

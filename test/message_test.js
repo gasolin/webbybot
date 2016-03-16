@@ -2,12 +2,13 @@
 // Assertions and Stubbing
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-chai.use(require('sinon-chai'));
+import sinonChai from 'sinon-chai';
+chai.use(sinonChai);
 let expect = chai.expect;
 // bot classes
-let User = require('../src/user');
-let {Message, TextMessage, EnterMessage, CatchAllMessage} =
-  require('../src/message');
+import User from '../src/user';
+import {Message, TextMessage, EnterMessage, CatchAllMessage}
+  from '../src/message';
 
 describe('Message', function() {
   beforeEach(function() {
