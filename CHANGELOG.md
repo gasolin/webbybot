@@ -1,4 +1,4 @@
-0.2.0 (2016/3/)
+0.2.0 (2016/3/17)
 ========
 
 * Use es6 module with import and export
@@ -7,6 +7,7 @@
 * Update dependency library versions
 * Convert .eslintrc to json format
 * Add test coverage and npm version badges
+* provide webbybot demo template https://github.com/gasolin/webby_template
 
 0.1.6 (2016/3/10)
 ========
