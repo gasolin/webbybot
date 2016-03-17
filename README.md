@@ -15,6 +15,15 @@ The Same:
 * Still support hubot plugins written in coffeescript.
 * Can reuse all hubot adapters*
 
+# How to try Webbybot
+
+```
+$ git clone https://github.com/gasolin/webby_template.git demo
+$ cd demo
+$ npm install
+$ ./bin/webby
+```
+
 # How to replace Hubot to Webbybot
 
 Refer to [Getting Started With Hubot](https://hubot.github.com/docs/),
@@ -83,7 +92,7 @@ Add external-scripts.json file which contain:
 run command
 
 ```
-$ node ./bin/webby.js
+$ node ./bin/webby
 webby > ping
 webby > PONG
 webby > echo hello
