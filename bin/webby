@@ -7,6 +7,7 @@ var Webby = require('../dist/index');
 
 var Switches = [
   [ '-a', '--adapter ADAPTER', 'The Adapter to use'],
+  [ "-d", "--disable-httpd",   "Disable the HTTP server" ],
   [ "-l", "--alias ALIAS",     "Enable replacing the robot's name with alias" ],
   [ "-n", "--name NAME",       "The name of the robot in chat" ],
   [ "-t", "--config-check",    "Test hubot's config to make sure it won't fail at startup"],
@@ -15,6 +16,7 @@ var Switches = [
 
 var adapter = process.env.HUBOT_ADAPTER || 'shell';
 var alias = process.env.HUBOT_ALIAS || false;
+var enableHttpd = process.env.HUBOT_HTTPD || true
 var name = process.env.HUBOT_NAME || "webby";
 
 var Options = {
