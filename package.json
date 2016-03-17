@@ -53,7 +53,7 @@
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
     "codecov.io": "^0.1.6",
-    "eslint": "~2.4.0",
+    "eslint": "~2.2.0",
     "eslint-config-defaults": "^9.0.0",
     "hubot-mock-adapter": "^1.0.0",
     "istanbul": "git+https://github.com/gotwarlost/istanbul.git#v1.0.0-alpha.2",
