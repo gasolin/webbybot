@@ -47,6 +47,8 @@ start your bot as normal
 ./bin/hubot
 ```
 
+Tested with `hubot-telegram` and `hubot-messenger`.
+
 # Development
 
 ```
