@@ -17,7 +17,7 @@ The Same:
 
 # How to try Webbybot
 
-```
+```shell
 $ git clone https://github.com/gasolin/webby_template.git demo
 $ cd demo
 $ npm install
@@ -29,12 +29,12 @@ $ ./bin/webby
 Refer to [Getting Started With Hubot](https://hubot.github.com/docs/),
 Install hubot generator first
 
-```
+```shell
 npm install -g yo generator-hubot
 ```
 
 Then generate your robot with
-```
+```shell
 yo hubot
 ```
 
@@ -42,7 +42,7 @@ yo hubot
 
 2. install webbybot package
 
-```
+```shell
 npm install --save webbybot
 ```
 
@@ -52,7 +52,7 @@ Let's take telegram adapter for example. Edit `node_modules/hubot-telegram/src/t
 
 start your bot as normal
 
-```
+```shell
 ./bin/hubot
 ```
 
@@ -60,7 +60,7 @@ Tested with `hubot-telegram` and `hubot-messenger`.
 
 # Development
 
-```
+```shell
 $ npm install -g mocha
 ```
 
@@ -68,19 +68,19 @@ $ npm install -g mocha
 
 run command
 
-```
+```shell
 $ npm run build
 ```
 
 ## Add plugins
 
-```
+```shell
 $ npm install hubot-calculator hubot-diagnostics
 ```
 
 Add external-scripts.json file which contain:
 
-```
+```javascript
 [
   "hubot-diagnostics",
   "hubot-calculator"
@@ -91,7 +91,7 @@ Add external-scripts.json file which contain:
 
 run command
 
-```
+```shell
 $ node ./bin/webby
 webby > ping
 webby > PONG
@@ -103,11 +103,11 @@ webby > 2
 
 ## Test
 
-```
+```shell
 $ npm test
 ```
 
 ## Lint
-```
+```shell
 $ npm run lint
 ```
