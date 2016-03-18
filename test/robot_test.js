@@ -19,18 +19,18 @@ mockery.enable();
 mockery.registerAllowable('hubot-mock-adapter');
 mockery.registerAllowable('lodash'); // hubot-mock-adapter uses lodash
 // Force hubot-mock-adapter to use the latest version of Adapter
-mockery.registerMock('hubot/src/adapter', Adapter);
+mockery.registerMock('webby/src/adapter', Adapter);
 // Load the mock adapter into the cache
 import 'hubot-mock-adapter';
 // We're done with mockery
-mockery.deregisterMock('hubot/src/adapter');
+mockery.deregisterMock('webby/src/adapter');
 mockery.disable();
 
 describe('Robot', function() {
   beforeEach(function() {
     this.robot = new Robot(null, 'mock-adapter', true, 'TestHubot');
     this.robot.alias = 'Hubot';
-    this.robot.run;
+    this.robot.run();
     this.robot.on('error', function(name, err, response) {
       if ((err != null ? err.constructor : void 0) == null) {
         return;
