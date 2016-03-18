@@ -1,13 +1,13 @@
 {
   "name": "webbybot",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple helpful robot written in es6, compatible with hubot",
   "main": "dist/index.js",
   "bin": {
     "webby": "./bin/webby"
   },
   "scripts": {
-    "prebuild": "rm -rf dist && mkdir dist",
+    "prebuild": "rm -rf dist coverage && mkdir dist",
     "build": "babel index.js -o dist/index.js && babel src -d dist/src",
     "postbuild": "cp package.json dist/",
     "pretest": "source script/bootstrap",
