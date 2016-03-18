@@ -22,7 +22,7 @@ mockery.registerAllowable('lodash'); // hubot-mock-adapter uses lodash
 // Force hubot-mock-adapter to use the latest version of Adapter
 mockery.registerMock('hubot/src/adapter', Adapter);
 // Load the mock adapter into the cache
-require('hubot-mock-adapter');
+import 'hubot-mock-adapter';
 // We're done with mockery
 mockery.deregisterMock('hubot/src/adapter');
 mockery.disable();

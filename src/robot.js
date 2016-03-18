@@ -7,19 +7,19 @@ import * as async from 'async';
 // support load coffee script plugins
 import 'coffee-script/register';
 
-let User = require('./user');
-let Brain = require('./brain');
-let Response = require('./response');
-let {Listener, TextListener} = require('./listener');
-let {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage} =
-  require('./message');
-let Middleware = require('./middleware');
+import User from './user';
+import Brain from './brain';
+import Response from './response';
+import {Listener, TextListener} from './listener';
+import {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage}
+  from './message';
+import Middleware from './middleware';
 
-let WEBBY_DEFAULT_ADAPTERS = [
+const WEBBY_DEFAULT_ADAPTERS = [
   'shell'
 ];
 
-let WEBBY_DOCUMENTATION_SECTIONS = [
+const WEBBY_DOCUMENTATION_SECTIONS = [
   'description',
   'dependencies',
   'configuration',
