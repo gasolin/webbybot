@@ -8,12 +8,14 @@ The Differences:
 
 * Port hubot from coffeescript to es6 (plain JS) with babel.
 * Auto continue integration with Travis CI.
+* Auto test coverage report with Codecov.
 * Auto linting with eslint.
 
 The Same:
 
 * Still support hubot plugins written in coffeescript.
-* Can reuse all hubot adapters*
+* Can reuse hubot adapters*
+* [How it works](https://github.com/github/hubot/blob/master/docs/implementation.md)(for now)
 
 # How to try Webbybot
 
