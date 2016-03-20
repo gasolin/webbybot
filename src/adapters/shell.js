@@ -32,7 +32,7 @@ class Shell extends Adapter {
     strings = strings.map(function(s) {
       return envelope.user.name + ': ' + s;
     });
-    return this.send(envelope, strings);
+    this.send(envelope, strings);
   }
 
   run() {
@@ -73,9 +73,9 @@ class Shell extends Adapter {
 
     this.cli.on('history', (item) => {
       if (item.length > 0 && item !== 'exit' && item !== 'history') {
-        return fs.appendFile(historyPath, item + '\n', (err) => {
+        fs.appendFile(historyPath, item + '\n', (err) => {
           if (err) {
-            return this.robot.emit('error', err);
+            this.robot.emit('error', err);
           }
         });
       }
@@ -88,7 +88,7 @@ class Shell extends Adapter {
         history = history.reverse().splice(startIndex, historySize);
         let outstream = fs.createWriteStream(historyPath);
         outstream.on('finish', () => {
-          return this.shutdown();
+          this.shutdown();
         });
         for (let item of history) {
           outstream.write(item + '\n');
@@ -124,7 +124,7 @@ var loadHistory = function(callback) {
       rl.on('line', function(line) {
         line = line.trim();
         if (line.length > 0) {
-          return items.push(line);
+          items.push(line);
         }
       });
       rl.on('close', function() {
