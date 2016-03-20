@@ -35,21 +35,28 @@ describe('Adapter', function() {
       });
     });
 
+    describe('emote', function() {
+      it('is a function', function() {
+        expect(this.adapter.emote).to.be.a('function');
+      });
+
+      it('send emote data via adapter.send', function() {
+        sinon.spy(this.adapter, 'send');
+        this.message = sinon.spy();
+        this.adapter.emote(this.message);
+
+        expect(this.adapter.send).to.have.been.calledWith(this.message);
+
+        this.adapter.send.restore();
+      });
+    });
+
     describe('reply', function() {
       it('is a function', function() {
         expect(this.adapter.reply).to.be.a('function');
       });
       it('does nothing', function() {
         this.adapter.reply({}, 'nothing');
-      });
-    });
-
-    describe('topic', function() {
-      it('is a function', function() {
-        expect(this.adapter.topic).to.be.a('function');
-      });
-      it('does nothing', function() {
-        this.adapter.topic({}, 'nothing');
       });
     });
 
