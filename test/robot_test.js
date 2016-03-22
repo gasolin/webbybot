@@ -54,8 +54,7 @@ describe('Robot', function() {
   describe('Unit Tests', function() {
     describe('#http', function() {
       beforeEach(function() {
-        let url = 'http://localhost';
-        this.httpClient = this.robot.http(url);
+        this.httpClient = this.robot.http('http://localhost');
       });
       it('creates a new ScopedHttpClient', function() {
         expect(this.httpClient).to.have.property('get');
@@ -90,59 +89,6 @@ describe('Robot', function() {
           agent: agentB
         });
         expect(httpClient.options.agent).to.equal(agentB);
-      });
-    });
-
-    describe('#respondPattern', function() {
-      it('matches messages starting with robot\'s name', function() {
-        let testMessage = this.robot.name + 'message123';
-        let testRegex = /(.*)/;
-        let pattern = this.robot.respondPattern(testRegex);
-        expect(testMessage).to.match(pattern);
-        let match = testMessage.match(pattern)[1];
-        expect(match).to.equal('message123');
-      });
-      it('matches messages starting with robot\'s alias', function() {
-        let testMessage = this.robot.alias + 'message123';
-        let testRegex = /(.*)/;
-        let pattern = this.robot.respondPattern(testRegex);
-        expect(testMessage).to.match(pattern);
-        let match = testMessage.match(pattern)[1];
-        expect(match).to.equal('message123');
-      });
-      it('does not match unaddressed messages', function() {
-        let testMessage = 'message123';
-        let testRegex = /(.*)/;
-        let pattern = this.robot.respondPattern(testRegex);
-        expect(testMessage).to.not.match(pattern);
-      });
-      it('matches properly when name is substring of alias', function() {
-        this.robot.name = 'Meg';
-        this.robot.alias = 'Megan';
-        let testMessage1 = this.robot.name + ' message123';
-        let testMessage2 = this.robot.alias + ' message123';
-        let testRegex = /(.*)/;
-        let pattern = this.robot.respondPattern(testRegex);
-        expect(testMessage1).to.match(pattern);
-        let match1 = testMessage1.match(pattern)[1];
-        expect(match1).to.equal('message123');
-        expect(testMessage2).to.match(pattern);
-        let match2 = testMessage2.match(pattern)[1];
-        expect(match2).to.equal('message123');
-      });
-      it('matches properly when alias is substring of name', function() {
-        this.robot.name = 'Megan';
-        this.robot.alias = 'Meg';
-        let testMessage1 = this.robot.name + ' message123';
-        let testMessage2 = this.robot.alias + ' message123';
-        let testRegex = /(.*)/;
-        let pattern = this.robot.respondPattern(testRegex);
-        expect(testMessage1).to.match(pattern);
-        let match1 = testMessage1.match(pattern)[1];
-        expect(match1).to.equal('message123');
-        expect(testMessage2).to.match(pattern);
-        let match2 = testMessage2.match(pattern)[1];
-        expect(match2).to.equal('message123');
       });
     });
 
