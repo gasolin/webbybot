@@ -164,8 +164,10 @@ describe('Robot', function() {
     describe('#respond', function() {
       it('registers a new listener using hear', function() {
         sinon.spy(this.robot, 'hear');
+        sinon.spy(this.robot, 'respondPattern');
         this.robot.respond(/.*/, function() {});
         expect(this.robot.hear).to.have.been.called;
+        expect(this.robot.respondPattern).to.have.been.called;
       });
     });
 
@@ -190,6 +192,23 @@ describe('Robot', function() {
         sinon.spy(this.robot, 'listen');
         this.robot.topic(function() {});
         expect(this.robot.listen).to.have.been.called;
+      });
+    });
+
+    describe('#error', function() {
+      it('registers a new errorHandler directly', function() {
+        expect(this.robot.errorHandlers).to.have.length(0);
+        this.robot.error(function() {});
+        expect(this.robot.errorHandlers).to.have.length(1);
+      });
+    });
+
+    describe('#invokeErrorHandlers', function() {
+      it('trigger  ErrorHandlers', function() {
+        var log = sinon.spy(this.robot.logger, 'error');
+        this.robot.error(function() {});
+        this.robot.onUncaughtException({stack: 'something bad happened'});
+        expect(this.robot.logger.error).to.have.been.called;
       });
     });
 

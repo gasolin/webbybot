@@ -79,7 +79,7 @@ class Robot {
       this.invokeErrorHandlers(err, res);
     });
     this.onUncaughtException = (err) => {
-      return this.emit('error', err);
+      this.emit('error', err);
     };
     process.on('uncaughtException', this.onUncaughtException);
   }
