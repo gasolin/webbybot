@@ -205,7 +205,7 @@ describe('Robot', function() {
 
     describe('#invokeErrorHandlers', function() {
       it('trigger  ErrorHandlers', function() {
-        var log = sinon.spy(this.robot.logger, 'error');
+        sinon.spy(this.robot.logger, 'error');
         this.robot.error(function() {});
         this.robot.onUncaughtException({stack: 'something bad happened'});
         expect(this.robot.logger.error).to.have.been.called;
@@ -225,14 +225,14 @@ describe('Robot', function() {
         let testMessage = new TextMessage(this.user, 'message123');
         let listener = {
           call: function(response, middleware, cb) {
-            return cb();
+            cb();
           }
         };
         sinon.spy(listener, 'call');
         this.robot.listeners = [listener, listener, listener, listener];
         this.robot.receive(testMessage, function() {
           expect(listener.call).to.have.callCount(8);
-          return done();
+          done();
         });
       });
       it('sends a CatchAllMessage if no listener matches', function(done) {
