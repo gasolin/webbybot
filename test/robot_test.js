@@ -384,6 +384,7 @@ describe('Robot', function() {
             expect(testListener.options).to.equal(options);
           });
       });
+
       describe('#hear', function() {
         it('matches TextMessages', function() {
           let callback = sinon.spy();
@@ -404,6 +405,7 @@ describe('Robot', function() {
           expect(result).to.not.be.ok;
         });
       });
+
       describe('#respond', function() {
         it('matches TextMessages addressed to the robot', function() {
           let callback = sinon.spy();
@@ -424,6 +426,7 @@ describe('Robot', function() {
           expect(result).to.not.be.ok;
         });
       });
+
       describe('#enter', function() {
         it('matches EnterMessages', function() {
           let callback = sinon.spy();
@@ -442,6 +445,7 @@ describe('Robot', function() {
           expect(result).to.not.be.ok;
         });
       });
+
       describe('#leave', function() {
         it('matches LeaveMessages', function() {
           let callback = sinon.spy();
@@ -460,6 +464,7 @@ describe('Robot', function() {
           expect(result).to.not.be.ok;
         });
       });
+
       describe('#topic', function() {
         it('matches TopicMessages', function() {
           let callback = sinon.spy();
@@ -478,6 +483,7 @@ describe('Robot', function() {
           expect(result).to.not.be.ok;
         });
       });
+
       describe('#catchAll', function() {
         it('matches CatchAllMessages', function() {
           let callback = sinon.spy();
@@ -593,6 +599,7 @@ describe('Robot', function() {
           done();
         });
       });
+
       describe('Listener Middleware', function() {
         it('allows listener callback execution', function(testDone) {
           let listenerCallback = sinon.spy();
@@ -662,6 +669,7 @@ describe('Robot', function() {
           });
         });
       });
+
       describe('Receive Middleware', function() {
         it('fires for all messages, including non-matching ones',
           function(testDone) {
@@ -757,6 +765,7 @@ describe('Robot', function() {
             });
           });
       });
+
       describe('Response Middleware', function() {
         it('executes response middleware in order', function(testDone) {
           let sendSpy;
