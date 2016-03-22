@@ -1,6 +1,6 @@
 {
   "name": "webbybot",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A simple helpful robot written in es6, compatible with hubot",
   "main": "dist/index.js",
   "bin": {
@@ -13,7 +13,7 @@
     "pretest": "source script/bootstrap",
     "test": "mocha --compilers js:babel-register -w",
     "test:single": "istanbul cover --root ./src _mocha -- 'test/**/*.js' --compilers js:babel-register -R spec",
-    "lint": "eslint index.js bin/webby.js src/ test/",
+    "lint": "eslint index.js bin/webby src/ test/",
     "report-coverage": "cat ./coverage/lcov.info | codecov"
   },
   "repository": {

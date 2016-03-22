@@ -7,17 +7,23 @@ var Webby = require('../dist/index');
 
 var Switches = [
   [ '-a', '--adapter ADAPTER', 'The Adapter to use'],
-  [ "-d", "--disable-httpd",   "Disable the HTTP server" ],
-  [ "-l", "--alias ALIAS",     "Enable replacing the robot's name with alias" ],
-  [ "-n", "--name NAME",       "The name of the robot in chat" ],
-  [ "-t", "--config-check",    "Test hubot's config to make sure it won't fail at startup"],
+  [ '-d', '--disable-httpd',   'Disable the HTTP server'],
+  [ '-h', '--help',            'Display the help information'],
+  [ '-l', '--alias ALIAS',     'Enable replacing the robot\'s name with alias'],
+  [ '-n', '--name NAME',       'The name of the robot in chat'],
+  [ '-r', '--require PATH',    'Alternative scripts path'],
+  [ '-t', '--config-check',    'Test hubot\'s config to make sure it won\'t ' +
+                               'fail at startup'],
   [ '-v', '--version',         'Displays the version of webby installed']
 ];
 
 var adapter = process.env.HUBOT_ADAPTER || 'shell';
 var alias = process.env.HUBOT_ALIAS || false;
-var enableHttpd = process.env.HUBOT_HTTPD || true
-var name = process.env.HUBOT_NAME || "webby";
+var enableHttpd = process.env.HUBOT_HTTPD || true;
+var scripts = process.env.HUBOT_SCRIPTS || [];
+var name = process.env.HUBOT_NAME || 'webby';
+var path = process.env.HUBOT_PATH || '.';
+var configCheck = false;
 
 var Options = {
   adapter: adapter,
@@ -52,6 +58,10 @@ Parser.on('name', function(opt, value) {
   Options.name = value;
 });
 
+Parser.on('require', function(opt, value) {
+  Options.scripts.push(value);
+});
+
 Parser.on('config-check', function(opt) {
   Options.configCheck = true;
 });
@@ -60,9 +70,20 @@ Parser.on('version', function(opt, value) {
   Options.version = true;
 });
 
+Parser.on(function(opt, value) {
+  console.warn('Unknown option: ' + opt);
+});
+
 Parser.parse(process.argv);
 
-var robot = Webby.loadBot(null, Options.adapter, Options.enableHttpd, Options.name, Options.alias);
+if (process.platform !== 'win32') {
+  process.on('SIGTERM', function() {
+    process.exit(0);
+  });
+}
+
+var robot = Webby.loadBot(null, Options.adapter, Options.enableHttpd,
+  Options.name, Options.alias);
 
 if (Options.version) {
   console.log(robot.version);
@@ -112,7 +133,7 @@ var loadScripts = function() {
 };
 
 if (Options.configCheck) {
-  loadScripts()
+  loadScripts();
   console.log('OK');
   process.exit(0);
 }
