@@ -1,3 +1,10 @@
+0.2.3 (2016/3/24)
+========
+* use hubot-mockadapter instead of hubot-mock-adapter
+* add more unit tests to increase test coverage
+* add .editorconfig for source convention
+* fix some 'flag undefined' bug
+
 0.2.0 (2016/3/17)
 ========
 
