@@ -4,7 +4,9 @@
 var Path = require('path');
 var Fs = require('fs');
 var OptParse = require('optparse');
+var env = require('node-env-file');
 var Webby = require('../dist/index');
+env('.env', {verbose: false, raise: false});
 
 var Switches = [
   [ '-a', '--adapter ADAPTER', 'The Adapter to use'],
