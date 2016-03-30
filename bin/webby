@@ -5,7 +5,7 @@ var Path = require('path');
 var Fs = require('fs');
 var OptParse = require('optparse');
 var env = require('node-env-file');
-var Webby = require('../dist/index');
+var Webby = require('../dist');
 env('.env', {verbose: false, raise: false});
 
 var Switches = [
