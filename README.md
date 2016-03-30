@@ -27,6 +27,13 @@ $ npm install
 $ ./bin/webby
 ```
 
+You can find and install extra skills from [npm](https://www.npmjs.com/search?q=hubot)
+
+Enable a skill in `external-scripts.json`.
+
+Add the environment variables in `.env` file.
+
+
 # How to replace Hubot to Webbybot
 
 Refer to [Getting Started With Hubot](https://hubot.github.com/docs/),
