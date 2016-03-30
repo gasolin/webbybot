@@ -31,7 +31,7 @@ You can find and install extra skills from [npm](https://www.npmjs.com/search?q=
 
 Enable a skill in `external-scripts.json`.
 
-Add the environment variables in `.env` file.
+Add the environment variables in [.env](https://www.npmjs.com/package/dotenv) file.
 
 
 # How to replace Hubot to Webbybot
