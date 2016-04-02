@@ -179,9 +179,7 @@ class Robot {
    * Returns nothing.
    */
   enter(options, callback) {
-    this.listen(function(msg) {
-      return msg instanceof EnterMessage;
-    }, options, callback);
+    this.listen(msg => msg instanceof EnterMessage, options, callback);
   }
 
   /**
@@ -194,9 +192,7 @@ class Robot {
    * Returns nothing.
    */
   leave(options, callback) {
-    this.listen(function(msg) {
-      return msg instanceof LeaveMessage;
-    }, options, callback);
+    this.listen(msg => msg instanceof LeaveMessage, options, callback);
   }
 
   /**
@@ -209,9 +205,7 @@ class Robot {
    * Returns nothing.
    */
   topic(options, callback) {
-    this.listen(function(msg) {
-      return msg instanceof TopicMessage;
-    }, options, callback);
+    this.listen(msg => msg instanceof TopicMessage, options, callback);
   }
 
   /**
@@ -261,9 +255,7 @@ class Robot {
       callback = options;
       options = {};
     }
-    this.listen(function(msg) {
-      return msg instanceof CatchAllMessage;
-    }, options, function(msg) {
+    this.listen(msg => msg instanceof CatchAllMessage, options, msg => {
       msg.message = msg.message.message;
       return callback(msg);
     });
