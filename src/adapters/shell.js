@@ -29,9 +29,7 @@ class Shell extends Adapter {
   }
 
   reply(envelope, ...strings) {
-    strings = strings.map(function(s) {
-      return envelope.user.name + ': ' + s;
-    });
+    strings = strings.map(s => ` ${envelope.user.name}: ${s}`);
     return this.send(envelope, strings);
   }
 
@@ -108,32 +106,30 @@ class Shell extends Adapter {
  *
  * callback - A Function that is called with the loaded history items (or an empty array if there is no history)
  */
-var loadHistory = function(callback) {
-  return fs.exists(historyPath, function(exists) {
-    if (exists) {
-      let instream = fs.createReadStream(historyPath);
-      let outstream = new stream;
-      outstream.readable = true;
-      outstream.writable = true;
-      let items = [];
-      let rl = readline.createInterface({
-        input: instream,
-        output: outstream,
-        terminal: false
-      });
-      rl.on('line', function(line) {
-        line = line.trim();
-        if (line.length > 0) {
-          return items.push(line);
-        }
-      });
-      rl.on('close', function() {
-        callback(items);
-      });
-    } else {
-      callback([]);
-    }
-  });
+var loadHistory = callback => fs.exists(historyPath, function(exists) {
+  if (exists) {
+    let instream = fs.createReadStream(historyPath);
+    let outstream = new stream;
+    outstream.readable = true;
+    outstream.writable = true;
+    let items = [];
+    let rl = readline.createInterface({
+      input: instream,
+      output: outstream,
+      terminal: false
+    });
+    rl.on('line', function(line) {
+      line = line.trim();
+      if (line.length > 0) {
+        return items.push(line);
+      }
+    });
+    rl.on('close', function() {
+      callback(items);
+    });
+  } else {
+    callback([]);
+  }
 };
 
 export function use(robot) {
