@@ -6,7 +6,6 @@ import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
 let expect = chai.expect;
 import * as mockery from 'mockery';
-import * as ScopedHttpClient from 'scoped-http-client';
 
 // bot classes
 import Robot from '../src/robot';
