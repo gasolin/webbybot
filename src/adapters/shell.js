@@ -130,7 +130,7 @@ var loadHistory = callback => fs.exists(historyPath, function(exists) {
   } else {
     callback([]);
   }
-};
+});
 
 export function use(robot) {
   return new Shell(robot);
