@@ -1,5 +1,5 @@
-let express = require('express');
-let multipart = require('connect-multiparty');
+import express from 'express';
+import multipart from 'connect-multiparty';
 import * as HttpClient from 'scoped-http-client';
 
 class NullRouter {

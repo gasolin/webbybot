@@ -389,20 +389,20 @@ class Robot {
    */
   loadFile(path, file) {
     let ext = Path.extname(file);
-    let full = Path.join(path, Path.basename(file, ext));
+    let fullPath = Path.join(path, Path.basename(file, ext));
     if (require.extensions[ext]) {
       let script;
       try {
-        script = require(full);
+        script = require(fullPath);
         if (typeof script === 'function') {
           script(this);
           this.parseHelp(Path.join(path, file));
         } else {
-          this.logger.warning(`Expected ${full}
+          this.logger.warning(`Expected ${fullPath}
              to assign a function to module.exports, got ${typeof script}`);
         }
       } catch (error) {
-        this.logger.error(`Unable to load ${full}: ${error.stack}`);
+        this.logger.error(`Unable to load ${fullPath}: ${error.stack}`);
         process.exit(1);
       }
     }
