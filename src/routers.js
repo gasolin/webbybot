@@ -1,5 +1,6 @@
 let express = require('express');
 let multipart = require('connect-multiparty');
+import * as HttpClient from 'scoped-http-client';
 
 class NullRouter {
   /**
@@ -42,6 +43,7 @@ class ExpressRouter {
       process.env.BIND_ADDRESS || '0.0.0.0';
 
     let app = express();
+
     app.use((req, res, next) => {
       res.setHeader('X-Powered-By', 'webby/' + robot.name);
       next();
@@ -51,14 +53,19 @@ class ExpressRouter {
       app.use(express.basicAuth(user, pass));
     }
     app.use(express.query());
+
     app.use(express.json());
     app.use(express.urlencoded());
+    // replacement for deprecated express.multipart/connect.multipart
+    // limit to 100mb, as per the old behavior
     app.use(multipart({
       maxFilesSize: 100 * 1024 * 1024
     }));
+
     if (stat) {
       app.use(express.static(stat));
     }
+
     try {
       robot.server = app.listen(port, address);
       robot.router = app;
@@ -66,6 +73,27 @@ class ExpressRouter {
       robot.logger.error(`Error trying to start HTTP server: ${error}\n
         ${error.stack}`);
       process.exit(1);
+    }
+
+    this.setupHeroku(robot);
+  }
+
+  /**
+   * keep bot alive if runtime environment is heroku
+   */
+  setupHeroku(robot) {
+    let herokuUrl = process.env.HEROKU_URL;
+
+    if (herokuUrl) {
+      if (!/\/$/.test(herokuUrl)) {
+        herokuUrl += '/';
+      }
+      setInterval(() => {
+        HttpClient.create(herokuUrl + 'hubot/ping')
+          .post((err, res, body) => {
+            robot.logger.info('keep alive ping!');
+          });
+      }, 5 * 60 * 1000);
     }
   }
 }
