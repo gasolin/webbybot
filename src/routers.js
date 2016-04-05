@@ -12,18 +12,10 @@ class NullRouter {
     let msg = 'A script has tried registering a HTTP route while the HTTP ' +
           'server is disabled with --disabled-httpd.';
     robot.router = {
-      get: () => {
-        robot.logger.warning(msg);
-      },
-      post: () => {
-        robot.logger.warning(msg);
-      },
-      put: () => {
-        robot.logger.warning(msg);
-      },
-      delete: () => {
-        robot.logger.warning(msg);
-      }
+      get: () => robot.logger.warning(msg),
+      post: () => robot.logger.warning(msg),
+      put: () => robot.logger.warning(msg),
+      delete: () => robot.logger.warning(msg)
     };
   }
 }
