@@ -22,7 +22,7 @@ The Same:
 # How to try Webbybot
 
 ```shell
-$ git clone https://github.com/gasolin/webby_template.git demo
+$ git clone https://github.com/gasolin/webby-template.git demo
 $ cd demo
 $ npm install
 $ ./bin/webby
