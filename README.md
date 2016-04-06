@@ -21,6 +21,8 @@ The Same:
 
 # How to try Webbybot
 
+You can start from [webby-template](https://github.com/gasolin/webby-template) , a template for make a working webby bot
+
 ```shell
 $ git clone https://github.com/gasolin/webby-template.git demo
 $ cd demo
