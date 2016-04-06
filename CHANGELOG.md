@@ -1,3 +1,11 @@
+v3.0.0 (2016/4/6)
+========
+* add webby-template as a working webby bot sample
+* add webby-plugin and docs for write plugin with plain js
+* add back from hubot: keep heroku alive setup in express router
+* move express and null router setup to router.js
+* add gitter badge and forum
+
 v0.3.0 (2016/3/30)
 ========
 * update template usage
