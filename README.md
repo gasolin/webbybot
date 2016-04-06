@@ -125,6 +125,12 @@ $ npm test
 $ npm run lint
 ```
 
+## Write your own plugin
+
+You can clone [webby-plugin](https://github.com/gasolin/webby-template) template to get start.
+
+[webby-template](https://github.com/gasolin/webby-template) already bundled with webby-plugin. You can check how it work for reference.
+
 # License
 
 [MIT license](https://en.wikipedia.org/wiki/MIT_License)
