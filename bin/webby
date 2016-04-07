@@ -103,14 +103,17 @@ var loadScripts = function() {
   scriptsPath = Path.resolve('.', 'src', 'scripts');
   robot.load(scriptsPath);
 
+  // Load scripts specified in the `hubot-scripts.json` file.
   var hubotScripts = Path.resolve('.', 'hubot-scripts.json');
   if (Fs.existsSync(hubotScripts)) {
     var data = Fs.readFileSync(hubotScripts);
     if (data.length > 0) {
       try {
-        var scripts = JSON.parse(data);
+        // A String path to the hubot-scripts files.
         var scriptsPath = Path.resolve('node_modules', 'hubot-scripts', 'src',
           'scripts');
+        // An Array of scripts to load.
+        var scripts = JSON.parse(data);
         robot.loadHubotScripts(scriptsPath, scripts);
       } catch (err) {
         console.error('Error parsing JSON data from hubot-scripts.json: ' +
