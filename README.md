@@ -19,7 +19,7 @@ The Same:
 * [How it works](https://github.com/github/hubot/blob/master/docs/implementation.md)(for now)
 * Support write plugin with plain Javascript
 
-# How to try Webbybot
+## How to try Webbybot
 
 You can start from [webby-template](https://github.com/gasolin/webby-template) , a template for make a working webby bot
 
@@ -37,7 +37,7 @@ Enable a skill in `external-scripts.json`.
 Add the environment variables in [.env](https://www.npmjs.com/package/dotenv) file.
 
 
-# How to replace Hubot to Webbybot
+## How to replace Hubot to Webbybot
 
 Refer to [Getting Started With Hubot](https://hubot.github.com/docs/),
 Install hubot generator first
@@ -71,13 +71,13 @@ start your bot as normal
 
 Tested with `hubot-telegram` and `hubot-messenger`.
 
-# Development
+## Development
 
 ```shell
 $ npm install -g mocha
 ```
 
-## Build
+### Build
 
 run command
 
@@ -85,7 +85,7 @@ run command
 $ npm run build
 ```
 
-## Add plugins
+### Add plugins
 
 ```shell
 $ npm install hubot-calculator hubot-diagnostics
@@ -100,7 +100,7 @@ Add external-scripts.json file which contain:
 ]
 ```
 
-## Run
+### Run
 
 run command
 
@@ -114,23 +114,23 @@ webby > webby calc 1 + 1
 webby > 2
 ```
 
-## Test
+### Test
 
 ```shell
 $ npm test
 ```
 
-## Lint
+### Lint
 ```shell
 $ npm run lint
 ```
 
-## Write your own plugin
+### Write your own plugin
 
 You can clone [webby-plugin](https://github.com/gasolin/webby-template) template to get start.
 
 [webby-template](https://github.com/gasolin/webby-template) already bundled with webby-plugin. You can check how it work for reference.
 
-# License
+## License
 
 [MIT license](https://en.wikipedia.org/wiki/MIT_License)
