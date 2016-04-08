@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-- 0.12.6
 - 4.4.2
 - 5.10.1
 install:

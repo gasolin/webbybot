@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// need to write in plain JS because this file is not compiled by babel
+// This file is not compiled by babel, need to write in plain JS
 var Path = require('path');
 var Fs = require('fs');
 var OptParse = require('optparse');
