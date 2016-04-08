@@ -359,7 +359,6 @@ describe('Robot', function() {
           let module = require('module');
           this.script = {};
           this.sandbox.stub(module, '_load').returns(this.script);
-          this.sandbox.stub(this.robot, 'parseHelp');
         });
         it('logs a warning', function() {
           sinon.stub(this.robot.logger, 'warning');

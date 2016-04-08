@@ -1,4 +1,3 @@
-import * as Fs from 'fs';
 import Log from 'log';
 import * as Path from 'path';
 import * as HttpClient from 'scoped-http-client';
@@ -15,22 +14,10 @@ import {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage}
   from './message';
 import Middleware from './middleware';
 import {ExpressRouter, NullRouter} from './server';
+import Loader from './loader';
 
 const WEBBY_DEFAULT_ADAPTERS = [
   'shell'
-];
-
-const WEBBY_DOCUMENTATION_SECTIONS = [
-  'description',
-  'dependencies',
-  'configuration',
-  'commands',
-  'notes',
-  'author',
-  'authors',
-  'examples',
-  'tags',
-  'urls'
 ];
 
 class Robot {
@@ -84,6 +71,14 @@ class Robot {
       this.emit('error', err);
     };
     process.on('uncaughtException', this.onUncaughtException);
+
+    //backward compatible
+    this._loader = new Loader(this);
+    this.loadFile = this._loader.loadFile;
+    this.load = this._loader.load;
+    this.loadHubotScripts = this._loader.loadHubotScripts;
+    this.loadExternalScripts = this._loader.loadExternalScripts;
+    this.parseHelp = this._loader.parseHelp;
   }
 
   /**
@@ -381,94 +376,6 @@ class Robot {
   }
 
   /**
-   * Public: Loads a file in path.
-   *
-   * @param {string} path - A String path on the filesystem.
-   * @param {string} file - A String filename in path on the filesystem.
-   *
-   * Returns nothing.
-   */
-  loadFile(path, file) {
-    let ext = Path.extname(file);
-    let fullPath = Path.join(path, Path.basename(file, ext));
-    if (require.extensions[ext]) {
-      let script;
-      try {
-        script = require(fullPath);
-        if (typeof script === 'function') {
-          script(this);
-          this.parseHelp(Path.join(path, file));
-        } else {
-          this.logger.warning(`Expected ${fullPath}
-             to assign a function to module.exports, got ${typeof script}`);
-        }
-      } catch (error) {
-        this.logger.error(`Unable to load ${fullPath}: ${error.stack}`);
-        process.exit(1);
-      }
-    }
-  }
-
-  /**
-   * Public: Loads every script in the given path.
-   *
-   * @param {string} path - A String path on the filesystem.
-   *
-   * Returns nothing.
-   */
-  load(path) {
-    this.logger.debug(`Loading scripts from ${path}`);
-    if (Fs.existsSync(path)) {
-      let ref = Fs.readdirSync(path).sort();
-      for (let file of ref) {
-        this.loadFile(path, file);
-      }
-    }
-  }
-
-  /**
-   * Public: Load scripts specified in the `hubot-scripts.json` file.
-   *
-   * @param {string} path    - A String path to the hubot-scripts files.
-   * @param {string[]} scripts - An Array of scripts to load.
-   *
-   * Returns nothing.
-   */
-  loadHubotScripts(path, scripts) {
-    this.logger.debug(`Loading hubot-scripts from ${path}`);
-    for (let script of scripts) {
-      this.loadFile(path, script);
-    }
-  }
-
-  /**
-   * Public: Load scripts from packages specified in the
-   * `external-scripts.json` file.
-   *
-   * @param {string[]} packages - An Array of packages containing hubot scripts to load.
-   *
-   * Returns nothing.
-   */
-  loadExternalScripts(packages) {
-    this.logger.debug('Loading external-scripts from npm packages');
-    try {
-      if (packages instanceof Array) {
-        for (let pkg of packages) {
-          require(pkg)(this);
-        }
-      } else {
-        for (let pkg of packages) {
-          require(pkg)(this, packages[pkg]);
-        }
-      }
-    } catch(error) {
-      this.logger.error(
-        `Error loading scripts from npm package - ${error.stack}`);
-      process.exit(1);
-    }
-  }
-
-  /**
    * Load the adapter Hubot is going to use.
    *
    * @param {string} path    - A String of the path to adapter if local.
@@ -496,46 +403,6 @@ class Robot {
    */
   helpCommands() {
     return this.commands.sort();
-  }
-
-  /**
-   * Private: load help info from a loaded script.
-   *
-   * @param {string} path - A String path to the file on disk.
-   *
-   * Returns nothing.
-   */
-  parseHelp(path) {
-    this.logger.debug(`Parsing help for ${path}`);
-    let scriptName = Path.basename(path).replace(/\.(coffee|js)$/, '');
-    let scriptDocumentation = {};
-    let body = Fs.readFileSync(path, 'utf-8');
-    let line, cleanedLine, currentSection, nextSection;
-    let ref = body.split('\n');
-    for (let line of ref) {
-      if (!(line[0] === '#' || line.substr(0, 2) === '//')) {
-        break;
-      }
-      cleanedLine = line.replace(/^(#|\/\/)\s?/, '').trim();
-      if (cleanedLine.length === 0) {
-        continue;
-      }
-      if (cleanedLine.toLowerCase() === 'none') {
-        continue;
-      }
-      nextSection = cleanedLine.toLowerCase().replace(':', '');
-      if (WEBBY_DOCUMENTATION_SECTIONS.indexOf(nextSection) >= 0) {
-        currentSection = nextSection;
-        scriptDocumentation[currentSection] = [];
-      } else {
-        if (currentSection) {
-          scriptDocumentation[currentSection].push(cleanedLine.trim());
-          if (currentSection === 'commands') {
-            this.commands.push(cleanedLine.trim());
-          }
-        }
-      }
-    }
   }
 
   /**
