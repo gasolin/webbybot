@@ -88,7 +88,7 @@ class Brain extends EventEmitter {
   /**
    * Public: Enable or disable the automatic saving
    *
-   * @params {boolean} enabled - A boolean whether to autosave or not
+   * @param {boolean} enabled - A boolean whether to autosave or not
    *
    * Returns nothing
    */
@@ -99,7 +99,7 @@ class Brain extends EventEmitter {
   /**
    * Public: Reset the interval between save function calls.
    *
-   * @params {integer} seconds - An Integer of seconds between saves.
+   * @param {integer} seconds - An Integer of seconds between saves.
    *
    * Returns nothing
    */

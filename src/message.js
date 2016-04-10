@@ -1,8 +1,8 @@
 /**
  * Represents an incoming message from the chat.
  *
- * @params {object} user A User instance that sent the message.
- * @params {boolean} done completed message
+ * @param {object} user A User instance that sent the message.
+ * @param {boolean} done completed message
  */
 class Message {
   constructor(user, done = false) {
@@ -21,9 +21,9 @@ class Message {
 
 /**
  * Represents an incoming message from the chat.
- * @params {object} user - A User instance that sent the message.
- * @params {string} text - A String message.
- * @params {string} id   - A String of the message ID.
+ * @param {object} user - A User instance that sent the message.
+ * @param {string} text - A String message.
+ * @param {string} id   - A String of the message ID.
  */
 class TextMessage extends Message {
   constructor(user, text, id) {
@@ -34,7 +34,7 @@ class TextMessage extends Message {
 
   /**
    * Determines if the message matches the given regex.
-   * @params {string} regex - A Regex to check.
+   * @param {string} regex - A Regex to check.
    *
    * Returns a Match object or null.
    */
@@ -54,31 +54,31 @@ class TextMessage extends Message {
 
 /**
  * Represents an incoming user entrance notification.
- * @params {object} user - A User instance for the user who entered.
- * @params {string} text - Always null.
- * @params {string} id   - A String of the message ID.
+ * @param {object} user - A User instance for the user who entered.
+ * @param {string} text - Always null.
+ * @param {string} id   - A String of the message ID.
  */
 class EnterMessage extends Message {}
 
 /**
  * Represents an incoming user exit notification.
- * @params {object} user - A User instance for the user who left.
- * @params {string} text - Always null.
- * @params {string} id   - A String of the message ID.
+ * @param {object} user - A User instance for the user who left.
+ * @param {string} text - Always null.
+ * @param {string} id   - A String of the message ID.
  */
 class LeaveMessage extends Message {}
 
 /**
  * Represents an incoming topic change notification.
- * @params {object} user - A User instance for the user who changed the topic.
- * @params {string} text - A String of the new topic.
- * @params {string} id   - A String of the message ID.
+ * @param {object} user - A User instance for the user who changed the topic.
+ * @param {string} text - A String of the new topic.
+ * @param {string} id   - A String of the message ID.
  */
 class TopicMessage extends Message {}
 
 /**
  * Represents a message that no matchers matched.
- * @params {object} message - The original message.
+ * @param {object} message - The original message.
  */
 class CatchAllMessage extends Message {
   constructor(message) {

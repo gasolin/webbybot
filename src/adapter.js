@@ -9,8 +9,8 @@ class Adapter extends EventEmitter {
   /**
    * Public: Raw method for sending data back to the chat source. Extend this.
    *
-   * @params {object} envelope - A Object with message, room and user details.
-   * @params {string} strings  - One or more Strings for each message to send.
+   * @param {object} envelope - A Object with message, room and user details.
+   * @param {string} strings  - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -23,8 +23,8 @@ class Adapter extends EventEmitter {
    * Public: Raw method for sending emote data back to the chat source.
    * Defaults as an alias for send
    *
-   * @params {object} envelope - A Object with message, room and user details.
-   * @params {string} strings  - One or more Strings for each message to send.
+   * @param {object} envelope - A Object with message, room and user details.
+   * @param {string} strings  - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -38,8 +38,8 @@ class Adapter extends EventEmitter {
    * Public: Raw method for building a reply and sending it back to the chat
    * source. Extend this.
    *
-   * @params {object} envelope - A Object with message, room and user details.
-   * @params {string} strings  - One or more Strings for each message to send.
+   * @param {object} envelope - A Object with message, room and user details.
+   * @param {string} strings  - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -51,8 +51,8 @@ class Adapter extends EventEmitter {
   /**
    * Public: Raw method for setting a topic on the chat source. Extend this.
    *
-   * @params {object} envelope - A Object with message, room and user details.
-   * @params {string} strings  - One or more Strings for each message to send.
+   * @param {object} envelope - A Object with message, room and user details.
+   * @param {string} strings  - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -64,8 +64,8 @@ class Adapter extends EventEmitter {
   /**
    * Public: Raw method for playing a sound in the chat source. Extend this.
    *
-   * @params {object} envelope - A Object with message, room and user details.
-   * @params {string} strings  - One or more Strings for each message to send.
+   * @param {object} envelope - A Object with message, room and user details.
+   * @param {string} strings  - One or more Strings for each message to send.
    *
    * Returns nothing.
    */

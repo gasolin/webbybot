@@ -4,9 +4,9 @@ class Response {
    * content and user that made the original message, and how to reply back to
    * them.
    *
-   * @params {object} robot   - A Robot instance.
-   * @params {object} message - A Message instance.
-   * @params {object} match   - A Match object from the successful Regex match.
+   * @param {object} robot   - A Robot instance.
+   * @param {object} message - A Message instance.
+   * @param {object} match   - A Match object from the successful Regex match.
    */
   constructor(robot, message, match) {
     this.robot = robot;
@@ -22,7 +22,7 @@ class Response {
   /**
    * Public: Posts a message back to the chat source
    *
-   * @params {...string} strings - One or more strings to be posted. The order of these strings
+   * @param {...string} strings - One or more strings to be posted. The order of these strings
    *           should be kept intact.
    *
    * Returns nothing.
@@ -34,7 +34,7 @@ class Response {
   /**
    * Public: Posts an emote back to the chat source
    *
-   * @params {...string} strings - One or more strings to be posted. The order of these strings
+   * @param {...string} strings - One or more strings to be posted. The order of these strings
    *           should be kept intact.
    *
    * Returns nothing.
@@ -46,7 +46,7 @@ class Response {
   /**
    * Public: Posts a message mentioning the current user.
    *
-   * @params {...string} strings - One or more strings to be posted. The order of these strings
+   * @param {...string} strings - One or more strings to be posted. The order of these strings
    *           should be kept intact.
    *
    * Returns nothing.
@@ -58,7 +58,7 @@ class Response {
   /**
    * Public: Posts a topic changing message
    *
-   * @params {...string} strings - One or more strings to set as the topic of the
+   * @param {...string} strings - One or more strings to set as the topic of the
    *           room the bot is in.
    *
    * Returns nothing.
@@ -70,7 +70,7 @@ class Response {
   /**
    * Public: Play a sound in the chat source
    *
-   * @params {...string} strings - One or more strings to be posted as sounds to play. The order of
+   * @param {...string} strings - One or more strings to be posted as sounds to play. The order of
    *           these strings should be kept intact.
    *
    * Returns nothing.
@@ -82,7 +82,7 @@ class Response {
   /**
    * Public: Posts a message in an unlogged room
    *
-   * @params {...string} strings - One or more strings to be posted. The order of these strings
+   * @param {...string} strings - One or more strings to be posted. The order of these strings
    *           should be kept intact.
    *
    * Returns nothing.
@@ -118,7 +118,7 @@ class Response {
   /**
    * Public: Picks a random item from the given items.
    *
-   * @params {object[]} items - An Array of items.
+   * @param {object[]} items - An Array of items.
    *
    * @return {object} A random item.
    */

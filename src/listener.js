@@ -11,12 +11,12 @@ class Listener {
    * An identifier should be provided in the options parameter to uniquely
    * identify the listener (options.id).
    *
-   * robot    - A Robot instance.
-   * matcher  - A Function that determines if this listener should trigger the
+   * @param robot    - A Robot instance.
+   * @param matcher  - A Function that determines if this listener should trigger the
    *            callback.
-   * options  - An Object of additional parameters keyed on extension name
+   * @param options  - An Object of additional parameters keyed on extension name
    *            (optional).
-   * callback - A Function that is triggered if the incoming message matches.
+   * @param callback - A Function that is triggered if the incoming message matches.
    */
   constructor(robot, matcher, options, callback) {
     this.robot = robot;
@@ -49,9 +49,9 @@ class Listener {
    * middleware can intercept the message and prevent the callback from ever
    * being executed.
    *
-   * message - A Message instance.
-   * middleware - Optional Middleware object to execute before the Listener callback
-   * callback - Optional Function called with a boolean of whether the matcher matched
+   * @param message - A Message instance.
+   * @param middleware - Optional Middleware object to execute before the Listener callback
+   * @param cb - Optional callback Function called with a boolean of whether the matcher matched
    *
    * Returns a boolean of whether the matcher matched.
    * Returns before executing callback
@@ -121,12 +121,12 @@ class TextListener extends Listener {
    * TextListeners receive every message from the chat source and decide if they
    * want to act on it.
    *
-   * robot    - A Robot instance.
-   * regex    - A Regex that determines if this listener should trigger the
+   * @param robot    - A Robot instance.
+   * @param regex    - A Regex that determines if this listener should trigger the
    *            callback.
-   * options  - An Object of additional parameters keyed on extension name
+   * @param options  - An Object of additional parameters keyed on extension name
    *            (optional).
-   * callback - A Function that is triggered if the incoming message matches.
+   * @param callback - A Function that is triggered if the incoming message matches.
    */
   constructor(robot, regex, options, callback) {
     super(robot, regex, options, callback);

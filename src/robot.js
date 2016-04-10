@@ -38,11 +38,11 @@ class Robot {
    * Robots receive messages from a chat source (Campfire, irc, etc), and
    * dispatch them to matching listeners.
    *
-   * @params {string} adapterPath -  A String of the path to built-in adapters
+   * @param {string} adapterPath -  A String of the path to built-in adapters
    *                                (defaults to src/adapters)
-   * @params {string} adapter     - A String of the adapter name.
-   * @params {boolean} httpd      - A Boolean whether to enable the HTTP daemon.
-   * @params {string} name        - A String of the robot name,
+   * @param {string} adapter     - A String of the adapter name.
+   * @param {boolean} httpd      - A Boolean whether to enable the HTTP daemon.
+   * @param {string} name        - A String of the robot name,
    *                                defaults to Webby.
    *
    * Returns nothing.
@@ -90,12 +90,12 @@ class Robot {
    * Public: Adds a custom Listener with the provided matcher, options, and
    * callback
    *
-   * @params matcher  - A Function that determines whether to call the callback.
+   * @param matcher  - A Function that determines whether to call the callback.
    *            Expected to return a truthy value if the callback should be
    *            executed.
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object if the
+   * @param callback - A Function that is called with a Response object if the
    *            matcher function returns true.
    *
    * Returns nothing.
@@ -108,11 +108,11 @@ class Robot {
    * Public: Adds a Listener that attempts to match incoming messages based on
    * a Regex.
    *
-   * @params {string} regex - A Regex that determines if the callback should be
+   * @param {string} regex - A Regex that determines if the callback should be
    *                          called.
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -125,11 +125,11 @@ class Robot {
    * at the robot based on a Regex. All regexes treat patterns like they begin
    * with a '^'
    *
-   * @params {string} regex - A Regex that determines if the callback
+   * @param {string} regex - A Regex that determines if the callback
    *                          should be called.
-   * @params {object} options - An Object of additional parameters keyed on
+   * @param {object} options - An Object of additional parameters keyed on
    *                            extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -141,7 +141,7 @@ class Robot {
    * Public: Build a regular expression that matches messages addressed
    * directly to the robot
    *
-   * @params {string} regex - A RegExp for the message part that follows the
+   * @param {string} regex - A RegExp for the message part that follows the
    *                          robot's name/alias
    *
    * Returns RegExp.
@@ -174,9 +174,9 @@ class Robot {
   /**
    * Public: Adds a Listener that triggers when anyone enters the room.
    *
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -187,9 +187,9 @@ class Robot {
   /**
    * Public: Adds a Listener that triggers when anyone leaves the room.
    *
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -200,9 +200,9 @@ class Robot {
   /**
    * Public: Adds a Listener that triggers when anyone changes the topic.
    *
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -214,7 +214,7 @@ class Robot {
    * Public: Adds an error handler when an uncaught exception or user emitted
    * error event occurs.
    *
-   * @params callback - A Function that is called with the error object.
+   * @param callback - A Function that is called with the error object.
    *
    * Returns nothing.
    */
@@ -226,8 +226,8 @@ class Robot {
    * Calls and passes any registered error handlers for unhandled exceptions or
    * user emitted error events.
    *
-   * @params {object} err - An Error object.
-   * @params {object} res - An optional Response object that generated the error
+   * @param {object} err - An Error object.
+   * @param {object} res - An optional Response object that generated the error
    *
    * Returns nothing.
    */
@@ -246,9 +246,9 @@ class Robot {
   /**
    * Public: Adds a Listener that triggers when no other text matchers match.
    *
-   * @params {object} options  - An Object of additional parameters keyed on
+   * @param {object} options  - An Object of additional parameters keyed on
    *                             extension name (optional).
-   * @params callback - A Function that is called with a Response object.
+   * @param callback - A Function that is called with a Response object.
    *
    * Returns nothing.
    */
@@ -267,7 +267,7 @@ class Robot {
    * Public: Registers new middleware for execution after matching but before
    * Listener callbacks
    *
-   * @params middleware - A function that determines whether or not a given
+   * @param middleware - A function that determines whether or not a given
    *         matching Listener should be executed.
    *         The function is called with (context, next, done).
    *         If execution should continue (next middleware, Listener callback),
@@ -286,7 +286,7 @@ class Robot {
    * Public: Registers new middleware for execution as a response to any
    * message is being sent.
    *
-   * @params middleware - A function that examines an outgoing message and can
+   * @param middleware - A function that examines an outgoing message and can
    *         modify it or prevent its sending. The function is called with
    *         (context, next, done). If execution should continue,
    *         the middleware should call next(done). If execution should stop,
@@ -302,7 +302,7 @@ class Robot {
   /**
    * Public: Registers new middleware for execution before matching
    *
-   * @params middleware - A function that determines whether or not listeners
+   * @param middleware - A function that determines whether or not listeners
    *         should be checked.
    *         The function is called with (context, next, done).
    *         If ext, next, done). If execution should continue to the next
@@ -320,10 +320,10 @@ class Robot {
    * Public: Passes the given message to any interested Listeners after running
    *         receive middleware.
    *
-   * @params {object} message - A Message instance. Listeners can flag this
+   * @param {object} message - A Message instance. Listeners can flag this
    *              message as 'done' to prevent further execution.
    *
-   * @params cb - Optional callback that is called when message processing
+   * @param cb - Optional callback that is called when message processing
    *              is complete
    *
    * Returns nothing.
@@ -340,10 +340,10 @@ class Robot {
   /**
    * Private: Passes the given message to any interested Listeners.
    *
-   * @params {object} context - A Message instance. Listeners can flag this
+   * @param {object} context - A Message instance. Listeners can flag this
    *                            message as 'done' to prevent further execution.
    *
-   * @params done - Optional callback that is called when message processing is
+   * @param done - Optional callback that is called when message processing is
    *                complete
    *
    * Returns nothing.
@@ -383,8 +383,8 @@ class Robot {
   /**
    * Public: Loads a file in path.
    *
-   * path - A String path on the filesystem.
-   * file - A String filename in path on the filesystem.
+   * @param {string} path - A String path on the filesystem.
+   * @param {string} file - A String filename in path on the filesystem.
    *
    * Returns nothing.
    */
@@ -412,7 +412,7 @@ class Robot {
   /**
    * Public: Loads every script in the given path.
    *
-   * @params {string} path - A String path on the filesystem.
+   * @param {string} path - A String path on the filesystem.
    *
    * Returns nothing.
    */
@@ -429,8 +429,8 @@ class Robot {
   /**
    * Public: Load scripts specified in the `hubot-scripts.json` file.
    *
-   * path    - A String path to the hubot-scripts files.
-   * scripts - An Array of scripts to load.
+   * @param {string} path    - A String path to the hubot-scripts files.
+   * @param {string[]} scripts - An Array of scripts to load.
    *
    * Returns nothing.
    */
@@ -445,7 +445,7 @@ class Robot {
    * Public: Load scripts from packages specified in the
    * `external-scripts.json` file.
    *
-   * @params packages - An Array of packages containing hubot scripts to load.
+   * @param {string[]} packages - An Array of packages containing hubot scripts to load.
    *
    * Returns nothing.
    */
@@ -471,8 +471,8 @@ class Robot {
   /**
    * Load the adapter Hubot is going to use.
    *
-   * @params {string} path    - A String of the path to adapter if local.
-   * @params {string} adapter - A String of the adapter name to use.
+   * @param {string} path    - A String of the path to adapter if local.
+   * @param {string} adapter - A String of the adapter name to use.
    *
    * Returns nothing.
    */
@@ -501,7 +501,7 @@ class Robot {
   /**
    * Private: load help info from a loaded script.
    *
-   * @params {string} path - A String path to the file on disk.
+   * @param {string} path - A String path to the file on disk.
    *
    * Returns nothing.
    */
@@ -542,8 +542,8 @@ class Robot {
    * Public: A helper send function which delegates to the adapter's send
    * function.
    *
-   * @params {object} envelope   - A Object with message, room and user details.
-   * @params {...string} strings - One or more Strings for each message to send.
+   * @param {object} envelope   - A Object with message, room and user details.
+   * @param {...string} strings - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -555,8 +555,8 @@ class Robot {
    * Public: A helper reply function which delegates to the adapter's reply
    * function.
    *
-   * @params {object} envelope   - A Object with message, room and user details.
-   * @params {...string} strings - One or more Strings for each message to send.
+   * @param {object} envelope   - A Object with message, room and user details.
+   * @param {...string} strings - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -567,8 +567,8 @@ class Robot {
   /**
    * Public: A helper send function to message a room that the robot is in.
    *
-   * @params {string} room    - String designating the room to message.
-   * @params {...string} strings - One or more Strings for each message to send.
+   * @param {string} room    - String designating the room to message.
+   * @param {...string} strings - One or more Strings for each message to send.
    *
    * Returns nothing.
    */
@@ -581,8 +581,8 @@ class Robot {
    * Public: A wrapper around the EventEmitter API to make usage
    * semantically better.
    *
-   * @params {string} event    - The event name.
-   * @params {object} listener - A Function that is called with the
+   * @param {string} event    - The event name.
+   * @param {object} listener - A Function that is called with the
    *                             event parameter when event happens.
    *
    * Returns nothing.
@@ -595,8 +595,8 @@ class Robot {
    * Public: A wrapper around the EventEmitter API to make usage
    * semantically better.
    *
-   * @params {string} event   - The event name.
-   * @params {string[]} args... - Arguments emitted by the event
+   * @param {string} event   - The event name.
+   * @param {string[]} args... - Arguments emitted by the event
    *
    * Returns nothing.
    */
@@ -644,8 +644,8 @@ class Robot {
    * Once your request is assembled, you can call `get()`/`post()`/etc to
    * send the request.
    *
-   * @params {string} url - String URL to access.
-   * @params {object[]} options - Optional options to pass on to the client
+   * @param {string} url - String URL to access.
+   * @param {object[]} options - Optional options to pass on to the client
    *
    * Examples:
    *
