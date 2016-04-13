@@ -1,4 +1,4 @@
-v3.1.0 (2016/4/13)
+v3.0.1 (2016/4/13)
 ========
 * remove dependency of babel-plugin-add-module-exports
 * port index.js to module import syntax
