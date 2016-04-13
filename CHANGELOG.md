@@ -1,3 +1,9 @@
+v3.1.0 (2016/4/13)
+========
+* remove dependency of babel-plugin-add-module-exports
+* port index.js to module import syntax
+* fix jsdoc
+
 v3.0.0 (2016/4/6)
 ========
 * add webby-template as a working webby bot sample
