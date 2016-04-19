@@ -14,7 +14,7 @@ import {Listener, TextListener} from './listener';
 import {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage}
   from './message';
 import Middleware from './middleware';
-import {ExpressRouter, NullRouter} from './router';
+import {ExpressRouter, NullRouter} from './server';
 
 const WEBBY_DEFAULT_ADAPTERS = [
   'shell'

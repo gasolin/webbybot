@@ -6,7 +6,7 @@ import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
 let expect = chai.expect;
 // bot classes
-import {ExpressRouter, NullRouter} from '../src/router';
+import {ExpressRouter, NullRouter} from '../src/server';
 
 describe('Router', function() {
   describe('Unit Tests', function() {
