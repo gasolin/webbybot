@@ -40,11 +40,17 @@ class ExpressRouter {
     let app = express();
 
     if (xpoweredby) {
-      app.use(this.rewriteXPowerBy(app, 'webby/' + robot.name));
+      app.use((req, res, next) => {
+        this.rewriteXPowerBy(req, res, app, 'webby/' + robot.name)
+            .then(next);
+      });
     }
 
     if (user && pass) {
-      app.use(this.basicAuth(user, pass));
+      app.use((req, res, next) => {
+        this.basicAuth(req, res, user, pass)
+            .then(next);
+      });
     }
     app.use(express.query());
 
@@ -79,14 +85,14 @@ class ExpressRouter {
    *
    * @param   {string}   HTTP header name
    */
-  rewriteXPowerBy(app, name) {
-    return (req, res, next) => {
+  rewriteXPowerBy(req, res, app, name) {
+    return new Promise(resolve => {
       // Switch off the default 'X-Powered-By: Express' header
       app.disable('x-powered-by');
 
       res.setHeader('X-Powered-By', name);
-      next();
-    };
+      resolve();
+    });
   }
 
   /**
@@ -100,25 +106,27 @@ class ExpressRouter {
    * @param   {string}   password Expected password
    * @returns {function} Express 4 middleware requiring the given credentials
    */
-  basicAuth(username, password) {
-    return (req, res, next) => {
+  basicAuth(req, res, username, password) {
+    return new Promise((resolve, reject) => {
       function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-        return res.send(401);
+        res.send(401);
       };
 
       var user = basicAuth(req);
 
       if (!user || !user.name || !user.pass) {
-        return unauthorized(res);
+        unauthorized(res);
+        reject();
       };
 
       if (user.name === username && user.pass === password) {
-        return next();
+        resolve();
       } else {
-        return unauthorized(res);
+        unauthorized(res);
+        reject();
       }
-    };
+    });
   }
 
   /**
