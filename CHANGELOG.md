@@ -1,3 +1,7 @@
+v3.1.0 (2016/4/19)
+========
+* migrate to express 4
+
 v3.0.1 (2016/4/13)
 ========
 * remove dependency of babel-plugin-add-module-exports
