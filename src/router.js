@@ -35,13 +35,13 @@ class ExpressRouter {
     let port = process.env.EXPRESS_PORT || process.env.PORT || 8080;
     let address = process.env.EXPRESS_BIND_ADDRESS ||
       process.env.BIND_ADDRESS || '0.0.0.0';
+    let xpoweredby = process.env.EXPRESS_XPOWEREDBY || true;
 
     let app = express();
 
-    app.use((req, res, next) => {
-      res.setHeader('X-Powered-By', 'webby/' + robot.name);
-      next();
-    });
+    if (xpoweredby) {
+      app.use(this.rewriteXPowerBy('webby/' + robot.name));
+    }
 
     if (user && pass) {
       app.use(this.basicAuth(user, pass));
@@ -74,6 +74,21 @@ class ExpressRouter {
     }
 
     this.setupHeroku(robot);
+  }
+
+  /**
+   *  X-Power-By header rewrite middleware for use with Express 4.x.
+   *
+   * @param   {string}   HTTP header name
+   */
+  rewriteXPowerBy(name) {
+    return function(req, res, next) {
+      // Switch off the default 'X-Powered-By: Express' header
+      app.disable('x-powered-by');
+
+      res.setHeader('X-Powered-By', name);
+      next();
+    }
   }
 
   /**

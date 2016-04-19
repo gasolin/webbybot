@@ -1,6 +1,7 @@
 v3.1.0 (2016/4/19)
 ========
 * migrate to express 4
+* support EXPRESS_XPOWEREDBY environment parameter to disable X-Powered-By header
 
 v3.0.1 (2016/4/13)
 ========
