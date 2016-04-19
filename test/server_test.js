@@ -23,7 +23,7 @@ describe('Router', function() {
       it('get call logged', function() {
         new NullRouter(this.robot);
         this.robot.router.get();
-        expect(this.robot.logger.warning).to.have.been.called;
+        expect(this.robot.logger.warning).to.have.been.calledOnce;
       });
     });
 
@@ -50,6 +50,18 @@ describe('Router', function() {
         delete this.robot.router;
         delete this.robot.server;
         delete process.env.EXPRESS_STATIC;
+      });
+
+      it('setupHeroku', function() {
+        sinon.spy(global, 'setInterval');
+        process.env.HEROKU_URL = 'http://example.heroku.com';
+        let object = new ExpressRouter(this.robot);
+
+        expect(global.setInterval).to.have.been.calledOnce;
+
+        delete this.robot.router;
+        delete this.robot.server;
+        delete process.env.HEROKU_URL;
       });
     });
   });
