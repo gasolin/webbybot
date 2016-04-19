@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/gasolin/webby.png)](https://travis-ci.org/gasolin/webbybot) [![codecov.io](https://codecov.io/github/gasolin/webbybot/coverage.svg?branch=master)](https://codecov.io/github/gasolin/webbybot?branch=master) [![Dependency Status](https://david-dm.org/gasolin/webbybot.svg)](https://david-dm.org/gasolin/webbybot) [![npm](https://img.shields.io/npm/v/webbybot.svg)](https://www.npmjs.com/package/webbybot)
 [![Join the chat at https://gitter.im/gasolin/webbybot](https://badges.gitter.im/gasolin/webbybot.svg)](https://gitter.im/gasolin/webbybot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Webbybot is ported from [Hubot](https://github.com/github/hubot) project by Github.
+[Webbybot](https://github.com/gasolin/webbybot/) is the next generation message/chat bot framework written in ES6 and plain javascript. Fully compatible with [Hubot](https://github.com/github/hubot)'s middleware and plugins.
 
 The Differences:
 
