@@ -82,7 +82,7 @@ class ExpressRouter {
    * @param   {string}   HTTP header name
    */
   rewriteXPowerBy(name) {
-    return function(req, res, next) {
+    return (req, res, next) => {
       // Switch off the default 'X-Powered-By: Express' header
       app.disable('x-powered-by');
 
@@ -103,7 +103,7 @@ class ExpressRouter {
    * @returns {function} Express 4 middleware requiring the given credentials
    */
   basicAuth(username, password) {
-    return function(req, res, next) {
+    return (req, res, next) => {
       function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
         return res.send(401);

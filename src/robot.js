@@ -356,14 +356,14 @@ class Robot {
     async.detectSeries(this.listeners, (listener, cb) => {
       try {
         listener.call(context.response.message, this.middleware.listener,
-          function(listenerExecuted) {
+          listenerExecuted => {
             anyListenersExecuted = anyListenersExecuted || listenerExecuted;
             Middleware.ticker(function() {
               cb(context.response.message.done);
             });
           });
       } catch(error) {
-        this.emit('error', error, new this.Response(
+        this.emit('error', error, new Response(
           this, context.response.message, []));
         cb(false);
       }
