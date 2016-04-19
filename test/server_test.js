@@ -5,6 +5,9 @@ import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
 let expect = chai.expect;
+
+import * as httpMocks from 'node-mocks-http';
+import express from 'express';
 // bot classes
 import {ExpressRouter, NullRouter} from '../src/server';
 
@@ -59,9 +62,44 @@ describe('Router', function() {
 
         expect(global.setInterval).to.have.been.calledOnce;
 
+        global.setInterval.restore();
         delete this.robot.router;
         delete this.robot.server;
         delete process.env.HEROKU_URL;
+      });
+    });
+
+    describe('Middleware', function() {
+      let app, req, res;
+      beforeEach(function() {
+        req = httpMocks.createRequest();
+        res = httpMocks.createResponse();
+      });
+
+      it('rewriteXPowerBy', function(done) {
+        let app = express();
+        sinon.spy(app, 'disable');
+
+        let object = new ExpressRouter(this.robot);
+        object.rewriteXPowerBy(req, res, app, 'test')
+          .then(() => {
+            expect(app.disable).to.have.been.calledOnce;
+
+            delete this.robot.router;
+            delete this.robot.server;
+          }).finally(done);
+      });
+
+      it('basicAuthentication', function(done) {
+        let object = new ExpressRouter(this.robot);
+        object.basicAuthentication(req, res, 'user', 'password')
+          .then(() => {
+            // expect(app.disable).to.have.been.calledOnce;
+            delete this.robot.router;
+            delete this.robot.server;
+          }).catch(err => {
+            console.log('fail to auth');
+          }).finally(done);
       });
     });
   });
