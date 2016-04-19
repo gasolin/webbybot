@@ -56,9 +56,7 @@ class ExpressRouter {
     app.use(bodyParser.json());
     // replacement for deprecated express.multipart/connect.multipart
     // limit to 100mb, as per the old behavior
-    app.use(multipart({
-      maxFilesSize: 100 * 1024 * 1024
-    }));
+    app.use(multipart({maxFilesSize: 100 * 1024 * 1024}));
 
     if (stat) {
       app.use(express.static(stat));
