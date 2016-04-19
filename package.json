@@ -8,6 +8,7 @@
   },
   "scripts": {
     "prebuild": "rm -rf dist coverage && mkdir dist",
+    "pretest": "source script/bootstrap",
     "build": "babel index.js -o dist/index.js && babel src -d dist/src",
     "postbuild": "cp package.json dist/",
     "test": "mocha --compilers js:babel-register -w",
@@ -34,12 +35,14 @@
   "homepage": "https://github.com/gasolin/webbybot",
   "dependencies": {
     "async": "^1.5.2",
+    "basic-auth": "^1.0.3",
+    "body-parser": "^1.15.0",
     "chalk": "^1.1.3",
     "cline": "^0.8.2",
     "coffee-script": "^1.10.0",
     "connect-multiparty": "^2.0.0",
     "dotenv": "^2.0.0",
-    "express": "^3.21.2",
+    "express": "^4.13.4",
     "log": "^1.4.0",
     "optparse": "^1.0.5",
     "scoped-http-client": "^0.11.0"

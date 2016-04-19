@@ -1,6 +1,8 @@
 import express from 'express';
 import multipart from 'connect-multiparty';
 import * as HttpClient from 'scoped-http-client';
+import basicAuth from 'basic-auth';
+import bodyParser from 'body-parser';
 
 class NullRouter {
   /**
@@ -42,12 +44,16 @@ class ExpressRouter {
     });
 
     if (user && pass) {
-      app.use(express.basicAuth(user, pass));
+      app.use(this.basicAuth(user, pass));
     }
     app.use(express.query());
 
-    app.use(express.json());
-    app.use(express.urlencoded());
+    // configure app to use bodyParser()
+    // this will let us get the data from a POST via
+    // POST: {"name":"foo","color":"red"} or
+    // POST: name=foo&color=red
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
     // replacement for deprecated express.multipart/connect.multipart
     // limit to 100mb, as per the old behavior
     app.use(multipart({
@@ -68,6 +74,38 @@ class ExpressRouter {
     }
 
     this.setupHeroku(robot);
+  }
+
+  /**
+   * Simple basic auth middleware for use with Express 4.x.
+   * refer https://davidbeath.com/posts/expressjs-40-basicauth.html
+   *
+   * @example
+   * app.use('/api-requiring-auth', utils.basicAuth('username', 'password'));
+   *
+   * @param   {string}   username Expected username
+   * @param   {string}   password Expected password
+   * @returns {function} Express 4 middleware requiring the given credentials
+   */
+  basicAuth(username, password) {
+    return function(req, res, next) {
+      function unauthorized(res) {
+        res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+        return res.send(401);
+      };
+
+      var user = basicAuth(req);
+
+      if (!user || !user.name || !user.pass) {
+        return unauthorized(res);
+      };
+
+      if (user.name === username && user.pass === password) {
+        return next();
+      } else {
+        return unauthorized(res);
+      }
+    };
   }
 
   /**
