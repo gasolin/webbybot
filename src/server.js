@@ -40,7 +40,7 @@ class ExpressRouter {
     let app = express();
 
     if (xpoweredby) {
-      app.use(this.rewriteXPowerBy('webby/' + robot.name));
+      app.use(this.rewriteXPowerBy(app, 'webby/' + robot.name));
     }
 
     if (user && pass) {
@@ -81,14 +81,14 @@ class ExpressRouter {
    *
    * @param   {string}   HTTP header name
    */
-  rewriteXPowerBy(name) {
+  rewriteXPowerBy(app, name) {
     return (req, res, next) => {
       // Switch off the default 'X-Powered-By: Express' header
       app.disable('x-powered-by');
 
       res.setHeader('X-Powered-By', name);
       next();
-    }
+    };
   }
 
   /**

@@ -36,8 +36,8 @@ describe('Router', function() {
         expect(this.robot.router).to.exist;
 
         delete this.robot.router;
-        delete process.env.EXPRESS_USER
-        delete process.env.EXPRESS_PASSWORD
+        delete process.env.EXPRESS_USER;
+        delete process.env.EXPRESS_PASSWORD;
       });
 
       it('static', function() {
