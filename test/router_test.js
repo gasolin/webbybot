@@ -26,5 +26,31 @@ describe('Router', function() {
         expect(this.robot.logger.warning).to.have.been.called;
       });
     });
+
+    describe('#ExpressRouter', function() {
+      it('basic auth', function() {
+        process.env.EXPRESS_USER = 'test';
+        process.env.EXPRESS_PASSWORD = 'testpasswd';
+        let object = new ExpressRouter(this.robot);
+
+        expect(this.robot.router).to.exist;
+
+        delete this.robot.router;
+        delete process.env.EXPRESS_USER
+        delete process.env.EXPRESS_PASSWORD
+      });
+
+      it('static', function() {
+        process.env.EXPRESS_STATIC = 'public';
+        let object = new ExpressRouter(this.robot);
+
+        expect(this.robot.server).to.exist;
+        expect(this.robot.router).to.exist;
+
+        delete this.robot.router;
+        delete this.robot.server;
+        delete process.env.EXPRESS_STATIC;
+      });
+    });
   });
 });
