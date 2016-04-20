@@ -48,7 +48,7 @@ class ExpressRouter {
 
     if (user && pass) {
       app.use((req, res, next) => {
-        this.basicAuth(req, res, user, pass)
+        this.basicAuthentication(req, res, user, pass)
             .then(next);
       });
     }
@@ -106,7 +106,7 @@ class ExpressRouter {
    * @param   {string}   password Expected password
    * @returns {function} Express 4 middleware requiring the given credentials
    */
-  basicAuth(req, res, username, password) {
+  basicAuthentication(req, res, username, password) {
     return new Promise((resolve, reject) => {
       function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
