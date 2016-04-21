@@ -10,6 +10,8 @@ The Differences:
 * Port hubot from coffeescript to es6 (plain JS) with babel.
 * Auto test coverage report with Codecov.
 * Auto linting with eslint.
+* Support .env file to setup system parameters
+* robot.router upgraded to Express 4.x
 
 The Same:
 
