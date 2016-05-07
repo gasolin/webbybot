@@ -38,7 +38,7 @@ class Robot {
    * Robots receive messages from a chat source (Campfire, irc, etc), and
    * dispatch them to matching listeners.
    *
-   * @param {string} adapterPath -  A String of the path to built-in adapters
+   * @param {string} adapterPath - A String of the path to built-in adapters
    *                                (defaults to src/adapters)
    * @param {string} adapter     - A String of the adapter name.
    * @param {boolean} httpd      - A Boolean whether to enable the HTTP daemon.
@@ -358,7 +358,10 @@ class Robot {
         listener.call(context.response.message, this.middleware.listener,
           listenerExecuted => {
             anyListenersExecuted = anyListenersExecuted || listenerExecuted;
-            Middleware.ticker(function() {
+            // Defer to the event loop at least after every listener so the
+            // stack doesn't get too big
+            Middleware.ticker(() => {
+              // Stop processing when message.done == true
               cb(context.response.message.done);
             });
           });
@@ -479,7 +482,6 @@ class Robot {
   loadAdapter(adapterName) {
     this.logger.debug(`Loading adapter ${adapterName}`);
     try {
-      // require('./adapters/shell');
       let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapterName) >= 0 ?
         this.adapterPath + '/' + adapterName : 'hubot-' + adapterName;
       this.adapter = require(path).use(this);

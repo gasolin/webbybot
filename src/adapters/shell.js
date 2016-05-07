@@ -50,11 +50,13 @@ class Shell extends Adapter {
   buildCli() {
     this.cli = cline();
     this.cli.command('*', (input) => {
-      let userId = process.env.WEBBY_SHELL_USER_ID || '1';
+      let userId = process.env.HUBOT_SHELL_USER_ID ||
+                   process.env.WEBBY_SHELL_USER_ID || '1';
       if (userId.match(/\A\d+\z/)) {
         userId = parseInt(userId);
       }
-      let userName = process.env.WEBBY_SHELL_USER_NAME || 'Shell';
+      let userName = process.env.HUBOT_SHELL_USER_NAME ||
+                     process.env.WEBBY_SHELL_USER_NAME || 'Shell';
       let user = this.robot.brain.userForId(userId, {
         name: userName,
         room: 'Shell'
