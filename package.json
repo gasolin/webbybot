@@ -1,15 +1,15 @@
 {
   "name": "webbybot",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "A simple helpful robot written in es6, compatible with hubot",
   "main": "dist/index.js",
   "bin": {
     "webby": "./bin/webby"
   },
   "scripts": {
-    "prebuild": "rm -rf dist coverage && mkdir dist",
+    "prebuild": "shx rm -rf dist coverage && shx mkdir dist",
     "build": "babel index.js -o dist/index.js && babel src -d dist/src",
-    "postbuild": "cp package.json dist/",
+    "postbuild": "shx cp package.json dist/",
     "test": "mocha --compilers js:babel-register -w",
     "test:single": "istanbul cover --root ./src _mocha -- 'test/**/*.js' --compilers js:babel-register -R spec",
     "lint": "eslint index.js bin/webby src/ test/",
@@ -44,7 +44,8 @@
     "express": "^4.13.4",
     "log": "^1.4.0",
     "optparse": "^1.0.5",
-    "scoped-http-client": "^0.11.0"
+    "scoped-http-client": "^0.11.0",
+    "shx": "^0.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
