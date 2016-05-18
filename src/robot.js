@@ -48,6 +48,9 @@ class Robot {
    * Returns nothing.
    */
   constructor(adapterPath, adapterName, httpd, name = 'webby', alias = false) {
+    if (this.adapterPath === undefined) {
+      this.adapterPath = Path.join(__dirname, 'adapters');
+    }
     this.name = name;
     this.events = new EventEmitter;
     this.brain = new Brain(this);
@@ -71,7 +74,7 @@ class Robot {
       this.router = new NullRouter(this).router;
     }
     this.adapterName = process.env.WEBBY_CURRENT_ADAPTER || adapterName;
-    this.loadAdapter(adapterPath, this.adapterName);
+    this.loadAdapter();
 
     this.errorHandlers = [];
     this.on('error', (err, res) => {
@@ -471,19 +474,13 @@ class Robot {
   /**
    * Load the adapter Hubot is going to use.
    *
-   * @param {string} adapterPath - A String of the path to adapter if local.
-   * @param {string} adapter     - A String of the adapter name to use.
-   *
    * Returns nothing.
    */
-  loadAdapter(adapterPath, adapterName) {
-    this.logger.debug(`Loading adapter ${adapterName}`);
-    if (adapterPath === undefined) {
-      this.adapterPath = Path.join(__dirname, 'adapters');
-    }
+  loadAdapter() {
+    this.logger.debug(`Loading adapter ${this.adapterName}`);
     try {
-      let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapterName) >= 0 ?
-        this.adapterPath + '/' + adapterName : 'hubot-' + adapterName;
+      let path = WEBBY_DEFAULT_ADAPTERS.indexOf(this.adapterName) >= 0 ?
+        this.adapterPath + '/' + this.adapterName : 'hubot-' + this.adapterName;
       this.adapter = require(path).use(this);
     } catch (error) {
       this.logger.error(`Cannot load adapter ${adapterName} - ${error}`);
