@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import User from '../src/user';
 
 describe('User', function() {
-  return describe('new', function() {
+  describe('new', function() {
     it('uses id as the default name', function() {
       let user = new User('hubot');
 

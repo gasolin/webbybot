@@ -1,3 +1,8 @@
+v3.1.2 (2106/5/7)
+========
+* use shx for cross platform npm script
+* sync with hubot 2.19
+
 v3.1.1 (2016/4/19)
 ========
 * migrate to express 4

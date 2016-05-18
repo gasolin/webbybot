@@ -116,7 +116,7 @@ var loadScripts = function() {
         var scripts = JSON.parse(data);
         robot.loadHubotScripts(scriptsPath, scripts);
       } catch (err) {
-        console.error('Error parsing JSON data from hubot-scripts.json: ' +
+        robot.logger.error('Error parsing JSON data from hubot-scripts.json: ' +
           err);
         process.exit(1);
       }
@@ -131,8 +131,8 @@ var loadScripts = function() {
         try {
           scripts = JSON.parse(data);
         } catch (error) {
-          console.error('Error parsing JSON data from external-scripts.json: ' +
-            error);
+          robot.logger.error(
+            'Error parsing JSON data from external-scripts.json: ' + error);
           process.exit(1);
         }
         robot.loadExternalScripts(scripts);
