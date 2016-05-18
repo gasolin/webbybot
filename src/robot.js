@@ -48,9 +48,6 @@ class Robot {
    * Returns nothing.
    */
   constructor(adapterPath, adapterName, httpd, name = 'webby', alias = false) {
-    if (this.adapterPath === undefined) {
-      this.adapterPath = Path.join(__dirname, 'adapters');
-    }
     this.name = name;
     this.events = new EventEmitter;
     this.brain = new Brain(this);
@@ -73,8 +70,8 @@ class Robot {
     } else {
       this.router = new NullRouter(this).router;
     }
-    this.adapterName = adapterName;
-    this.loadAdapter(adapterName);
+    this.adapterName = process.env.WEBBY_CURRENT_ADAPTER || adapterName;
+    this.loadAdapter(adapterPath, adapterName);
 
     this.errorHandlers = [];
     this.on('error', (err, res) => {
@@ -474,13 +471,16 @@ class Robot {
   /**
    * Load the adapter Hubot is going to use.
    *
-   * @param {string} path    - A String of the path to adapter if local.
-   * @param {string} adapter - A String of the adapter name to use.
+   * @param {string} adapterPath - A String of the path to adapter if local.
+   * @param {string} adapter     - A String of the adapter name to use.
    *
    * Returns nothing.
    */
-  loadAdapter(adapterName) {
+  loadAdapter(adapterPath, adapterName) {
     this.logger.debug(`Loading adapter ${adapterName}`);
+    if (adapterPath === undefined) {
+      this.adapterPath = Path.join(__dirname, 'adapters');
+    }
     try {
       let path = WEBBY_DEFAULT_ADAPTERS.indexOf(adapterName) >= 0 ?
         this.adapterPath + '/' + adapterName : 'hubot-' + adapterName;
