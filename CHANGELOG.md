@@ -1,8 +1,7 @@
-v3.2.2 (2016/5/18)
+v3.2.3 (2016/5/18)
 ========
 * return router instance of server
 * remove parameter of loadAdapter
-* support set default adapter via WEBBY_CURRENT_ADAPTER environment parameter
 
 v3.1.2 (2016/5/7)
 ========

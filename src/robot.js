@@ -73,7 +73,7 @@ class Robot {
     } else {
       this.router = new NullRouter(this).router;
     }
-    this.adapterName = process.env.WEBBY_CURRENT_ADAPTER || adapterName;
+    this.adapterName = adapterName;
     this.loadAdapter();
 
     this.errorHandlers = [];
