@@ -1,4 +1,8 @@
-v3.1.2 (2106/5/7)
+v3.2.0 (2016/5/18)
+========
+* return router instance of server
+
+v3.1.2 (2016/5/7)
 ========
 * use shx for cross platform npm script
 * sync with hubot 2.19
