@@ -1,4 +1,4 @@
-v3.2.0 (2016/5/18)
+v3.2.1 (2016/5/18)
 ========
 * return router instance of server
 * move adapterPath as parameter of loadAdapter

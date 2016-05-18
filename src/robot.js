@@ -71,7 +71,7 @@ class Robot {
       this.router = new NullRouter(this).router;
     }
     this.adapterName = process.env.WEBBY_CURRENT_ADAPTER || adapterName;
-    this.loadAdapter(adapterPath, adapterName);
+    this.loadAdapter(adapterPath, this.adapterName);
 
     this.errorHandlers = [];
     this.on('error', (err, res) => {
