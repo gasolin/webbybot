@@ -69,9 +69,9 @@ class Robot {
     this.globalHttpOptions = {};
     this.parseVersion();
     if (httpd) {
-      new ExpressRouter(this);
+      this.router = new ExpressRouter(this).router;
     } else {
-      new NullRouter(this);
+      this.router = new NullRouter(this).router;
     }
     this.adapterName = adapterName;
     this.loadAdapter(adapterName);

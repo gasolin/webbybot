@@ -13,12 +13,13 @@ class NullRouter {
   constructor(robot) {
     let msg = 'A script has tried registering a HTTP route while the HTTP ' +
           'server is disabled with --disabled-httpd.';
-    robot.router = {
+    let app = {
       get: () => robot.logger.warning(msg),
       post: () => robot.logger.warning(msg),
       put: () => robot.logger.warning(msg),
       delete: () => robot.logger.warning(msg)
     };
+    return {router: app};
   }
 }
 
@@ -62,16 +63,16 @@ class ExpressRouter {
       app.use(express.static(stat));
     }
 
+    this.setupHeroku(robot);
+
     try {
       robot.server = app.listen(port, address);
-      robot.router = app;
+      return {router: app};
     } catch(error) {
       robot.logger.error(`Error trying to start HTTP server: ${error}\n
         ${error.stack}`);
       process.exit(1);
     }
-
-    this.setupHeroku(robot);
   }
 
   /**

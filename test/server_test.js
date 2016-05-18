@@ -21,7 +21,7 @@ describe('Router', function() {
 
     describe('#NullRouter', function() {
       it('get call logged', function() {
-        new NullRouter(this.robot);
+        this.robot.router = new NullRouter(this.robot).router;
         this.robot.router.get();
         expect(this.robot.logger.warning).to.have.been.calledOnce;
       });
@@ -31,7 +31,7 @@ describe('Router', function() {
       it('basic auth', function() {
         process.env.EXPRESS_USER = 'test';
         process.env.EXPRESS_PASSWORD = 'testpasswd';
-        let object = new ExpressRouter(this.robot);
+        this.robot.router = new ExpressRouter(this.robot).router;
 
         expect(this.robot.router).to.exist;
 
@@ -42,7 +42,7 @@ describe('Router', function() {
 
       it('static', function() {
         process.env.EXPRESS_STATIC = 'public';
-        let object = new ExpressRouter(this.robot);
+        this.robot.router = new ExpressRouter(this.robot).router;
 
         expect(this.robot.server).to.exist;
         expect(this.robot.router).to.exist;
@@ -55,7 +55,7 @@ describe('Router', function() {
       it('setupHeroku', function() {
         sinon.spy(global, 'setInterval');
         process.env.HEROKU_URL = 'http://example.heroku.com';
-        let object = new ExpressRouter(this.robot);
+        this.robot.router = new ExpressRouter(this.robot).router;
 
         expect(global.setInterval).to.have.been.calledOnce;
 
