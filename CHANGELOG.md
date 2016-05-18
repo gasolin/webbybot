@@ -1,4 +1,4 @@
-v3.2.3 (2016/5/18)
+v3.2.4 (2016/5/18)
 ========
 * return router instance of server
 * remove parameter of loadAdapter

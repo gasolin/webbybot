@@ -483,7 +483,7 @@ class Robot {
         this.adapterPath + '/' + this.adapterName : 'hubot-' + this.adapterName;
       this.adapter = require(path).use(this);
     } catch (error) {
-      this.logger.error(`Cannot load adapter ${adapterName} - ${error}`);
+      this.logger.error(`Cannot load adapter ${this.adapterName} - ${error}`);
       process.exit(1);
     }
   }
