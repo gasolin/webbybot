@@ -19,6 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/gasolin/webbybot.git"
   },
+  "babel": {
+    "presets": ["es2015"]
+  },
   "keywords": [
     "github",
     "hubot",
