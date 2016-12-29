@@ -13,13 +13,13 @@ class NullRouter {
   constructor(robot) {
     let msg = 'A script has tried registering a HTTP route while the HTTP ' +
           'server is disabled with --disabled-httpd.';
-    let app = {
+    let router = {
       get: () => robot.logger.warning(msg),
       post: () => robot.logger.warning(msg),
       put: () => robot.logger.warning(msg),
       delete: () => robot.logger.warning(msg)
     };
-    return {router: app};
+    return {router};
   }
 }
 
@@ -144,5 +144,5 @@ class ExpressRouter {
 
 export {
   ExpressRouter,
-  NullRouter
+  NullRouter,
 };

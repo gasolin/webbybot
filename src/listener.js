@@ -103,7 +103,7 @@ class Listener {
       let response = new this.robot.Response(this.robot, message, match);
       middleware.execute({
         listener: this,
-        response: response
+        response,
       }, executeListener, allDone);
       return true;
     } else {
@@ -142,5 +142,5 @@ class TextListener extends Listener {
 
 export {
   Listener,
-  TextListener
+  TextListener,
 };

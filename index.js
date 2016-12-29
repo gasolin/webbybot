@@ -4,9 +4,18 @@ import Brain from './src/brain';
 import Robot from './src/robot';
 import Adapter from './src/adapter';
 import Response from './src/response';
-import {Listener, TextListener} from './src/listener';
-import {Message, TextMessage, EnterMessage,
-        LeaveMessage, TopicMessage, CatchAllMessage} from './src/message';
+import {
+  Listener,
+  TextListener,
+} from './src/listener';
+import {
+  Message,
+  TextMessage,
+  EnterMessage,
+  LeaveMessage,
+  TopicMessage,
+  CatchAllMessage,
+} from './src/message';
 
 export {
   User,
@@ -21,7 +30,7 @@ export {
   EnterMessage,
   LeaveMessage,
   TopicMessage,
-  CatchAllMessage
+  CatchAllMessage,
 };
 
 export function loadBot(adapterPath, adapterName,

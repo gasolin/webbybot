@@ -93,5 +93,5 @@ export {
   EnterMessage,
   LeaveMessage,
   TopicMessage,
-  CatchAllMessage
+  CatchAllMessage,
 };
