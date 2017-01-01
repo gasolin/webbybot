@@ -11,10 +11,17 @@ import User from './user';
 import Brain from './brain';
 import Response from './response';
 import {Listener, TextListener} from './listener';
-import {EnterMessage, LeaveMessage, TopicMessage, CatchAllMessage}
-  from './message';
+import {
+  EnterMessage,
+  LeaveMessage,
+  TopicMessage,
+  CatchAllMessage,
+} from './message';
 import Middleware from './middleware';
-import {ExpressRouter, NullRouter} from './server';
+import {
+  ExpressRouter,
+  NullRouter,
+} from './server';
 
 const WEBBY_DEFAULT_ADAPTERS = [
   'shell'
