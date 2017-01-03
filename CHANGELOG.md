@@ -1,3 +1,7 @@
+v3.3 (2016/12/27)
+=======
+* support hubot adapter without modification
+
 v3.2.4 (2016/5/18)
 ========
 * return router instance of server

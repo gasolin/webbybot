@@ -6,6 +6,8 @@ import {EventEmitter} from 'events';
 import * as async from 'async';
 // support load coffee script plugins
 import 'coffee-script/register';
+// support mock hubot
+import * as mockery from 'mockery';
 
 import User from './user';
 import Brain from './brain';
@@ -472,7 +474,9 @@ class Robot {
   }
 
   /**
-   * Load the adapter Hubot is going to use.
+   * Load the adapter is going to use.
+   *
+   * Allow use Hubot adapters directly.
    *
    * Returns nothing.
    */
@@ -481,7 +485,16 @@ class Robot {
     try {
       let path = WEBBY_DEFAULT_ADAPTERS.indexOf(this.adapterName) >= 0 ?
         this.adapterPath + '/' + this.adapterName : 'hubot-' + this.adapterName;
+
+      // Preload adapter and substitute 'hubot' require with 'webbybot'
+      mockery.enable();
+      mockery.registerAllowables(['hubot', path]);
+      mockery.registerSubstitute('hubot', 'webbybot');
+      // Load the adapter
       this.adapter = require(path).use(this);
+      // We're done with mockery
+      mockery.disable();
+      mockery.deregisterAll();
     } catch (error) {
       this.logger.error(`Cannot load adapter ${this.adapterName} - ${error}`);
       process.exit(1);
