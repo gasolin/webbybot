@@ -27,11 +27,10 @@ class Brain extends EventEmitter {
    * Returns the instance for chaining.
    */
   set(key, value) {
-    let pair;
+    let pair = {};
     if (key === Object(key)) {
       pair = key;
     } else {
-      pair = {};
       pair[key] = value;
     }
     // extend this.data._private
@@ -47,8 +46,7 @@ class Brain extends EventEmitter {
    * Returns the value.
    */
   get(key) {
-    let ref;
-    return (ref = this.data._private[key]) != null ? ref : null;
+    return this.data._private[key] || null;
   }
 
   /**
@@ -58,7 +56,7 @@ class Brain extends EventEmitter {
    * Returns the instance for chaining.
    */
   remove(key) {
-    if (this.data._private[key] != null) {
+    if (this.data._private.hasOwnProperty(key)) {
       delete this.data._private[key];
     }
     return this;

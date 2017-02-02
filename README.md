@@ -3,11 +3,12 @@
 [![Build Status](https://travis-ci.org/gasolin/webby.png)](https://travis-ci.org/gasolin/webbybot) [![codecov.io](https://codecov.io/github/gasolin/webbybot/coverage.svg?branch=master)](https://codecov.io/github/gasolin/webbybot?branch=master) [![Dependency Status](https://david-dm.org/gasolin/webbybot.svg)](https://david-dm.org/gasolin/webbybot) [![npm](https://img.shields.io/npm/v/webbybot.svg)](https://www.npmjs.com/package/webbybot)
 [![Join the chat at https://gitter.im/gasolin/webbybot](https://badges.gitter.im/gasolin/webbybot.svg)](https://gitter.im/gasolin/webbybot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[Webbybot](https://github.com/gasolin/webbybot/) is the next generation message/chat bot framework written in ES6 and plain javascript. Fully compatible with [Hubot](https://github.com/github/hubot)'s middleware and plugins.
+[Webbybot](https://github.com/gasolin/webbybot/) is the next generation framework to build message/chat bots, written in ES6 and plain javascript.
+Fully compatible with [Hubot](https://github.com/github/hubot)'s middleware and plugins.
 
 The Differences:
 
-* Port hubot from coffeescript to es6 (plain JS) with babel.
+* Port hubot from CoffeeScript to ES6 (plain JS) with babel.
 * Auto test coverage report with Codecov.
 * Auto linting with eslint.
 * Support .env file to setup system parameters
